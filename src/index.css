@@ -1,0 +1,304 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------ *
+ * Theme variants
+ * Let components opt into theme-specific styles when tokens aren't
+ * enough, e.g. `dark:rotate-0` / `light:opacity-100`. Most styling
+ * should flow through the semantic tokens below instead.
+ * ------------------------------------------------------------------ */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+@custom-variant light (&:where([data-theme="light"], [data-theme="light"] *));
+
+/* ------------------------------------------------------------------ *
+ * Design tokens
+ *
+ * RAW PALETTE  -> the source-of-truth brand colors (rarely referenced
+ *                 directly by components).
+ * SEMANTIC     -> what components actually use (bg-surface, text-fg,
+ *                 border-border, bg-primary, text-accent, ...). Each
+ *                 semantic token points at a runtime CSS variable that
+ *                 is re-defined per theme further down. To re-theme the
+ *                 whole site, edit the runtime variables in the
+ *                 `[data-theme="dark"]` / `[data-theme="light"]` blocks.
+ * ------------------------------------------------------------------ */
+@theme {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Fraunces", ui-serif, Georgia, serif;
+
+  /* Raw palette (source values) */
+  --color-night-950: #0d0820;
+  --color-night-900: #14102e;
+  --color-night-800: #1a103d;
+  --color-night-700: #271a55;
+
+  --color-grape-500: #7c5cff;
+  --color-grape-400: #9a82ff;
+  --color-grape-300: #b9a8ff;
+
+  --color-gold-500: #f6c64b;
+  --color-gold-400: #f9d676;
+  --color-gold-600: #e0972b;
+
+  --color-cream: #f7f4ef;
+
+  /* Semantic tokens -> mapped to runtime, theme-aware variables */
+  --color-bg: var(--bg);
+  --color-bg-band: var(--bg-band);
+  --color-surface: var(--surface);
+  --color-surface-hover: var(--surface-hover);
+  --color-surface-nav: var(--surface-nav);
+
+  --color-fg: var(--fg);
+  --color-fg-muted: var(--fg-muted);
+  --color-fg-subtle: var(--fg-subtle);
+  --color-fg-faint: var(--fg-faint);
+
+  --color-border: var(--border);
+  --color-border-subtle: var(--border-subtle);
+  --color-border-strong: var(--border-strong);
+
+  --color-primary: var(--primary);
+  --color-primary-soft: var(--primary-soft);
+
+  --color-accent: var(--accent);
+  --color-cta: var(--cta);
+  --color-cta-hover: var(--cta-hover);
+  --color-on-cta: var(--on-cta);
+
+  --color-ring: var(--ring);
+
+  --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ------------------------------------------------------------------ *
+ * Runtime theme values
+ * Edit these to re-theme. `:root` doubles as the dark default so the
+ * page is themed even before the inline script runs.
+ * ------------------------------------------------------------------ */
+:root,
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --bg: #0d0820;
+  --bg-band: #100b26;
+  --surface: rgba(255, 255, 255, 0.035);
+  --surface-hover: rgba(255, 255, 255, 0.06);
+  --surface-nav: rgba(13, 8, 32, 0.8);
+
+  --fg: #f7f4ef;
+  --fg-muted: rgba(247, 244, 239, 0.72);
+  --fg-subtle: rgba(247, 244, 239, 0.55);
+  --fg-faint: rgba(247, 244, 239, 0.4);
+
+  --border: rgba(255, 255, 255, 0.1);
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --border-strong: rgba(255, 255, 255, 0.16);
+
+  --primary: #7c5cff;
+  --primary-soft: #b9a8ff;
+
+  --accent: #f6c64b;
+  --cta: #f6c64b;
+  --cta-hover: #f9d676;
+  --on-cta: #0d0820;
+
+  --ring: rgba(255, 255, 255, 0.14);
+
+  /* Effects */
+  --glow-primary: rgba(124, 92, 255, 0.25);
+  --glow-primary-soft: rgba(124, 92, 255, 0.15);
+  --glow-accent: rgba(246, 198, 75, 0.16);
+  --grid-dot: rgba(255, 255, 255, 0.06);
+
+  --grad-gold-from: #f9d676;
+  --grad-gold-to: #e0972b;
+
+  --surface-grad: linear-gradient(135deg, #1b1142, #14102e);
+  --surface-grad-border: rgba(246, 198, 75, 0.22);
+
+  /* CTA spotlight band (deep indigo in both themes) */
+  --cta-band: linear-gradient(135deg, #271a55 0%, #1a103d 45%, #0d0820 100%);
+}
+
+[data-theme="light"] {
+  color-scheme: light;
+
+  --bg: #f7f3ec;
+  --bg-band: #efe8db;
+  --surface: #ffffff;
+  --surface-hover: #fbf7f0;
+  --surface-nav: rgba(247, 243, 236, 0.82);
+
+  --fg: #1c1438;
+  --fg-muted: rgba(28, 20, 56, 0.72);
+  --fg-subtle: rgba(28, 20, 56, 0.56);
+  --fg-faint: rgba(28, 20, 56, 0.44);
+
+  --border: rgba(28, 20, 56, 0.1);
+  --border-subtle: rgba(28, 20, 56, 0.07);
+  --border-strong: rgba(28, 20, 56, 0.15);
+
+  --primary: #6d4ae0;
+  --primary-soft: #5b3fc4;
+
+  --accent: #b06a12;
+  --cta: #f4b52e;
+  --cta-hover: #f6c64b;
+  --on-cta: #2a1c08;
+
+  --ring: rgba(28, 20, 56, 0.18);
+
+  /* Effects */
+  --glow-primary: rgba(124, 92, 255, 0.18);
+  --glow-primary-soft: rgba(124, 92, 255, 0.12);
+  --glow-accent: rgba(224, 151, 43, 0.16);
+  --grid-dot: rgba(28, 20, 56, 0.06);
+
+  --grad-gold-from: #c8870f;
+  --grad-gold-to: #9a5a10;
+
+  --surface-grad: linear-gradient(135deg, #ffffff, #f3edfc);
+  --surface-grad-border: rgba(124, 92, 255, 0.2);
+
+  /* CTA spotlight band stays deep indigo for contrast on light pages */
+  --cta-band: linear-gradient(135deg, #271a55 0%, #1a103d 45%, #0d0820 100%);
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+  }
+
+  ::selection {
+    background-color: var(--color-cta);
+    color: var(--color-on-cta);
+  }
+
+  /* Smooth, intentional cross-fade when switching themes */
+  @media (prefers-reduced-motion: no-preference) {
+    body,
+    header,
+    section,
+    footer {
+      transition:
+        background-color 0.45s var(--ease-spring),
+        border-color 0.45s var(--ease-spring),
+        color 0.45s var(--ease-spring);
+    }
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  .text-gradient-gold {
+    background: linear-gradient(
+      120deg,
+      var(--grad-gold-from),
+      var(--grad-gold-to)
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Ambient effects (theme-aware) */
+  .glow-primary {
+    background-color: var(--glow-primary);
+  }
+  .glow-primary-soft {
+    background-color: var(--glow-primary-soft);
+  }
+  .glow-accent {
+    background-color: var(--glow-accent);
+  }
+
+  .bg-grid {
+    background-image: radial-gradient(
+      circle at 1px 1px,
+      var(--grid-dot) 1px,
+      transparent 0
+    );
+    background-size: 32px 32px;
+  }
+
+  .surface-gradient {
+    background: var(--surface-grad);
+  }
+
+  .cta-gradient {
+    background: var(--cta-band);
+  }
+
+  /* Scroll-reveal animation driven by the Reveal component */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition:
+      opacity 0.7s var(--ease-spring),
+      transform 0.7s var(--ease-spring);
+    will-change: opacity, transform;
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+}
+
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translateY(0) translateX(0);
+  }
+  50% {
+    transform: translateY(-22px) translateX(10px);
+  }
+}
+
+@keyframes float-slower {
+  0%,
+  100% {
+    transform: translateY(0) translateX(0);
+  }
+  50% {
+    transform: translateY(26px) translateX(-12px);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+.animate-float-slow {
+  animation: float-slow 13s ease-in-out infinite;
+}
+.animate-float-slower {
+  animation: float-slower 17s ease-in-out infinite;
+}
