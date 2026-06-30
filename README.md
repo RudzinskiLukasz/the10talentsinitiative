@@ -23,7 +23,42 @@ npm install
 npm run dev      # start the dev server (http://localhost:5173)
 npm run build    # production build into /build
 npm run preview  # preview the production build locally
+npm run test     # run tests in watch mode
+npm run test:run # one-shot test run (CI / pre-push)
+npm run check    # test + production build
+npm audit        # dependency vulnerability scan (moderate+)
 ```
+
+### Pre-push checklist
+
+Before pushing, run:
+
+```bash
+npm run test:run && npm run build && npm audit
+```
+
+Or use the combined shortcut:
+
+```bash
+npm run check && npm audit
+```
+
+GitHub Actions (`.github/workflows/test.yml`) runs tests, build, and audit on every push/PR to `main`.
+
+## Security
+
+This static SPA uses defense-in-depth measures suitable for a client-rendered site:
+
+| Measure | Where |
+|--------|--------|
+| **Security headers** | `render.yaml` — `X-Content-Type-Options`, `X-Frame-Options: DENY`, `Referrer-Policy`, `Permissions-Policy`, `Content-Security-Policy` |
+| **Meta tags** | `index.html` — `X-Content-Type-Options`, `referrer` policy |
+| **External links** | `rel="noopener noreferrer"` on all `target="_blank"` links (e.g. Contact social links) |
+| **No secrets in client** | Public contact emails only; no API keys or tokens in the repo |
+| **No `dangerouslySetInnerHTML`** | Content is static JSX; contact form does not echo user input as HTML |
+| **Dependency audit** | `npm run audit` flags moderate+ vulnerabilities |
+
+**CSP tradeoff:** Vite bundles application scripts under `/assets`, but `index.html` includes a small inline theme bootstrap script to prevent flash-of-wrong-theme. That script requires `'unsafe-inline'` in `script-src`. Tailwind/runtime styles similarly need `'unsafe-inline'` in `style-src`. Google Fonts are allowed via `fonts.googleapis.com` and `fonts.gstatic.com`. Tightening further would require moving the theme script to a hashed external file or using CSP nonces (not supported on Render static headers alone).
 
 ## Project structure
 

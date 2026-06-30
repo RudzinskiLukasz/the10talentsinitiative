@@ -23,7 +23,7 @@ export default function ContactPage() {
                   key={item.label}
                   href={item.href}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   className="rounded-2xl border border-border bg-surface px-5 py-4 text-center text-sm font-semibold text-fg transition hover:border-accent/40 hover:bg-surface-hover"
                 >
                   {item.label}
