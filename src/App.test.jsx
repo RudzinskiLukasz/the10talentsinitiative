@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import App from "./App.jsx";
-import { homePage } from "./data/content.js";
+import { hero, programsPage, contactPage } from "./data/content.js";
 
 function renderAt(path) {
   return render(
@@ -19,17 +19,24 @@ describe("App routing", () => {
 
   it("renders the home page at /", () => {
     renderAt("/");
-    expect(screen.getByRole("heading", { level: 1, name: homePage.hero })).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { level: 1, name: hero.title })
+    ).toBeInTheDocument();
   });
 
-  it("renders the programs placeholder at /programs", () => {
+  it("renders the programs page at /programs", () => {
     renderAt("/programs");
-    expect(screen.getByRole("heading", { name: "Programs" })).toBeInTheDocument();
-    expect(screen.getByText("Coming soon")).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: programsPage.title })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: /Passion Play.*Cinema Awards/i })
+    ).toBeInTheDocument();
   });
 
-  it("renders the contact placeholder at /contact", () => {
+  it("renders the contact page at /contact", () => {
     renderAt("/contact");
-    expect(screen.getByRole("heading", { name: "Contact Us" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: contactPage.title })).toBeInTheDocument();
+    expect(screen.getByText(contactPage.intro)).toBeInTheDocument();
   });
 });

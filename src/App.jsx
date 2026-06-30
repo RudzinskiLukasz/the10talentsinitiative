@@ -2,6 +2,11 @@ import { Routes, Route } from "react-router-dom";
 import Layout from "./layouts/Layout.jsx";
 import PlaceholderPage from "./components/PlaceholderPage.jsx";
 import HomePage from "./pages/HomePage.jsx";
+import ProgramsPage from "./pages/ProgramsPage.jsx";
+import DailyReflectionsPage from "./pages/DailyReflectionsPage.jsx";
+import EventsPage from "./pages/EventsPage.jsx";
+import SongsBooksPage from "./pages/SongsBooksPage.jsx";
+import ContactPage from "./pages/ContactPage.jsx";
 import UpcomingProgramsPage from "./pages/UpcomingProgramsPage.jsx";
 import BlogPostPage from "./pages/BlogPostPage.jsx";
 import PrivacyPolicyPage from "./pages/PrivacyPolicyPage.jsx";
@@ -16,17 +21,11 @@ export default function App() {
     <Routes>
       <Route element={<Layout />}>
         <Route index element={<HomePage />} />
-        <Route path="programs" element={<PlaceholderPage title="Programs" />} />
-        <Route
-          path="daily-reflections"
-          element={<PlaceholderPage title="Daily Reflections" />}
-        />
-        <Route path="events" element={<PlaceholderPage title="Events" />} />
-        <Route
-          path="songs-books"
-          element={<PlaceholderPage title="Songs & Books" />}
-        />
-        <Route path="contact" element={<PlaceholderPage title="Contact Us" />} />
+        <Route path="programs" element={<ProgramsPage />} />
+        <Route path="daily-reflections" element={<DailyReflectionsPage />} />
+        <Route path="events" element={<EventsPage />} />
+        <Route path="songs-books" element={<SongsBooksPage />} />
+        <Route path="contact" element={<ContactPage />} />
         <Route
           path="t-talents-records"
           element={<PlaceholderPage title="T-Talents Records" />}

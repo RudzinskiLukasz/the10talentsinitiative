@@ -307,16 +307,14 @@ export const programsPage = {
 
 export const dailyReflectionsPage = {
   title: "Daily reflections",
-  intro:
-    "Faith-filled reflections to guide and inspire Catholic youth on their journey.",
-  placeholder:
-    "Daily reflections will be published here soon. Check back for homilies, meditations, and spiritual encouragement from our community.",
+  intro: "",
 };
 
 export const eventsPage = {
   title: "Upcoming Events",
   intro: "Find here all our events",
   emptyMessage: "There are no events scheduled this week.",
+  weekLabel: "This Week",
 };
 
 export const songsBooksPage = {
