@@ -59,4 +59,26 @@ describe("ThemeVariantSelect", () => {
     await user.keyboard("{ArrowDown}{Enter}");
     expect(onChange).toHaveBeenCalledWith("paper-glass");
   });
+
+  it("lists all three theme variants including Ona", async () => {
+    const user = userEvent.setup();
+    const onChange = vi.fn();
+    render(<ThemeVariantSelect variant="default" onChange={onChange} />);
+
+    await user.click(screen.getByRole("combobox", { name: "Theme style" }));
+
+    expect(screen.getByRole("option", { name: "Extendable theme" })).toBeInTheDocument();
+    expect(screen.getByRole("option", { name: "Paper glass theme" })).toBeInTheDocument();
+    expect(screen.getByRole("option", { name: "Ona theme" })).toBeInTheDocument();
+
+    await user.click(screen.getByRole("option", { name: "Ona theme" }));
+    expect(onChange).toHaveBeenCalledWith("ona");
+  });
+
+  it("shows Ona theme label when selected", () => {
+    render(<ThemeVariantSelect variant="ona" onChange={() => {}} />);
+    expect(screen.getByRole("combobox", { name: "Theme style" })).toHaveTextContent(
+      "Ona theme"
+    );
+  });
 });

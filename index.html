@@ -16,9 +16,10 @@
       // Set theme + variant before paint to avoid a flash of the wrong look.
       (function () {
         var themeColors = {
-          dark: { default: "#0d0820", "paper-glass": "#1c1c1e" },
-          light: { default: "#f7f3ec", "paper-glass": "#f5f5f7" },
+          dark: { default: "#0d0820", "paper-glass": "#1c1c1e", ona: "#1a0f1a" },
+          light: { default: "#f7f3ec", "paper-glass": "#f5f5f7", ona: "#faf6f0" },
         };
+        var knownVariants = { "paper-glass": true, ona: true };
 
         try {
           var stored = localStorage.getItem("ttt-theme");
@@ -31,13 +32,13 @@
           document.documentElement.setAttribute("data-theme", theme);
 
           var variant = localStorage.getItem("ttt-theme-variant");
-          if (variant === "paper-glass") {
-            document.documentElement.setAttribute("data-theme-variant", "paper-glass");
+          if (knownVariants[variant]) {
+            document.documentElement.setAttribute("data-theme-variant", variant);
           }
 
           var meta = document.querySelector('meta[name="theme-color"]');
           if (meta) {
-            var variantKey = variant === "paper-glass" ? "paper-glass" : "default";
+            var variantKey = knownVariants[variant] ? variant : "default";
             meta.setAttribute("content", themeColors[theme][variantKey]);
           }
         } catch (e) {

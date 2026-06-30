@@ -2,14 +2,15 @@ import { useCallback, useEffect, useState } from "react";
 
 const STORAGE_KEY = "ttt-theme";
 const THEME_COLORS = {
-  dark: { default: "#0d0820", "paper-glass": "#1c1c1e" },
-  light: { default: "#f7f3ec", "paper-glass": "#f5f5f7" },
+  dark: { default: "#0d0820", "paper-glass": "#1c1c1e", ona: "#1a0f1a" },
+  light: { default: "#f7f3ec", "paper-glass": "#f5f5f7", ona: "#faf6f0" },
 };
 
 function getThemeColor(theme) {
+  const variantAttr = document.documentElement.getAttribute("data-theme-variant");
   const variant =
-    document.documentElement.getAttribute("data-theme-variant") === "paper-glass"
-      ? "paper-glass"
+    variantAttr && THEME_COLORS[theme][variantAttr]
+      ? variantAttr
       : "default";
   return THEME_COLORS[theme][variant];
 }

@@ -5,17 +5,22 @@ export const STORAGE_KEY = "ttt-theme-variant";
 export const THEME_VARIANTS = [
   { value: "default", label: "Extendable theme" },
   { value: "paper-glass", label: "Paper glass theme" },
+  { value: "ona", label: "Ona theme" },
 ];
 
+const VALID_VARIANTS = new Set(
+  THEME_VARIANTS.map((v) => v.value).filter((v) => v !== "default")
+);
+
 const THEME_COLORS = {
-  dark: { default: "#0d0820", "paper-glass": "#1c1c1e" },
-  light: { default: "#f7f3ec", "paper-glass": "#f5f5f7" },
+  dark: { default: "#0d0820", "paper-glass": "#1c1c1e", ona: "#1a0f1a" },
+  light: { default: "#f7f3ec", "paper-glass": "#f5f5f7", ona: "#faf6f0" },
 };
 
 function getInitialVariant() {
   if (typeof document === "undefined") return "default";
   const current = document.documentElement.getAttribute("data-theme-variant");
-  return current === "paper-glass" ? "paper-glass" : "default";
+  return VALID_VARIANTS.has(current) ? current : "default";
 }
 
 function applyVariant(variant) {
@@ -46,7 +51,7 @@ export function useThemeVariant() {
   }, [variant]);
 
   const setVariant = useCallback((next) => {
-    const value = next === "paper-glass" ? "paper-glass" : "default";
+    const value = VALID_VARIANTS.has(next) ? next : "default";
     setVariantState(value);
     try {
       if (value === "default") {
