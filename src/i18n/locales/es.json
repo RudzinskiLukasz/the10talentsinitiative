@@ -424,19 +424,35 @@
   },
   "donationsPage": {
     "title": "Donaciones",
-    "intro": "If you would like to make a donation to our initiative and help boost the next generations of Nigerian talent, feel free to use the options below.",
-    "options": [
-      {
-        "title": "Transferencia bancaria",
-        "subtitle": "Datos bancarios",
-        "accountName": "The Ten Talents Humanitarian Initiative",
-        "cta": "Explorar más"
-      },
-      {
-        "title": "Pago directo",
-        "cta": "Explorar más"
-      }
-    ]
+    "intro": "Si desea donar a nuestra iniciativa y ayudar a impulsar a las próximas generaciones de talento nigeriano, utilice las opciones siguientes.",
+    "bankTransfer": {
+      "title": "Transferencia bancaria",
+      "subtitle": "Transfiera directamente a nuestra cuenta Zenith Bank",
+      "instructions": "Transfiera el importe que desee a la cuenta indicada abajo. Todos los fondos van directamente a The Ten Talents Initiative.",
+      "accountNameLabel": "Titular de la cuenta",
+      "bankNameLabel": "Banco",
+      "accountNumberLabel": "Número de cuenta",
+      "sortCodeLabel": "Código de sucursal / NIB",
+      "referenceLabel": "Referencia del pago",
+      "referenceHint": "Use su nombre o «Ten Talents Donation» para que podamos identificar su donación.",
+      "copyAccountNumber": "Copiar número de cuenta",
+      "copied": "¡Copiado!",
+      "contactForDetails": "Los datos bancarios se están finalizando. Por favor",
+      "contactLink": "contáctenos"
+    },
+    "onlinePayment": {
+      "title": "Pago en línea",
+      "subtitle": "Pague de forma segura con tarjeta o banco a través de Paystack",
+      "amountLabel": "Importe (NGN)",
+      "amountHint": "Los importes se procesan en naira nigeriano. Las tarjetas internacionales pueden convertirse al tipo de su banco.",
+      "emailLabel": "Correo electrónico",
+      "donateNow": "Donar ahora",
+      "comingSoon": "Los pagos con tarjeta en línea estarán disponibles pronto. La transferencia bancaria es nuestro método principal por ahora.",
+      "processing": "Abriendo pago…",
+      "success": "¡Gracias por su donación! Su aporte ayuda a formar a la próxima generación de talento católico.",
+      "cancelled": "El pago fue cancelado. Puede intentarlo de nuevo o usar transferencia bancaria."
+    },
+    "trustNote": "Todas las donaciones van directamente a la cuenta Zenith Bank de nuestra organización. Nunca almacenamos los datos de su tarjeta en este sitio."
   },
   "donationFailedPage": {
     "title": "Donación fallida",

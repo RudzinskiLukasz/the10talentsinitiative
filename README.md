@@ -119,3 +119,41 @@ If you already have a **Web Service** instead of a Static Site, the `start` scri
 ### After config changes
 
 Clear the build cache (**Settings → Clear build cache**) and trigger a **Manual Deploy** so Render picks up new build/start settings.
+
+## Donations & payments
+
+The `/donations` page supports **bank transfer** (always free) and optional **Paystack** online payments (no monthly fee; small per-transaction charge only).
+
+### Bank transfer (zero cost)
+
+Set these environment variables on Render (or in a local `.env` file copied from `.env.example`):
+
+| Variable | Description |
+|----------|-------------|
+| `VITE_ZENITH_ACCOUNT_NAME` | Account holder (default: The Ten Talents Humanitarian Initiative) |
+| `VITE_ZENITH_ACCOUNT_NUMBER` | Zenith Bank account number |
+| `VITE_ZENITH_BANK_NAME` | Bank name (default: Zenith Bank) |
+| `VITE_ZENITH_SORT_CODE` | Optional sort code / NIB |
+
+If `VITE_ZENITH_ACCOUNT_NUMBER` is empty, the page prompts visitors to contact you for bank details.
+
+**Source:** Account name comes from the legacy site content (`content.js` / i18n). The old WordPress `/donations` page did not publish a full account number, so the number must be set via env vars.
+
+### Paystack (optional, client-side only)
+
+1. Create a free account at [paystack.com](https://paystack.com).
+2. Complete business verification and add your **Zenith Bank** account as the settlement account (payouts go there).
+3. In Paystack Dashboard → **Settings → API Keys & Webhooks**, copy the **Public Key** (`pk_test_…` for testing, `pk_live_…` for production).
+4. On Render → your Static Site → **Environment**, add:
+   - `VITE_PAYSTACK_PUBLIC_KEY` = your public key
+
+No backend or webhook is required for the MVP — successful payments appear in the Paystack dashboard. The site loads `@paystack/inline-js` only when a donor clicks **Donate now**.
+
+**Costs:** Paystack has **no monthly fee** on the standard plan; you pay a small percentage per successful transaction (standard Nigerian merchant rates). Bank transfer has **no platform fee**.
+
+### Security
+
+- Never commit real account numbers or API keys — use `.env` locally and Render env vars in production.
+- Only the Paystack **public** key is embedded in the client bundle; secret keys stay in Paystack Dashboard only.
+- `render.yaml` CSP allows `js.paystack.co`, `api.paystack.co`, and `checkout.paystack.com` when online payments are enabled.
+

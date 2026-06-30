@@ -425,18 +425,34 @@
   "donationsPage": {
     "title": "Donations",
     "intro": "If you would like to make a donation to our initiative and help boost the next generations of Nigerian talent, feel free to use the options below.",
-    "options": [
-      {
-        "title": "Bank Transfer",
-        "subtitle": "Bank account details",
-        "accountName": "The Ten Talents Humanitarian Initiative",
-        "cta": "Explore More"
-      },
-      {
-        "title": "Direct payment",
-        "cta": "Explore More"
-      }
-    ]
+    "bankTransfer": {
+      "title": "Bank Transfer",
+      "subtitle": "Transfer directly to our Zenith Bank account",
+      "instructions": "Transfer the amount of your choice to the account below. All funds go directly to The Ten Talents Initiative.",
+      "accountNameLabel": "Account name",
+      "bankNameLabel": "Bank",
+      "accountNumberLabel": "Account number",
+      "sortCodeLabel": "Sort code / NIB",
+      "referenceLabel": "Payment reference",
+      "referenceHint": "Use your name or \"Ten Talents Donation\" so we can identify your gift.",
+      "copyAccountNumber": "Copy account number",
+      "copied": "Copied!",
+      "contactForDetails": "Bank transfer details are being finalized. Please",
+      "contactLink": "contact us"
+    },
+    "onlinePayment": {
+      "title": "Online Payment",
+      "subtitle": "Pay securely with card or bank via Paystack",
+      "amountLabel": "Amount (NGN)",
+      "amountHint": "Amounts are processed in Nigerian Naira. International cards may be converted at your bank's rate.",
+      "emailLabel": "Email",
+      "donateNow": "Donate now",
+      "comingSoon": "Online card payments are coming soon. Bank transfer is our primary method for now.",
+      "processing": "Opening payment…",
+      "success": "Thank you for your donation! Your gift helps nurture the next generation of Catholic talent.",
+      "cancelled": "Payment was cancelled. You can try again or use bank transfer."
+    },
+    "trustNote": "All donations go directly to our organization's Zenith Bank account. We never store your card details on this website."
   },
   "donationFailedPage": {
     "title": "Donation Failed",

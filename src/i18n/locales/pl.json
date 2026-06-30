@@ -424,19 +424,35 @@
   },
   "donationsPage": {
     "title": "Darowizny",
-    "intro": "If you would like to make a donation to our initiative and help boost the next generations of Nigerian talent, feel free to use the options below.",
-    "options": [
-      {
-        "title": "Bank Transfer",
-        "subtitle": "Bank account details",
-        "accountName": "The Ten Talents Humanitarian Initiative",
-        "cta": "Explore More"
-      },
-      {
-        "title": "Direct payment",
-        "cta": "Explore More"
-      }
-    ]
+    "intro": "Jeśli chcesz wesprzeć naszą inicjatywę i pomóc rozwijać kolejne pokolenia nigeryjskich talentów, skorzystaj z poniższych opcji.",
+    "bankTransfer": {
+      "title": "Przelew bankowy",
+      "subtitle": "Przelej bezpośrednio na nasze konto Zenith Bank",
+      "instructions": "Przelej wybraną kwotę na konto podane poniżej. Wszystkie środki trafiają bezpośrednio do The Ten Talents Initiative.",
+      "accountNameLabel": "Nazwa konta",
+      "bankNameLabel": "Bank",
+      "accountNumberLabel": "Numer konta",
+      "sortCodeLabel": "Kod oddziału / NIB",
+      "referenceLabel": "Tytuł przelewu",
+      "referenceHint": "Podaj swoje imię i nazwisko lub „Ten Talents Donation”, abyśmy mogli zidentyfikować darowiznę.",
+      "copyAccountNumber": "Kopiuj numer konta",
+      "copied": "Skopiowano!",
+      "contactForDetails": "Dane do przelewu są w trakcie uzupełniania. Prosimy",
+      "contactLink": "skontaktuj się z nami"
+    },
+    "onlinePayment": {
+      "title": "Płatność online",
+      "subtitle": "Zapłać bezpiecznie kartą lub przelewem przez Paystack",
+      "amountLabel": "Kwota (NGN)",
+      "amountHint": "Kwoty są przetwarzane w nairze nigeryjskiej. Karty międzynarodowe mogą być przeliczone według kursu Twojego banku.",
+      "emailLabel": "E-mail",
+      "donateNow": "Wesprzyj teraz",
+      "comingSoon": "Płatności kartą online wkrótce. Przelew bankowy to na razie nasza główna metoda.",
+      "processing": "Otwieranie płatności…",
+      "success": "Dziękujemy za darowiznę! Twój wkład pomaga kształtować kolejne pokolenie katolickich talentów.",
+      "cancelled": "Płatność anulowana. Możesz spróbować ponownie lub użyć przelewu bankowego."
+    },
+    "trustNote": "Wszystkie darowizny trafiają bezpośrednio na konto Zenith Bank naszej organizacji. Nigdy nie przechowujemy danych karty na tej stronie."
   },
   "donationFailedPage": {
     "title": "Donation Failed",

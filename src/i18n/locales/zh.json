@@ -424,19 +424,35 @@
   },
   "donationsPage": {
     "title": "捐赠",
-    "intro": "If you would like to make a donation to our initiative and help boost the next generations of Nigerian talent, feel free to use the options below.",
-    "options": [
-      {
-        "title": "Bank Transfer",
-        "subtitle": "Bank account details",
-        "accountName": "The Ten Talents Humanitarian Initiative",
-        "cta": "Explore More"
-      },
-      {
-        "title": "Direct payment",
-        "cta": "Explore More"
-      }
-    ]
+    "intro": "如果您想为本倡议捐款，帮助培养下一代尼日利亚人才，请使用以下方式。",
+    "bankTransfer": {
+      "title": "银行转账",
+      "subtitle": "直接转账至我们的 Zenith Bank 账户",
+      "instructions": "请将您选择的金额转入下方账户。所有资金将直接进入 The Ten Talents Initiative。",
+      "accountNameLabel": "账户名称",
+      "bankNameLabel": "银行",
+      "accountNumberLabel": "账号",
+      "sortCodeLabel": "分行代码 / NIB",
+      "referenceLabel": "付款备注",
+      "referenceHint": "请使用您的姓名或「Ten Talents Donation」，以便我们识别您的捐赠。",
+      "copyAccountNumber": "复制账号",
+      "copied": "已复制！",
+      "contactForDetails": "银行转账信息正在完善中，请",
+      "contactLink": "联系我们"
+    },
+    "onlinePayment": {
+      "title": "在线支付",
+      "subtitle": "通过 Paystack 安全使用银行卡或网银支付",
+      "amountLabel": "金额（NGN）",
+      "amountHint": "金额以尼日利亚奈拉结算。国际卡可能按您银行的汇率折算。",
+      "emailLabel": "电子邮箱",
+      "donateNow": "立即捐赠",
+      "comingSoon": "在线银行卡支付即将开放。目前请以银行转账为主。",
+      "processing": "正在打开支付…",
+      "success": "感谢您的捐赠！您的支持有助于培养下一代天主教青年人才。",
+      "cancelled": "支付已取消。您可以重试或使用银行转账。"
+    },
+    "trustNote": "所有捐赠将直接进入本组织在 Zenith Bank 的账户。本网站不会保存您的银行卡信息。"
   },
   "donationFailedPage": {
     "title": "Donation Failed",

@@ -40,4 +40,4 @@ services:
       # 'unsafe-inline' for script-src. Tailwind/runtime styles need 'unsafe-inline' for style-src.
       - path: /*
         name: Content-Security-Policy
-        value: "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
+        value: "default-src 'self'; script-src 'self' 'unsafe-inline' https://js.paystack.co; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://checkout.paystack.com; connect-src 'self' https://api.paystack.co; frame-src https://checkout.paystack.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://checkout.paystack.com"

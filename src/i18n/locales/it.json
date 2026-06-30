@@ -424,19 +424,35 @@
   },
   "donationsPage": {
     "title": "Donazioni",
-    "intro": "If you would like to make a donation to our initiative and help boost the next generations of Nigerian talent, feel free to use the options below.",
-    "options": [
-      {
-        "title": "Bank Transfer",
-        "subtitle": "Bank account details",
-        "accountName": "The Ten Talents Humanitarian Initiative",
-        "cta": "Explore More"
-      },
-      {
-        "title": "Direct payment",
-        "cta": "Explore More"
-      }
-    ]
+    "intro": "Se desideri donare alla nostra iniziativa e sostenere le prossime generazioni di talenti nigeriani, usa le opzioni qui sotto.",
+    "bankTransfer": {
+      "title": "Bonifico bancario",
+      "subtitle": "Bonifica direttamente sul nostro conto Zenith Bank",
+      "instructions": "Trasferisci l'importo che desideri sul conto indicato sotto. Tutti i fondi vanno direttamente a The Ten Talents Initiative.",
+      "accountNameLabel": "Intestatario del conto",
+      "bankNameLabel": "Banca",
+      "accountNumberLabel": "Numero di conto",
+      "sortCodeLabel": "Codice filiale / NIB",
+      "referenceLabel": "Causale del pagamento",
+      "referenceHint": "Usa il tuo nome o «Ten Talents Donation» così possiamo identificare la tua donazione.",
+      "copyAccountNumber": "Copia numero di conto",
+      "copied": "Copiato!",
+      "contactForDetails": "I dati bancari sono in fase di definizione. Per favore",
+      "contactLink": "contattaci"
+    },
+    "onlinePayment": {
+      "title": "Pagamento online",
+      "subtitle": "Paga in sicurezza con carta o banca tramite Paystack",
+      "amountLabel": "Importo (NGN)",
+      "amountHint": "Gli importi sono elaborati in naira nigeriana. Le carte internazionali possono essere convertite al tasso della tua banca.",
+      "emailLabel": "Email",
+      "donateNow": "Dona ora",
+      "comingSoon": "I pagamenti con carta online arriveranno presto. Il bonifico bancario è il nostro metodo principale per ora.",
+      "processing": "Apertura pagamento…",
+      "success": "Grazie per la tua donazione! Il tuo contributo aiuta a formare la prossima generazione di talenti cattolici.",
+      "cancelled": "Pagamento annullato. Puoi riprovare o usare il bonifico bancario."
+    },
+    "trustNote": "Tutte le donazioni vanno direttamente sul conto Zenith Bank della nostra organizzazione. Non memorizziamo i dati della tua carta su questo sito."
   },
   "donationFailedPage": {
     "title": "Donation Failed",

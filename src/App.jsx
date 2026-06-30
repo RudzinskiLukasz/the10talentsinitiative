@@ -15,6 +15,7 @@ import CookiePolicyPage from "./pages/CookiePolicyPage.jsx";
 import DonorDashboardPage from "./pages/DonorDashboardPage.jsx";
 import DonationFailedPage from "./pages/DonationFailedPage.jsx";
 import DonationConfirmationPage from "./pages/DonationConfirmationPage.jsx";
+import DonationsPage from "./pages/DonationsPage.jsx";
 import { posts } from "./data/posts.js";
 
 function PlaceholderRoute({ titleKey }) {
@@ -52,10 +53,7 @@ export default function App() {
           path="catholic-singles-forum"
           element={<PlaceholderRoute titleKey="secondaryNav.catholicSinglesForum" />}
         />
-        <Route
-          path="donations"
-          element={<PlaceholderRoute titleKey="secondaryNav.donations" />}
-        />
+        <Route path="donations" element={<DonationsPage />} />
         <Route path="upcoming-programs" element={<UpcomingProgramsPage />} />
         <Route path="privacy-policy" element={<PrivacyPolicyPage />} />
         <Route path="cookie-policy-eu" element={<CookiePolicyPage />} />

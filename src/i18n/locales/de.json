@@ -425,18 +425,34 @@
   "donationsPage": {
     "title": "Spenden",
     "intro": "Wenn Sie unsere Initiative unterstützen und die nächste Generation nigerianischer Talente fördern möchten, nutzen Sie die Optionen unten.",
-    "options": [
-      {
-        "title": "Banküberweisung",
-        "subtitle": "Bankverbindung",
-        "accountName": "The Ten Talents Humanitarian Initiative",
-        "cta": "Mehr entdecken"
-      },
-      {
-        "title": "Direktzahlung",
-        "cta": "Mehr entdecken"
-      }
-    ]
+    "bankTransfer": {
+      "title": "Banküberweisung",
+      "subtitle": "Überweisen Sie direkt auf unser Zenith-Bank-Konto",
+      "instructions": "Überweisen Sie den gewünschten Betrag auf das untenstehende Konto. Alle Mittel gehen direkt an The Ten Talents Initiative.",
+      "accountNameLabel": "Kontoinhaber",
+      "bankNameLabel": "Bank",
+      "accountNumberLabel": "Kontonummer",
+      "sortCodeLabel": "Bankleitzahl / NIB",
+      "referenceLabel": "Verwendungszweck",
+      "referenceHint": "Geben Sie Ihren Namen oder „Ten Talents Donation“ an, damit wir Ihre Spende zuordnen können.",
+      "copyAccountNumber": "Kontonummer kopieren",
+      "copied": "Kopiert!",
+      "contactForDetails": "Die Bankverbindung wird derzeit finalisiert. Bitte",
+      "contactLink": "kontaktieren Sie uns"
+    },
+    "onlinePayment": {
+      "title": "Online-Zahlung",
+      "subtitle": "Sicher bezahlen per Karte oder Bank über Paystack",
+      "amountLabel": "Betrag (NGN)",
+      "amountHint": "Beträge werden in nigerianischen Naira verarbeitet. Internationale Karten können zum Kurs Ihrer Bank umgerechnet werden.",
+      "emailLabel": "E-Mail",
+      "donateNow": "Jetzt spenden",
+      "comingSoon": "Online-Kartenzahlungen folgen in Kürze. Banküberweisung ist vorerst unsere Hauptmethode.",
+      "processing": "Zahlung wird geöffnet…",
+      "success": "Vielen Dank für Ihre Spende! Ihr Beitrag hilft, die nächste Generation katholischer Talente zu fördern.",
+      "cancelled": "Zahlung abgebrochen. Sie können es erneut versuchen oder per Banküberweisung spenden."
+    },
+    "trustNote": "Alle Spenden gehen direkt auf das Zenith-Bank-Konto unserer Organisation. Wir speichern keine Kartendaten auf dieser Website."
   },
   "donationFailedPage": {
     "title": "Spende fehlgeschlagen",
