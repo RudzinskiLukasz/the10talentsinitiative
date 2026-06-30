@@ -11,8 +11,13 @@
     <meta name="theme-color" content="#0d0820" />
 
     <script>
-      // Set the theme before paint to avoid a flash of the wrong theme.
+      // Set theme + variant before paint to avoid a flash of the wrong look.
       (function () {
+        var themeColors = {
+          dark: { default: "#0d0820", "paper-glass": "#1c1c1e" },
+          light: { default: "#f7f3ec", "paper-glass": "#f5f5f7" },
+        };
+
         try {
           var stored = localStorage.getItem("ttt-theme");
           var theme =
@@ -22,8 +27,17 @@
                 ? "light"
                 : "dark";
           document.documentElement.setAttribute("data-theme", theme);
+
+          var variant = localStorage.getItem("ttt-theme-variant");
+          if (variant === "paper-glass") {
+            document.documentElement.setAttribute("data-theme-variant", "paper-glass");
+          }
+
           var meta = document.querySelector('meta[name="theme-color"]');
-          if (meta) meta.setAttribute("content", theme === "light" ? "#f7f3ec" : "#0d0820");
+          if (meta) {
+            var variantKey = variant === "paper-glass" ? "paper-glass" : "default";
+            meta.setAttribute("content", themeColors[theme][variantKey]);
+          }
         } catch (e) {
           document.documentElement.setAttribute("data-theme", "dark");
         }

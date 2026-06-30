@@ -1,7 +1,18 @@
 import { useCallback, useEffect, useState } from "react";
 
 const STORAGE_KEY = "ttt-theme";
-const THEME_COLORS = { dark: "#0d0820", light: "#f7f3ec" };
+const THEME_COLORS = {
+  dark: { default: "#0d0820", "paper-glass": "#1c1c1e" },
+  light: { default: "#f7f3ec", "paper-glass": "#f5f5f7" },
+};
+
+function getThemeColor(theme) {
+  const variant =
+    document.documentElement.getAttribute("data-theme-variant") === "paper-glass"
+      ? "paper-glass"
+      : "default";
+  return THEME_COLORS[theme][variant];
+}
 
 function getInitialTheme() {
   if (typeof document === "undefined") return "dark";
@@ -23,7 +34,7 @@ export function useTheme() {
     const root = document.documentElement;
     root.setAttribute("data-theme", theme);
     const meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.setAttribute("content", THEME_COLORS[theme]);
+    if (meta) meta.setAttribute("content", getThemeColor(theme));
   }, [theme]);
 
   useEffect(() => {

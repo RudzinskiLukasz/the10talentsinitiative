@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
 import Logo from "./Logo.jsx";
 import ThemeToggle from "./ThemeToggle.jsx";
+import ThemeVariantSelect from "./ThemeVariantSelect.jsx";
 import { useTheme } from "../hooks/useTheme.js";
+import { useThemeVariant } from "../hooks/useThemeVariant.js";
 import { nav } from "../data/content.js";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
+  const { variant, setVariant } = useThemeVariant();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 16);
@@ -40,6 +43,11 @@ export default function Navbar() {
         </div>
 
         <div className="flex items-center gap-2 sm:gap-3">
+          <ThemeVariantSelect
+            variant={variant}
+            onChange={setVariant}
+            className="hidden sm:block"
+          />
           <ThemeToggle theme={theme} onToggle={toggleTheme} />
 
           <a
@@ -94,15 +102,23 @@ export default function Navbar() {
               {item.label}
             </a>
           ))}
-          <div className="mt-2 flex items-center gap-3">
+          <div className="mt-2 flex flex-col gap-3">
+            <div className="flex items-center gap-3">
+              <ThemeVariantSelect
+                id="theme-variant-mobile"
+                variant={variant}
+                onChange={setVariant}
+                className="flex-1"
+              />
+              <ThemeToggle theme={theme} onToggle={toggleTheme} />
+            </div>
             <a
               href="#join"
               onClick={() => setOpen(false)}
-              className="flex-1 rounded-xl bg-cta px-4 py-3 text-center text-sm font-bold text-on-cta"
+              className="rounded-xl bg-cta px-4 py-3 text-center text-sm font-bold text-on-cta"
             >
               Get Involved
             </a>
-            <ThemeToggle theme={theme} onToggle={toggleTheme} />
           </div>
         </div>
       </div>
