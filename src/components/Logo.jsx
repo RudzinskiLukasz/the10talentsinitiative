@@ -1,7 +1,9 @@
+import { Link } from "react-router-dom";
+
 export default function Logo({ className = "" }) {
   return (
-    <a
-      href="#top"
+    <Link
+      to="/"
       className={`group flex items-center gap-2.5 ${className}`}
       aria-label="The Ten Talents Initiative — home"
     >
@@ -27,6 +29,6 @@ export default function Logo({ className = "" }) {
           Initiative
         </span>
       </span>
-    </a>
+    </Link>
   );
 }

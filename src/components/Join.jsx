@@ -1,4 +1,6 @@
+import { Link } from "react-router-dom";
 import Reveal from "./Reveal.jsx";
+import { join } from "../data/content.js";
 
 export default function Join() {
   return (
@@ -10,24 +12,19 @@ export default function Join() {
             <div className="absolute bottom-0 right-1/4 h-56 w-56 rounded-full bg-grape-500/25 blur-[110px]" />
           </div>
 
-          <span className="text-xs font-bold uppercase tracking-[0.22em] text-gold-500">
-            Ignite Your Journey
-          </span>
-          <h2 className="mx-auto mt-4 max-w-2xl font-display text-3xl font-semibold leading-tight tracking-tight text-balance text-cream sm:text-5xl">
-            Let your gifts flourish in faith and community
+          <h2 className="mx-auto max-w-2xl font-display text-3xl font-semibold leading-tight tracking-tight text-balance text-cream sm:text-5xl">
+            {join.title}
           </h2>
           <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-cream/70 sm:text-lg">
-            Join the Ten Talents Initiative and discover how your unique talents
-            can grow through mentorship, media, and the support of a community
-            rooted in Christ.
+            {join.body}
           </p>
 
           <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <a
-              href="mailto:bulusmaina25@gmail.com?subject=Joining%20The%20Ten%20Talents%20Initiative"
+            <Link
+              to={join.ctaHref}
               className="group inline-flex w-full items-center justify-center gap-2 rounded-full bg-gold-500 px-8 py-4 text-sm font-bold text-night-950 shadow-xl shadow-gold-500/25 transition hover:bg-gold-400 sm:w-auto"
             >
-              Get Involved Today
+              {join.cta}
               <svg
                 viewBox="0 0 24 24"
                 className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
@@ -39,13 +36,13 @@ export default function Join() {
               >
                 <path d="M5 12h14M13 6l6 6-6 6" />
               </svg>
-            </a>
-            <a
-              href="#mission"
+            </Link>
+            <Link
+              to="/contact"
               className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-8 py-4 text-sm font-semibold text-cream transition hover:bg-white/10 sm:w-auto"
             >
-              Learn More
-            </a>
+              Contact Us
+            </Link>
           </div>
         </div>
       </Reveal>

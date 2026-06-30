@@ -1,5 +1,6 @@
+import { Link } from "react-router-dom";
 import Logo from "./Logo.jsx";
-import { nav } from "../data/content.js";
+import { nav, site } from "../data/content.js";
 
 export default function Footer() {
   return (
@@ -19,14 +20,32 @@ export default function Footer() {
               Explore
             </span>
             {nav.map((item) => (
-              <a
+              <Link
                 key={item.href}
-                href={item.href}
+                to={item.href}
                 className="text-sm text-fg-muted transition hover:text-accent"
               >
                 {item.label}
-              </a>
+              </Link>
             ))}
+            <Link
+              to="/home"
+              className="text-sm text-fg-muted transition hover:text-accent"
+            >
+              Home
+            </Link>
+            <Link
+              to="/privacy-policy"
+              className="text-sm text-fg-muted transition hover:text-accent"
+            >
+              Privacy Policy
+            </Link>
+            <Link
+              to="/cookie-policy-eu"
+              className="text-sm text-fg-muted transition hover:text-accent"
+            >
+              Cookie Policy (EU)
+            </Link>
           </div>
 
           <div className="flex flex-col gap-3">
@@ -34,10 +53,16 @@ export default function Footer() {
               Get In Touch
             </span>
             <a
-              href="mailto:bulusmaina25@gmail.com"
+              href={`mailto:${site.contactEmail}`}
               className="text-sm text-fg-muted transition hover:text-accent"
             >
-              bulusmaina25@gmail.com
+              {site.contactEmail}
+            </a>
+            <a
+              href={`mailto:${site.email}`}
+              className="text-sm text-fg-muted transition hover:text-accent"
+            >
+              {site.email}
             </a>
             <span className="text-sm text-fg-faint">Nigeria • Africa • Beyond</span>
           </div>

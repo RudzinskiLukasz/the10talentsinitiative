@@ -1,10 +1,10 @@
+import { Link } from "react-router-dom";
 import Reveal from "./Reveal.jsx";
-import { stats } from "../data/content.js";
+import { hero, stats } from "../data/content.js";
 
 export default function Hero() {
   return (
     <section id="top" className="relative overflow-hidden pt-32 pb-20 sm:pt-40 sm:pb-28">
-      {/* Background glows */}
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="glow-primary absolute left-1/2 top-[-10%] h-[520px] w-[520px] -translate-x-1/2 rounded-full blur-[120px] animate-float-slow" />
         <div className="glow-accent absolute right-[8%] top-[20%] h-[340px] w-[340px] rounded-full blur-[110px] animate-float-slower" />
@@ -25,8 +25,7 @@ export default function Hero() {
           delay={80}
           className="mx-auto mt-7 max-w-4xl text-center font-display text-4xl font-semibold leading-[1.05] tracking-tight text-balance sm:text-6xl lg:text-7xl"
         >
-          My gifts are for <span className="text-gradient-gold">Christ</span> and
-          His <span className="text-gradient-gold">Church</span>
+          {hero.title}
         </Reveal>
 
         <Reveal
@@ -34,20 +33,18 @@ export default function Hero() {
           delay={160}
           className="mx-auto mt-6 max-w-2xl text-center text-base leading-relaxed text-fg-muted sm:text-lg text-balance"
         >
-          The Ten Talents Initiative inspires young Catholics to nurture their
-          God-given gifts — through faith-driven arts, mentorship, media, and a
-          community that helps every talent shine.
+          {hero.description}
         </Reveal>
 
         <Reveal
           delay={240}
           className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row"
         >
-          <a
-            href="#join"
+          <Link
+            to={hero.ctaPrimaryHref}
             className="group inline-flex w-full items-center justify-center gap-2 rounded-full bg-cta px-7 py-3.5 text-sm font-bold text-on-cta shadow-xl shadow-cta/25 transition hover:bg-cta-hover sm:w-auto"
           >
-            Discover Our Programs
+            {hero.ctaPrimary}
             <svg
               viewBox="0 0 24 24"
               className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
@@ -59,12 +56,12 @@ export default function Hero() {
             >
               <path d="M5 12h14M13 6l6 6-6 6" />
             </svg>
-          </a>
+          </Link>
           <a
-            href="#mission"
+            href={hero.ctaSecondaryHref}
             className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-border-strong bg-surface px-7 py-3.5 text-sm font-semibold text-fg transition hover:bg-surface-hover sm:w-auto"
           >
-            Our Mission
+            {hero.ctaSecondary}
           </a>
         </Reveal>
 

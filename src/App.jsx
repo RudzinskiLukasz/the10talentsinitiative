@@ -1,23 +1,42 @@
-import Navbar from "./components/Navbar.jsx";
-import Hero from "./components/Hero.jsx";
-import Mission from "./components/Mission.jsx";
-import Goals from "./components/Goals.jsx";
-import Team from "./components/Team.jsx";
-import Join from "./components/Join.jsx";
-import Footer from "./components/Footer.jsx";
+import { Routes, Route } from "react-router-dom";
+import Layout from "./layouts/Layout.jsx";
+import AboutPage from "./pages/AboutPage.jsx";
+import HomePage from "./pages/HomePage.jsx";
+import ProgramsPage from "./pages/ProgramsPage.jsx";
+import EventsPage from "./pages/EventsPage.jsx";
+import SongsBooksPage from "./pages/SongsBooksPage.jsx";
+import ContactPage from "./pages/ContactPage.jsx";
+import DonationsPage from "./pages/DonationsPage.jsx";
+import UpcomingProgramsPage from "./pages/UpcomingProgramsPage.jsx";
+import BlogPostPage from "./pages/BlogPostPage.jsx";
+import PrivacyPolicyPage from "./pages/PrivacyPolicyPage.jsx";
+import CookiePolicyPage from "./pages/CookiePolicyPage.jsx";
+import DonorDashboardPage from "./pages/DonorDashboardPage.jsx";
+import DonationFailedPage from "./pages/DonationFailedPage.jsx";
+import DonationConfirmationPage from "./pages/DonationConfirmationPage.jsx";
+import { posts } from "./data/posts.js";
 
 export default function App() {
   return (
-    <div className="relative min-h-screen overflow-x-hidden">
-      <Navbar />
-      <main>
-        <Hero />
-        <Mission />
-        <Goals />
-        <Team />
-        <Join />
-      </main>
-      <Footer />
-    </div>
+    <Routes>
+      <Route element={<Layout />}>
+        <Route index element={<AboutPage />} />
+        <Route path="home" element={<HomePage />} />
+        <Route path="programs" element={<ProgramsPage />} />
+        <Route path="events" element={<EventsPage />} />
+        <Route path="songs-books" element={<SongsBooksPage />} />
+        <Route path="contact" element={<ContactPage />} />
+        <Route path="donations" element={<DonationsPage />} />
+        <Route path="upcoming-programs" element={<UpcomingProgramsPage />} />
+        <Route path="privacy-policy" element={<PrivacyPolicyPage />} />
+        <Route path="cookie-policy-eu" element={<CookiePolicyPage />} />
+        <Route path="donor-dashboard" element={<DonorDashboardPage />} />
+        <Route path="donation-failed" element={<DonationFailedPage />} />
+        <Route path="donation-confirmation" element={<DonationConfirmationPage />} />
+        {posts.map((post) => (
+          <Route key={post.slug} path={post.slug} element={<BlogPostPage />} />
+        ))}
+      </Route>
+    </Routes>
   );
 }

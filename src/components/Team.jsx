@@ -1,5 +1,5 @@
 import Reveal from "./Reveal.jsx";
-import { team } from "../data/content.js";
+import { team, teamSection } from "../data/content.js";
 
 function initials(name) {
   const cleaned = name
@@ -17,29 +17,20 @@ export default function Team() {
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <Reveal
-            as="span"
-            className="text-xs font-bold uppercase tracking-[0.22em] text-accent"
-          >
-            The People
-          </Reveal>
-          <Reveal
             as="h2"
-            delay={60}
-            className="mt-4 font-display text-3xl font-semibold leading-tight tracking-tight text-balance sm:text-4xl lg:text-5xl"
+            className="font-display text-3xl font-semibold leading-tight tracking-tight text-balance sm:text-4xl lg:text-5xl"
           >
-            Meet our inspirational team
+            {teamSection.title}
           </Reveal>
           <Reveal
             as="p"
             delay={120}
             className="mt-5 text-base leading-relaxed text-fg-muted sm:text-lg"
           >
-            The passionate believers driving our mission forward with dedication
-            and faith.
+            {teamSection.description}
           </Reveal>
         </div>
 
-        {/* Founder spotlight */}
         <Reveal className="mt-14">
           <div className="surface-gradient relative overflow-hidden rounded-3xl border border-[color:var(--surface-grad-border)] p-8 shadow-xl shadow-black/[0.06] sm:p-10">
             <div className="glow-accent pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full blur-3xl" />
@@ -48,16 +39,10 @@ export default function Team() {
                 {initials(lead.name)}
               </div>
               <div>
-                <span className="text-xs font-bold uppercase tracking-[0.18em] text-accent">
-                  {lead.role}
-                </span>
-                <h3 className="mt-2 font-display text-2xl font-semibold text-fg sm:text-3xl">
+                <h3 className="font-display text-2xl font-semibold text-fg sm:text-3xl">
                   {lead.name}
                 </h3>
-                <p className="mt-3 max-w-xl text-sm leading-relaxed text-fg-muted">
-                  Guiding the Ten Talents Initiative with a vision to help young
-                  Catholics offer their gifts in service of Christ and His Church.
-                </p>
+                <p className="mt-2 text-sm text-fg-subtle">({lead.role}).</p>
               </div>
             </div>
           </div>
@@ -75,8 +60,8 @@ export default function Team() {
                   {initials(m.name)}
                 </div>
                 <div className="min-w-0">
-                  <h3 className="truncate font-semibold text-fg">{m.name}</h3>
-                  <p className="mt-0.5 text-sm text-fg-subtle">{m.role}</p>
+                  <h3 className="font-semibold text-fg">{m.name}</h3>
+                  <p className="mt-0.5 text-sm text-fg-subtle">({m.role})</p>
                 </div>
               </div>
               {m.email && (
@@ -96,7 +81,7 @@ export default function Team() {
                     <rect x="3" y="5" width="18" height="14" rx="2" />
                     <path d="m3 7 9 6 9-6" />
                   </svg>
-                  <span className="truncate">{m.email}</span>
+                  <span className="truncate">Email: {m.email}</span>
                 </a>
               )}
             </Reveal>
