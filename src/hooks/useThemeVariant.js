@@ -3,8 +3,8 @@ import { useCallback, useEffect, useState } from "react";
 export const STORAGE_KEY = "ttt-theme-variant";
 
 export const THEME_VARIANTS = [
-  { value: "default", label: "Ten Talents" },
-  { value: "paper-glass", label: "Paper Glass" },
+  { value: "default", label: "Extendable theme" },
+  { value: "paper-glass", label: "Paper glass theme" },
 ];
 
 const THEME_COLORS = {
