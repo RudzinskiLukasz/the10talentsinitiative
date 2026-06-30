@@ -9,6 +9,9 @@ class MockIntersectionObserver {
 
 global.IntersectionObserver = MockIntersectionObserver;
 
+// jsdom does not implement scrollTo — stub for ScrollToTop.
+window.scrollTo = vi.fn();
+
 // jsdom does not implement matchMedia — stub for useTheme tests.
 Object.defineProperty(window, "matchMedia", {
   writable: true,

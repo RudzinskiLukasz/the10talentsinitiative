@@ -3,14 +3,6 @@ import { MemoryRouter } from "react-router-dom";
 import App from "./App.jsx";
 import { homePage } from "./data/content.js";
 
-vi.mock("react-router-dom", async (importOriginal) => {
-  const actual = await importOriginal();
-  return {
-    ...actual,
-    ScrollRestoration: () => null,
-  };
-});
-
 function renderAt(path) {
   return render(
     <MemoryRouter initialEntries={[path]}>
