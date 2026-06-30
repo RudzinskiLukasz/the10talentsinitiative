@@ -5,21 +5,48 @@ import ThemeToggle from "./ThemeToggle.jsx";
 import ThemeVariantSelect from "./ThemeVariantSelect.jsx";
 import { useTheme } from "../hooks/useTheme.js";
 import { useThemeVariant } from "../hooks/useThemeVariant.js";
-import { nav } from "../data/content.js";
+import { mainNav, secondaryNav } from "../data/content.js";
 
-function NavLink({ item, onClick, className }) {
+function NavLink({ item, onClick, className = "", activeClassName = "", mobile = false }) {
   const { pathname } = useLocation();
   const isActive =
     item.href === "/"
       ? pathname === "/"
       : pathname === item.href || pathname.startsWith(`${item.href}/`);
 
+  const base = mobile
+    ? "rounded-xl px-4 py-3 text-sm font-medium transition hover:bg-surface-hover hover:text-fg"
+    : "rounded-full px-4 py-2 text-sm font-medium transition hover:text-fg hover:bg-surface-hover";
+  const inactive = "text-fg-muted";
+  const active = "bg-surface-hover text-fg ring-1 ring-border-subtle";
+
   return (
     <Link
       to={item.href}
       onClick={onClick}
       aria-current={isActive ? "page" : undefined}
-      className={className}
+      className={`${base} ${isActive ? active : inactive} ${className} ${isActive ? activeClassName : ""}`}
+    >
+      {item.label}
+    </Link>
+  );
+}
+
+function SecondaryNavLink({ item, onClick, className = "" }) {
+  const { pathname } = useLocation();
+  const isActive =
+    pathname === item.href || pathname.startsWith(`${item.href}/`);
+
+  return (
+    <Link
+      to={item.href}
+      onClick={onClick}
+      aria-current={isActive ? "page" : undefined}
+      className={`rounded-md px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] transition ${
+        isActive
+          ? "bg-surface-hover text-accent ring-1 ring-border-subtle"
+          : "text-fg-subtle hover:bg-surface-hover hover:text-fg-muted"
+      } ${className}`}
     >
       {item.label}
     </Link>
@@ -39,87 +66,113 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const linkClass =
-    "rounded-full px-4 py-2 text-sm font-medium text-fg-muted transition hover:text-fg hover:bg-surface-hover";
-  const mobileLinkClass =
-    "rounded-xl px-4 py-3 text-sm font-medium text-fg-muted transition hover:bg-surface-hover hover:text-fg";
+  const headerSurface = scrolled
+    ? "border-b border-border bg-surface-nav backdrop-blur-xl"
+    : "border-b border-transparent";
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "border-b border-border bg-surface-nav backdrop-blur-xl"
-          : "border-b border-transparent"
-      }`}
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${headerSurface}`}
     >
-      <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 sm:px-8">
-        <Logo />
+      <div className="mx-auto max-w-6xl">
+        <nav
+          className="flex h-16 items-center justify-between px-5 sm:px-8"
+          aria-label="Main"
+        >
+          <Logo />
 
-        <div className="hidden items-center gap-1 lg:flex">
-          {nav.map((item) => (
-            <NavLink key={item.href} item={item} className={linkClass} />
-          ))}
+          <div className="hidden items-center gap-0.5 lg:flex">
+            {mainNav.map((item) => (
+              <NavLink key={item.href} item={item} />
+            ))}
+          </div>
+
+          <div className="flex items-center gap-2 sm:gap-3">
+            <ThemeVariantSelect
+              variant={variant}
+              onChange={setVariant}
+              className="hidden sm:block"
+            />
+            <ThemeToggle theme={theme} onToggle={toggleTheme} />
+
+            <button
+              type="button"
+              onClick={() => setOpen((v) => !v)}
+              aria-label="Toggle menu"
+              aria-expanded={open}
+              className="grid h-10 w-10 place-items-center rounded-xl border border-border bg-surface text-fg transition hover:bg-surface-hover lg:hidden"
+            >
+              <span className="relative block h-3.5 w-5">
+                <span
+                  className={`absolute left-0 block h-0.5 w-5 bg-fg transition-all duration-300 ${
+                    open ? "top-1.5 rotate-45" : "top-0"
+                  }`}
+                />
+                <span
+                  className={`absolute left-0 top-1.5 block h-0.5 w-5 bg-fg transition-all duration-300 ${
+                    open ? "opacity-0" : "opacity-100"
+                  }`}
+                />
+                <span
+                  className={`absolute left-0 block h-0.5 w-5 bg-fg transition-all duration-300 ${
+                    open ? "top-1.5 -rotate-45" : "top-3"
+                  }`}
+                />
+              </span>
+            </button>
+          </div>
+        </nav>
+
+        <div
+          className={`hidden border-t border-border-subtle lg:block ${
+            scrolled ? "bg-surface-nav/80" : "bg-transparent"
+          }`}
+          aria-label="Secondary"
+        >
+          <div className="flex h-9 items-center gap-2 px-5 sm:px-8">
+            {secondaryNav.map((item) => (
+              <SecondaryNavLink key={item.href} item={item} />
+            ))}
+          </div>
         </div>
-
-        <div className="flex items-center gap-2 sm:gap-3">
-          <ThemeVariantSelect
-            variant={variant}
-            onChange={setVariant}
-            className="hidden sm:block"
-          />
-          <ThemeToggle theme={theme} onToggle={toggleTheme} />
-
-          <Link
-            to="/contact"
-            className="hidden rounded-full bg-cta px-5 py-2.5 text-sm font-bold text-on-cta shadow-lg shadow-cta/25 transition hover:bg-cta-hover hover:shadow-cta/40 sm:inline-flex"
-          >
-            Get Involved
-          </Link>
-
-          <button
-            type="button"
-            onClick={() => setOpen((v) => !v)}
-            aria-label="Toggle menu"
-            aria-expanded={open}
-            className="grid h-10 w-10 place-items-center rounded-xl border border-border bg-surface text-fg transition hover:bg-surface-hover lg:hidden"
-          >
-            <span className="relative block h-3.5 w-5">
-              <span
-                className={`absolute left-0 block h-0.5 w-5 bg-fg transition-all duration-300 ${
-                  open ? "top-1.5 rotate-45" : "top-0"
-                }`}
-              />
-              <span
-                className={`absolute left-0 top-1.5 block h-0.5 w-5 bg-fg transition-all duration-300 ${
-                  open ? "opacity-0" : "opacity-100"
-                }`}
-              />
-              <span
-                className={`absolute left-0 block h-0.5 w-5 bg-fg transition-all duration-300 ${
-                  open ? "top-1.5 -rotate-45" : "top-3"
-                }`}
-              />
-            </span>
-          </button>
-        </div>
-      </nav>
+      </div>
 
       <div
         className={`overflow-hidden border-t border-border-subtle bg-surface-nav backdrop-blur-xl transition-all duration-300 lg:hidden ${
-          open ? "max-h-[32rem]" : "max-h-0"
+          open ? "max-h-[36rem]" : "max-h-0"
         }`}
       >
-        <div className="flex flex-col gap-1 px-5 py-4">
-          {nav.map((item) => (
-            <NavLink
-              key={item.href}
-              item={item}
-              onClick={() => setOpen(false)}
-              className={mobileLinkClass}
-            />
-          ))}
-          <div className="mt-2 flex flex-col gap-3">
-            <div className="flex items-center gap-3">
+        <div className="mx-auto max-w-6xl px-5 py-4">
+          <p className="mb-2 px-4 text-[10px] font-bold uppercase tracking-[0.2em] text-fg-faint">
+            Menu
+          </p>
+          <div className="flex flex-col gap-1">
+            {mainNav.map((item) => (
+              <NavLink
+                key={item.href}
+                item={item}
+                onClick={() => setOpen(false)}
+                mobile
+              />
+            ))}
+          </div>
+
+          <p className="mb-2 mt-5 px-4 text-[10px] font-bold uppercase tracking-[0.2em] text-fg-faint">
+            More
+          </p>
+          <div className="flex flex-col gap-1">
+            {secondaryNav.map((item) => (
+              <SecondaryNavLink
+                key={item.href}
+                item={item}
+                onClick={() => setOpen(false)}
+                className="rounded-xl px-4 py-3 text-left text-sm normal-case tracking-normal"
+              />
+            ))}
+          </div>
+
+          <div className="mt-4 flex flex-col gap-3 border-t border-border-subtle pt-4">
+            <div className="flex items-center gap-3 px-1">
               <ThemeVariantSelect
                 id="theme-variant-mobile"
                 variant={variant}
@@ -128,13 +181,6 @@ export default function Navbar() {
               />
               <ThemeToggle theme={theme} onToggle={toggleTheme} />
             </div>
-            <Link
-              to="/contact"
-              onClick={() => setOpen(false)}
-              className="rounded-xl bg-cta px-4 py-3 text-center text-sm font-bold text-on-cta"
-            >
-              Get Involved
-            </Link>
           </div>
         </div>
       </div>

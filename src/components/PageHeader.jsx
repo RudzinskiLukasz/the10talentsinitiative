@@ -2,7 +2,7 @@ import Reveal from "./Reveal.jsx";
 
 export default function PageHeader({ eyebrow, title, description, className = "" }) {
   return (
-    <section className={`relative overflow-hidden pt-32 pb-12 sm:pt-40 sm:pb-16 ${className}`}>
+    <section className={`relative overflow-hidden pt-36 pb-12 sm:pt-44 sm:pb-16 lg:pt-48 ${className}`}>
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="glow-primary absolute left-1/2 top-[-20%] h-[420px] w-[420px] -translate-x-1/2 rounded-full blur-[120px] opacity-70" />
         <div className="bg-grid absolute inset-0" />

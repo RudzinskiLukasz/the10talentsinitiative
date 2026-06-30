@@ -6,15 +6,19 @@ export const site = {
   contactEmail: "bulusmaina25@gmail.com",
 };
 
-export const nav = [
-  { label: "About", href: "/" },
+export const mainNav = [
+  { label: "Home", href: "/" },
   { label: "Programs", href: "/programs" },
-  { label: "Announcements", href: "/upcoming-programs" },
+  { label: "Daily reflections", href: "/daily-reflections" },
   { label: "Events", href: "/events" },
   { label: "Songs & Books", href: "/songs-books" },
-  { label: "Contact", href: "/contact" },
-  { label: "Donations", href: "/donations" },
+  { label: "About Us", href: "/about" },
 ];
+
+export const secondaryNav = [{ label: "Tp", href: "/tp" }];
+
+/** Combined nav for footer and other link lists */
+export const nav = [...mainNav, ...secondaryNav];
 
 export const hero = {
   title: "My Gifts Are For Christ And His Church",
@@ -292,6 +296,14 @@ export const programsPage = {
       details: ["Begins on the 15th of May"],
     },
   ],
+};
+
+export const dailyReflectionsPage = {
+  title: "Daily reflections",
+  intro:
+    "Faith-filled reflections to guide and inspire Catholic youth on their journey.",
+  placeholder:
+    "Daily reflections will be published here soon. Check back for homilies, meditations, and spiritual encouragement from our community.",
 };
 
 export const eventsPage = {

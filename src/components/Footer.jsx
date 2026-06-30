@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import Logo from "./Logo.jsx";
-import { nav, site } from "../data/content.js";
+import { mainNav, secondaryNav, site } from "../data/content.js";
 
 export default function Footer() {
   return (
@@ -19,7 +19,7 @@ export default function Footer() {
             <span className="text-xs font-bold uppercase tracking-[0.2em] text-fg-faint">
               Explore
             </span>
-            {nav.map((item) => (
+            {mainNav.map((item) => (
               <Link
                 key={item.href}
                 to={item.href}
@@ -28,12 +28,15 @@ export default function Footer() {
                 {item.label}
               </Link>
             ))}
-            <Link
-              to="/home"
-              className="text-sm text-fg-muted transition hover:text-accent"
-            >
-              Home
-            </Link>
+            {secondaryNav.map((item) => (
+              <Link
+                key={item.href}
+                to={item.href}
+                className="text-sm text-fg-muted transition hover:text-accent"
+              >
+                {item.label}
+              </Link>
+            ))}
             <Link
               to="/privacy-policy"
               className="text-sm text-fg-muted transition hover:text-accent"

@@ -3,8 +3,10 @@ import Layout from "./layouts/Layout.jsx";
 import AboutPage from "./pages/AboutPage.jsx";
 import HomePage from "./pages/HomePage.jsx";
 import ProgramsPage from "./pages/ProgramsPage.jsx";
+import DailyReflectionsPage from "./pages/DailyReflectionsPage.jsx";
 import EventsPage from "./pages/EventsPage.jsx";
 import SongsBooksPage from "./pages/SongsBooksPage.jsx";
+import TpPage from "./pages/TpPage.jsx";
 import ContactPage from "./pages/ContactPage.jsx";
 import DonationsPage from "./pages/DonationsPage.jsx";
 import UpcomingProgramsPage from "./pages/UpcomingProgramsPage.jsx";
@@ -20,11 +22,13 @@ export default function App() {
   return (
     <Routes>
       <Route element={<Layout />}>
-        <Route index element={<AboutPage />} />
-        <Route path="home" element={<HomePage />} />
+        <Route index element={<HomePage />} />
+        <Route path="about" element={<AboutPage />} />
         <Route path="programs" element={<ProgramsPage />} />
+        <Route path="daily-reflections" element={<DailyReflectionsPage />} />
         <Route path="events" element={<EventsPage />} />
         <Route path="songs-books" element={<SongsBooksPage />} />
+        <Route path="tp" element={<TpPage />} />
         <Route path="contact" element={<ContactPage />} />
         <Route path="donations" element={<DonationsPage />} />
         <Route path="upcoming-programs" element={<UpcomingProgramsPage />} />
