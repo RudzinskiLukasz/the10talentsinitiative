@@ -2,9 +2,15 @@ services:
   - type: web
     name: the10talentsinitiative
     runtime: static
-    buildCommand: npm install && npm run build
+    # Render sets NODE_ENV=production during builds, which makes a plain
+    # `npm install` skip devDependencies (where vite & friends live), causing
+    # "vite: not found". `--include=dev` forces them to be installed.
+    buildCommand: npm ci --include=dev && npm run build
     staticPublishPath: ./dist
     pullRequestPreviewsEnabled: true
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
     routes:
       # SPA fallback: serve index.html for any path so client-side routing works.
       - type: rewrite
