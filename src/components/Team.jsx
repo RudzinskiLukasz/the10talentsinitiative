@@ -1,5 +1,6 @@
+import { useTranslation } from "react-i18next";
 import Reveal from "./Reveal.jsx";
-import { team, teamSection } from "../data/content.js";
+import { teamEmails } from "../data/site.js";
 
 function initials(name) {
   const cleaned = name
@@ -10,6 +11,8 @@ function initials(name) {
 }
 
 export default function Team() {
+  const { t } = useTranslation();
+  const team = t("team", { returnObjects: true });
   const [lead, ...members] = team;
 
   return (
@@ -20,14 +23,14 @@ export default function Team() {
             as="h2"
             className="font-display text-3xl font-semibold leading-tight tracking-tight text-balance sm:text-4xl lg:text-5xl"
           >
-            {teamSection.title}
+            {t("teamSection.title")}
           </Reveal>
           <Reveal
             as="p"
             delay={120}
             className="mt-5 text-base leading-relaxed text-fg-muted sm:text-lg"
           >
-            {teamSection.description}
+            {t("teamSection.description")}
           </Reveal>
         </div>
 
@@ -49,7 +52,9 @@ export default function Team() {
         </Reveal>
 
         <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {members.map((m, i) => (
+          {members.map((m, i) => {
+            const email = teamEmails[i + 1];
+            return (
             <Reveal
               key={m.name}
               delay={(i % 3) * 70}
@@ -64,9 +69,9 @@ export default function Team() {
                   <p className="mt-0.5 text-sm text-fg-subtle">({m.role})</p>
                 </div>
               </div>
-              {m.email && (
+              {email && (
                 <a
-                  href={`mailto:${m.email}`}
+                  href={`mailto:${email}`}
                   className="mt-4 inline-flex items-center gap-2 text-xs font-medium text-primary-soft transition hover:text-accent"
                 >
                   <svg
@@ -81,11 +86,12 @@ export default function Team() {
                     <rect x="3" y="5" width="18" height="14" rx="2" />
                     <path d="m3 7 9 6 9-6" />
                   </svg>
-                  <span className="truncate">Email: {m.email}</span>
+                  <span className="truncate">{t("common.email")} {email}</span>
                 </a>
               )}
             </Reveal>
-          ))}
+          );
+          })}
         </div>
       </div>
     </section>

@@ -1,23 +1,7 @@
-import {
-  site,
-  mainNav,
-  secondaryNav,
-  hero,
-  mission,
-  teamSection,
-  team,
-  goalsSection,
-  goals,
-  join,
-  homePage,
-  programsPage,
-  dailyReflectionsPage,
-  eventsPage,
-  songsBooksPage,
-  contactPage,
-  donationsPage,
-} from "./content.js";
+import { site } from "./site.js";
+import { MAIN_NAV, SECONDARY_NAV } from "../i18n/nav.js";
 import { posts } from "./posts.js";
+import i18n from "../i18n/index.js";
 
 const PLACEHOLDER_PATHS = new Set([
   "/t-talents-records",
@@ -28,11 +12,10 @@ const PLACEHOLDER_PATHS = new Set([
   "/donations",
 ]);
 
-function entry({ title, excerpt = "", path, section, category = "Page" }) {
-  const comingSoon = PLACEHOLDER_PATHS.has(path.split("#")[0]);
+function entry({ title, excerpt = "", path, section, category = "Page", comingSoon = false }) {
   return {
     title,
-    excerpt: comingSoon ? "Coming soon" : excerpt,
+    excerpt,
     path,
     section,
     category,
@@ -46,80 +29,87 @@ function truncate(text, max = 120) {
   return `${text.slice(0, max).trim()}…`;
 }
 
-function buildSearchIndex() {
+export function buildSearchIndex(t) {
   const items = [];
+  const comingSoon = t("common.comingSoon");
 
-  for (const { label, href } of mainNav) {
+  for (const { key, href } of MAIN_NAV) {
     items.push(
       entry({
-        title: label,
-        excerpt: site.name,
+        title: t(`nav.${key}`),
+        excerpt: t("site.name"),
         path: href,
-        category: "Navigation",
+        category: t("search.categories.navigation"),
       })
     );
   }
 
-  for (const { label, href } of secondaryNav) {
+  for (const { key, href } of SECONDARY_NAV) {
     items.push(
       entry({
-        title: label,
-        excerpt: PLACEHOLDER_PATHS.has(href) ? "Coming soon" : site.name,
+        title: t(`secondaryNav.${key}`),
+        excerpt: PLACEHOLDER_PATHS.has(href) ? comingSoon : t("site.name"),
         path: href,
-        category: "More",
+        category: t("search.categories.more"),
+        comingSoon: PLACEHOLDER_PATHS.has(href),
       })
     );
   }
+
+  const goals = t("goals", { returnObjects: true });
+  const team = t("team", { returnObjects: true });
+  const programsPage = t("programsPage", { returnObjects: true });
+  const songsBooksPage = t("songsBooksPage", { returnObjects: true });
 
   items.push(
     entry({
-      title: hero.title,
-      excerpt: hero.description,
+      title: t("hero.title"),
+      excerpt: t("hero.description"),
       path: "/contact",
-      section: "Hero",
-      category: "About",
+      section: t("search.sections.hero"),
+      category: t("search.categories.about"),
     }),
     entry({
-      title: mission.eyebrow,
-      excerpt: mission.body,
+      title: t("mission.eyebrow"),
+      excerpt: t("mission.body"),
       path: "/contact#mission",
-      section: "Mission",
-      category: "About",
+      section: t("search.sections.mission"),
+      category: t("search.categories.about"),
     }),
     entry({
-      title: goalsSection.title,
+      title: t("goalsSection.title"),
       excerpt: goals.map((g) => g.title).join(". "),
       path: "/contact#goals",
-      section: "Goals",
-      category: "About",
+      section: t("search.sections.goals"),
+      category: t("search.categories.about"),
     }),
     entry({
-      title: teamSection.title,
-      excerpt: teamSection.description,
+      title: t("teamSection.title"),
+      excerpt: t("teamSection.description"),
       path: "/contact#team",
-      section: "Team",
-      category: "About",
+      section: t("search.sections.team"),
+      category: t("search.categories.about"),
     }),
     entry({
-      title: join.title,
-      excerpt: join.body,
+      title: t("join.title"),
+      excerpt: t("join.body"),
       path: "/contact#join",
-      section: "Join",
-      category: "About",
+      section: t("search.sections.join"),
+      category: t("search.categories.about"),
     }),
     entry({
-      title: homePage.hero,
-      excerpt: homePage.introBody,
+      title: t("homePage.hero"),
+      excerpt: t("homePage.introBody"),
       path: "/",
-      section: "Home",
-      category: "Home",
+      section: t("search.sections.home"),
+      category: t("search.categories.home"),
     }),
     entry({
-      title: homePage.introTitle,
-      excerpt: homePage.introBody,
+      title: t("homePage.introTitle"),
+      excerpt: t("homePage.introBody"),
       path: "/",
-      section: "About",
-      category: "Home",
+      section: t("search.sections.about"),
+      category: t("search.categories.home"),
     })
   );
 
@@ -129,8 +119,8 @@ function buildSearchIndex() {
         title: member.name,
         excerpt: member.role,
         path: "/contact#team",
-        section: "Team",
-        category: "Team",
+        section: t("search.sections.team"),
+        category: t("search.categories.team"),
       })
     );
   }
@@ -141,8 +131,8 @@ function buildSearchIndex() {
         title: goal.title,
         excerpt: goal.points.join(" "),
         path: "/contact#goals",
-        section: "Goals",
-        category: "Goals",
+        section: t("search.sections.goals"),
+        category: t("search.categories.goals"),
       })
     );
   }
@@ -152,7 +142,7 @@ function buildSearchIndex() {
       title: programsPage.title,
       excerpt: programsPage.intro,
       path: "/programs",
-      category: "Programs",
+      category: t("search.categories.programs"),
     })
   );
 
@@ -162,8 +152,8 @@ function buildSearchIndex() {
         title: pillar.name,
         excerpt: pillar.intro,
         path: "/programs",
-        section: "Programs",
-        category: "Programs",
+        section: t("search.sections.programs"),
+        category: t("search.categories.programs"),
       })
     );
     for (const program of pillar.programs) {
@@ -173,7 +163,7 @@ function buildSearchIndex() {
           excerpt: truncate(program.body || program.aim || ""),
           path: "/programs",
           section: pillar.name,
-          category: "Programs",
+          category: t("search.categories.programs"),
         })
       );
     }
@@ -185,30 +175,30 @@ function buildSearchIndex() {
         title: event.title,
         excerpt: event.details.join(" "),
         path: "/programs",
-        section: "Upcoming events",
-        category: "Events",
+        section: t("search.sections.upcomingEvents"),
+        category: t("search.categories.events"),
       })
     );
   }
 
   items.push(
     entry({
-      title: dailyReflectionsPage.title,
-      excerpt: "Daily faith reflections and homilies",
+      title: t("dailyReflectionsPage.title"),
+      excerpt: t("search.sections.dailyReflectionsExcerpt"),
       path: "/daily-reflections",
-      category: "Reflections",
+      category: t("search.categories.reflections"),
     }),
     entry({
-      title: eventsPage.title,
-      excerpt: eventsPage.intro,
+      title: t("eventsPage.title"),
+      excerpt: t("eventsPage.intro"),
       path: "/events",
-      category: "Events",
+      category: t("search.categories.events"),
     }),
     entry({
       title: songsBooksPage.title,
       excerpt: songsBooksPage.intro,
       path: "/songs-books",
-      category: "Resources",
+      category: t("search.categories.resources"),
     })
   );
 
@@ -219,51 +209,55 @@ function buildSearchIndex() {
         excerpt: truncate(item.description || item.subtitle || ""),
         path: "/songs-books",
         section: songsBooksPage.releasesTitle,
-        category: "Resources",
+        category: t("search.categories.resources"),
       })
     );
   }
 
   items.push(
     entry({
-      title: contactPage.title,
-      excerpt: contactPage.intro,
+      title: t("contactPage.title"),
+      excerpt: t("contactPage.intro"),
       path: "/contact",
-      category: "Contact",
+      category: t("search.categories.contact"),
     }),
     entry({
-      title: donationsPage.title,
-      excerpt: donationsPage.intro,
+      title: t("donationsPage.title"),
+      excerpt: t("donationsPage.intro"),
       path: "/donations",
-      category: "Donations",
+      category: t("search.categories.donations"),
+      comingSoon: true,
     }),
     entry({
-      title: "Upcoming Programs",
-      excerpt: "Discover upcoming workshops and mentorship sessions",
+      title: t("search.sections.upcomingProgramsTitle"),
+      excerpt: t("search.sections.upcomingProgramsExcerpt"),
       path: "/upcoming-programs",
-      category: "Programs",
+      category: t("search.categories.programs"),
     }),
     entry({
-      title: "Privacy Policy",
-      excerpt: "How we handle your data",
+      title: t("pages.privacyPolicy.title"),
+      excerpt: t("search.sections.privacyExcerpt"),
       path: "/privacy-policy",
-      category: "Legal",
+      category: t("search.categories.legal"),
     }),
     entry({
-      title: "Cookie Policy",
-      excerpt: "Cookie usage and preferences",
+      title: t("pages.cookiePolicy.title"),
+      excerpt: t("search.sections.cookieExcerpt"),
       path: "/cookie-policy-eu",
-      category: "Legal",
+      category: t("search.categories.legal"),
     })
   );
 
   for (const post of posts) {
+    const translated = t(`posts.bySlug.${post.slug}`, { returnObjects: true, defaultValue: {} });
+    const title = translated.title || post.title;
+    const excerpt = truncate(translated.excerpt || post.excerpt || post.content);
     items.push(
       entry({
-        title: post.title,
-        excerpt: truncate(post.excerpt || post.content),
+        title,
+        excerpt,
         path: `/${post.slug}`,
-        category: "Article",
+        category: t("search.categories.article"),
       })
     );
   }
@@ -271,9 +265,8 @@ function buildSearchIndex() {
   return items;
 }
 
-export const searchEntries = buildSearchIndex();
-
-export function searchContent(query, limit = 8) {
+export function searchContent(query, limit = 8, t = i18n.t.bind(i18n)) {
+  const searchEntries = buildSearchIndex(t);
   const trimmed = query.trim().toLowerCase();
   if (!trimmed) return [];
 
@@ -314,3 +307,5 @@ export function searchContent(query, limit = 8) {
 
   return results;
 }
+
+export const searchEntries = buildSearchIndex(i18n.t.bind(i18n));

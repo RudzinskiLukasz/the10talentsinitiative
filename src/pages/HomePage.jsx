@@ -1,13 +1,30 @@
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import Reveal from "../components/Reveal.jsx";
-import { homePage } from "../data/content.js";
 import { posts } from "../data/posts.js";
 
-const announcementPosts = posts
-  .filter((post) => post.category === "Homilies/Reflections")
-  .slice(0, 6);
-
 export default function HomePage() {
+  const { t } = useTranslation();
+  const homePage = {
+    hero: t("homePage.hero"),
+    discoverMoreHref: t("homePage.discoverMoreHref"),
+    introTitle: t("homePage.introTitle"),
+    introBody: t("homePage.introBody"),
+    announcementsTitle: t("homePage.announcementsTitle"),
+    announcementsIntro: t("homePage.announcementsIntro"),
+    programsTitle: t("homePage.programsTitle"),
+    programsIntro: t("homePage.programsIntro"),
+    programTeasers: t("homePage.programTeasers", { returnObjects: true }),
+    donateTitle: t("homePage.donateTitle"),
+    donateBody: t("homePage.donateBody"),
+    donateCta: t("homePage.donateCta"),
+    bankDetails: t("homePage.bankDetails"),
+  };
+
+  const announcementPosts = posts
+    .filter((post) => post.category === "Homilies/Reflections")
+    .slice(0, 6);
+
   return (
     <>
       <section id="top" className="relative overflow-hidden pt-page-top pb-20 sm:pb-28">
@@ -29,7 +46,7 @@ export default function HomePage() {
               to={homePage.discoverMoreHref}
               className="group inline-flex items-center justify-center gap-2 rounded-full bg-cta px-7 py-3.5 text-sm font-bold text-on-cta shadow-xl shadow-cta/25 transition hover:bg-cta-hover"
             >
-              Discover More
+              {t("common.discoverMore")}
               <svg
                 viewBox="0 0 24 24"
                 className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
@@ -63,7 +80,7 @@ export default function HomePage() {
                 to="/contact"
                 className="inline-flex items-center gap-2 rounded-full border border-border-strong bg-surface px-5 py-2.5 text-sm font-semibold text-fg transition hover:bg-surface-hover"
               >
-                About Us & Contact →
+                {t("common.aboutUsContact")}
               </Link>
             </Reveal>
           </div>
@@ -80,30 +97,35 @@ export default function HomePage() {
           </Reveal>
 
           <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {announcementPosts.map((post, i) => (
+            {announcementPosts.map((post, i) => {
+              const translated = t(`posts.bySlug.${post.slug}`, { returnObjects: true, defaultValue: {} });
+              const title = translated.title || post.title;
+              const excerpt = translated.excerpt || post.excerpt || post.content.slice(0, 160);
+              return (
               <Reveal key={post.slug} delay={(i % 3) * 70}>
                 <article className="flex h-full flex-col rounded-2xl border border-border bg-surface p-6 shadow-sm transition hover:border-accent/40 hover:bg-surface-hover">
                   <span className="text-xs font-bold uppercase tracking-[0.18em] text-accent">
-                    Homilies/Reflections
+                    {t("posts.category")}
                   </span>
                   <h3 className="mt-2 font-display text-lg font-semibold leading-snug text-fg">
                     <Link to={`/${post.slug}`} className="hover:text-accent">
-                      {post.title}
+                      {title}
                     </Link>
                   </h3>
                   <p className="mt-2 text-xs text-fg-subtle">{post.date}</p>
                   <p className="mt-3 flex-1 text-sm leading-relaxed text-fg-muted line-clamp-3">
-                    {post.excerpt || post.content.slice(0, 160)}
+                    {excerpt}
                   </p>
                   <Link
                     to={`/${post.slug}`}
                     className="mt-4 inline-flex text-sm font-semibold text-primary-soft hover:text-accent"
                   >
-                    Read more →
+                    {t("common.readMore")}
                   </Link>
                 </article>
               </Reveal>
-            ))}
+            );
+            })}
           </div>
 
           <Reveal className="mt-10 text-center">
@@ -111,7 +133,7 @@ export default function HomePage() {
               to="/daily-reflections"
               className="inline-flex items-center gap-2 rounded-full bg-cta px-6 py-3 text-sm font-bold text-on-cta transition hover:bg-cta-hover"
             >
-              Explore All
+              {t("common.exploreAll")}
             </Link>
           </Reveal>
         </div>
@@ -142,7 +164,7 @@ export default function HomePage() {
               to="/programs"
               className="inline-flex items-center gap-2 rounded-full border border-border-strong bg-surface px-6 py-3 text-sm font-semibold text-fg transition hover:bg-surface-hover"
             >
-              Discover Our Programs →
+              {t("common.discoverProgramsArrow")}
             </Link>
           </Reveal>
         </div>

@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useId, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { searchContent } from "../data/searchIndex.js";
 
 const DEBOUNCE_MS = 200;
@@ -37,6 +38,7 @@ function navigateToResult(result, navigate) {
 }
 
 export default function SearchBar({ className = "", compact = false }) {
+  const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const listboxId = useId();
   const inputRef = useRef(null);
@@ -61,14 +63,14 @@ export default function SearchBar({ className = "", compact = false }) {
 
     setPending(true);
     const timer = window.setTimeout(() => {
-      const next = searchContent(query);
+      const next = searchContent(query, 8, t);
       setResults(next);
       setActiveIndex(next.length ? 0 : -1);
       setPending(false);
     }, DEBOUNCE_MS);
 
     return () => window.clearTimeout(timer);
-  }, [query]);
+  }, [query, t, i18n.language]);
 
   useEffect(() => {
     const onPointerDown = (event) => {
@@ -145,7 +147,7 @@ export default function SearchBar({ className = "", compact = false }) {
         <button
           type="button"
           onClick={toggleCompact}
-          aria-label="Open search"
+          aria-label={t("common.openSearch")}
           className="grid h-10 w-10 place-items-center rounded-xl border border-border bg-surface text-fg-muted transition hover:bg-surface-hover hover:text-fg"
         >
           <SearchIcon />
@@ -166,14 +168,14 @@ export default function SearchBar({ className = "", compact = false }) {
           ref={inputRef}
           type="search"
           role="combobox"
-          aria-label="Search site content"
+          aria-label={t("common.searchSite")}
           aria-expanded={showPanel}
           aria-controls={listboxId}
           aria-autocomplete="list"
           aria-activedescendant={
             activeIndex >= 0 ? `${listboxId}-option-${activeIndex}` : undefined
           }
-          placeholder="Search…"
+          placeholder={t("common.searchPlaceholder")}
           value={query}
           onChange={(event) => {
             setQuery(event.target.value);
@@ -192,7 +194,7 @@ export default function SearchBar({ className = "", compact = false }) {
               setOpen(false);
               setQuery("");
             }}
-            aria-label="Close search"
+            aria-label={t("common.closeSearch")}
             className="text-fg-faint transition hover:text-fg"
           >
             <span aria-hidden="true">×</span>
@@ -204,18 +206,18 @@ export default function SearchBar({ className = "", compact = false }) {
         <div
           id={listboxId}
           role="listbox"
-          aria-label="Search results"
+          aria-label={t("common.searchResults")}
           className={`absolute z-[60] mt-1.5 overflow-hidden rounded-xl border border-border bg-surface-nav shadow-lg backdrop-blur-xl ${
             compact ? "inset-x-0" : "left-0 w-64 xl:w-80"
           }`}
         >
           {pending ? (
             <p className="px-3 py-3 text-sm text-fg-subtle" role="status">
-              Searching…
+              {t("common.searching")}
             </p>
           ) : results.length === 0 ? (
             <p className="px-3 py-3 text-sm text-fg-subtle" role="status">
-              No results found
+              {t("common.noResults")}
             </p>
           ) : (
             <ul className="max-h-72 overflow-y-auto py-1">
@@ -237,7 +239,7 @@ export default function SearchBar({ className = "", compact = false }) {
                     </span>
                     <span className="mt-0.5 block truncate text-xs text-fg-subtle">
                       {result.comingSoon
-                        ? "Coming soon"
+                        ? t("common.comingSoon")
                         : [result.category, result.section, result.excerpt]
                             .filter(Boolean)
                             .join(" · ")}

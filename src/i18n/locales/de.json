@@ -1,0 +1,552 @@
+{
+  "site": {
+    "name": "The Ten Talents Initiative"
+  },
+  "nav": {
+    "home": "Startseite",
+    "programs": "Programme",
+    "dailyReflections": "Tägliche Betrachtungen",
+    "events": "Veranstaltungen",
+    "songsBooks": "Lieder & Bücher",
+    "contact": "Kontaktieren Sie uns"
+  },
+  "secondaryNav": {
+    "tTalentsRecords": "T-Talents Records",
+    "tTalentsStudios": "T-Talents Studios",
+    "tTalentsSeries": "T-Talents Series",
+    "tTalentsSports": "T-Talents Sports",
+    "catholicSinglesForum": "Katholisches Singles-Forum",
+    "donations": "Spenden"
+  },
+  "common": {
+    "readMore": "Weiterlesen →",
+    "comingSoon": "Demnächst",
+    "discoverMore": "Mehr entdecken",
+    "exploreAll": "Alle entdecken",
+    "aboutUsContact": "Über uns & Kontakt →",
+    "discoverPrograms": "Unsere Programme entdecken",
+    "discoverProgramsArrow": "Unsere Programme entdecken →",
+    "seeOurGoals": "Unsere Ziele ansehen",
+    "meetTheTeam": "Team kennenlernen →",
+    "contactUs": "Kontaktieren Sie uns",
+    "aim": "Ziel:",
+    "email": "E-Mail:",
+    "submit": "Absenden",
+    "tryAgain": "Erneut versuchen",
+    "returnHome": "Zur Startseite",
+    "pageNotFound": "Seite nicht gefunden",
+    "backToAnnouncements": "← Zurück zu den Ankündigungen",
+    "download": "Herunterladen",
+    "exploreMore": "Mehr entdecken",
+    "faithGiftsCommunity": "Glaube • Gaben • Gemeinschaft",
+    "homiliesCategory": "Predigten/Betrachtungen",
+    "menu": "Menü",
+    "more": "Mehr",
+    "toggleMenu": "Menü umschalten",
+    "searching": "Suche…",
+    "noResults": "Keine Ergebnisse gefunden",
+    "openSearch": "Suche öffnen",
+    "closeSearch": "Suche schließen",
+    "searchSite": "Website-Inhalt durchsuchen",
+    "searchResults": "Suchergebnisse",
+    "searchPlaceholder": "Suchen…",
+    "themeStyle": "Theme-Stil",
+    "switchToLight": "Zum Hellmodus wechseln",
+    "switchToDark": "Zum Dunkelmodus wechseln",
+    "language": "Sprache",
+    "contentComingSoon": "Inhalt für diesen Abschnitt folgt in Kürze.",
+    "thankYouMessage": "Vielen Dank für Ihre Nachricht. Wir melden uns so schnell wie möglich bei Ihnen.",
+    "name": "Name",
+    "emailLabel": "E-Mail",
+    "subject": "Betreff",
+    "message": "Nachricht",
+    "required": "*"
+  },
+  "footer": {
+    "tagline": "Die Gott gegebenen Gaben katholischer Jugendlicher entfalten — für Christus und seine Kirche.",
+    "explore": "Entdecken",
+    "getInTouch": "Kontakt aufnehmen",
+    "privacyPolicy": "Datenschutzerklärung",
+    "cookiePolicy": "Cookie-Richtlinie (EU)",
+    "region": "Nigeria • Afrika • Darüber hinaus",
+    "copyright": "© {{year}} The Ten Talents Initiative. Alle Rechte vorbehalten.",
+    "quote": "\"Jedem nach seiner Fähigkeit.\" — Matthäus 25,15"
+  },
+  "languages": {
+    "en": "English",
+    "de": "Deutsch",
+    "es": "Español",
+    "fr": "Français",
+    "it": "Italiano",
+    "pt": "Português",
+    "pl": "Polski",
+    "zh": "中文"
+  },
+  "themes": {
+    "extendable": "Erweiterbares Theme",
+    "paperGlass": "Papier-Glas-Theme",
+    "ona": "Ona-Theme"
+  },
+  "search": {
+    "categories": {
+      "navigation": "Navigation",
+      "more": "Mehr",
+      "about": "Über uns",
+      "home": "Startseite",
+      "team": "Team",
+      "goals": "Ziele",
+      "programs": "Programme",
+      "events": "Veranstaltungen",
+      "reflections": "Betrachtungen",
+      "resources": "Ressourcen",
+      "contact": "Kontakt",
+      "donations": "Spenden",
+      "legal": "Rechtliches",
+      "article": "Artikel"
+    },
+    "sections": {
+      "hero": "Hero",
+      "mission": "Mission",
+      "goals": "Ziele",
+      "team": "Team",
+      "join": "Mitmachen",
+      "about": "Über uns",
+      "home": "Startseite",
+      "programs": "Programme",
+      "upcomingEvents": "Kommende Veranstaltungen",
+      "dailyReflectionsExcerpt": "Tägliche Glaubensbetrachtungen und Predigten",
+      "upcomingProgramsTitle": "Kommende Programme",
+      "upcomingProgramsExcerpt": "Kommende Workshops und Mentoring-Sitzungen entdecken",
+      "privacyExcerpt": "Wie wir mit Ihren Daten umgehen",
+      "cookieExcerpt": "Cookie-Nutzung und Einstellungen"
+    }
+  },
+  "hero": {
+    "title": "Meine Gaben sind für Christus und seine Kirche",
+    "description": "Founded in 2025 by Rev. Fr. Eze Emmanuel OSA and other fellow Catholics, The Ten Talents Initiative inspires young believers by nurturing their gifts in faith-driven arts and careers, fostering mentorship, media, and skill growth to deepen their commitment to Catholic values.",
+    "ctaPrimary": "Unsere Programme entdecken",
+    "ctaPrimaryHref": "/programs",
+    "ctaSecondary": "Unsere Mission",
+    "ctaSecondaryHref": "/contact#mission"
+  },
+  "mission": {
+    "eyebrow": "Katholische Jugend stärken: Unsere Mission",
+    "body": "Our mission is to reach out to Catholic youths in Nigeria, Africa and maybe the world at large and make them feel loved, cherished, encouraged and valued. We intend to extend our care to their personal life goals, dreams and passions, especially those of them who are gifted and passionate about a particular endeavour and to help them achieve those dreams. We also intend to encourage those using their gifts in service of the faith by recognising their efforts through awards and other empowerment programs."
+  },
+  "teamSection": {
+    "title": "Lernen Sie unser inspirierendes Team kennen",
+    "description": "Discover the passionate individuals driving our mission forward with dedication and faith."
+  },
+  "team": [
+    {
+      "name": "Rev. Fr. Eze Emmanuel OSA",
+      "role": "Gründer und geistlicher Leiter"
+    },
+    {
+      "name": "Mr. Bulus Maina",
+      "role": "Vorstandsmitglied und Pressesprecher"
+    },
+    {
+      "name": "Miss. Chidera G. Okafor.",
+      "role": "Musik- und Logistikkoordinator"
+    },
+    {
+      "name": "Mrs. Godson Lilian (Eucyl)",
+      "role": "Musik- und Logistikkoordinator"
+    },
+    {
+      "name": "Mr. Luka Yusuf Rumu",
+      "role": "Koordinator für Digitalstrategie."
+    },
+    {
+      "name": "Miss Eke Onyemauchechi",
+      "role": "Sekretär und Programmkoordinator"
+    },
+    {
+      "name": "Miss IBE NAOMI TIWA",
+      "role": "Koordinator für Singles- und katholische Eheprogramme"
+    }
+  ],
+  "goalsSection": {
+    "title": "Unsere Ziele"
+  },
+  "goals": [
+    {
+      "title": "Katholische Jugendliche strahlen lassen",
+      "points": [
+        "Jugendliche in der katholischen Kirche ermutigen und stärken, indem wir ihre Talente anerkennen und ihnen helfen, ihre Träume zu verwirklichen.",
+        "Programme für katholische Jugendliche organisieren, um ihren Dienst an der Kirche zu unterstützen und Anerkennung zu verschaffen."
+      ]
+    },
+    {
+      "title": "Ein glaubensbasiertes Unterstützungssystem für ihre Gaben aufbauen",
+      "points": [
+        "Jugendförderprogramme für katholische Jugendliche durch Unterstützung und Hilfen durchführen.",
+        "Mehr jugendliches Engagement für die Kirche und die Verwirklichung persönlicher Träume fördern."
+      ]
+    },
+    {
+      "title": "Gaben durch Mentoring und Medien entfalten",
+      "points": [
+        "Jugendliche durch Medien, Film und Bücher erreichen, ihr Interesse am Glauben neu wecken und sie veröffentlichen helfen.",
+        "Katholischen Jugendlichen mit Gaben, aber ohne Ressourcen oder Plattformen, helfen, diese zu entfalten."
+      ]
+    },
+    {
+      "title": "Eine Zukunft aufbauen, verwurzelt in Glauben und Talent",
+      "points": [
+        "Die Heiligkeit des katholischen Glaubens unter katholischen Jugendlichen bewahren und als Mittel der Evangelisierung dienen.",
+        "Jedem katholischen Jugendlichen das Gefühl geben, wertgeschätzt, geliebt und angenommen zu sein"
+      ]
+    }
+  ],
+  "join": {
+    "title": "Starten Sie jetzt Ihre Reise mit Ten Talents",
+    "body": "Join us to discover how your unique gifts can flourish through faith, mentorship, and community support. Embrace the path to growth and spiritual empowerment today.",
+    "cta": "Unsere Programme entdecken",
+    "ctaHref": "/programs"
+  },
+  "homePage": {
+    "hero": "Glauben, Talente und Fähigkeiten vereinen, um die nächste Generation lebendiger katholischer Jugendlicher zu inspirieren.",
+    "discoverMoreHref": "/programs",
+    "introTitle": "Jugend durch Glauben stärken",
+    "introBody": "The Ten Talents initiative is a Non-Profit Organization founded by Rev.Fr. Eze Emmanuel OSA a Catholic Priest of the Order of St. Augustine Province of Nigeria. Together with a group of other well meaning Catholics, this Initiative was founded to help empower and encourage catholic youths who are talented and are giving their time for the sake of the gospel. The Initiative was founded in 2025 and was initially known as the Association of Catholic Artists with the aim of bringing together youths or catholics who are gifted in the arts and encouraging them to use their gifts properly for the service of the faith.",
+    "announcementsTitle": "Ankündigungen",
+    "announcementsIntro": "Explore our collection of inspiring stories, expert advice, and faith-driven resources designed to empower and engage young talents across Africa.",
+    "programsTitle": "Jugend durch Glauben und Fähigkeiten stärken",
+    "programsIntro": "Discover upcoming programs and initiatives designed to inspire growth, foster community, and celebrate talent across Nigeria and Africa.",
+    "programTeasers": [
+      {
+        "title": "Start des Digital-Media-Workshops",
+        "date": "",
+        "venue": "",
+        "description": "Join us as we kick off a transformative workshop on digital storytelling and media skills."
+      },
+      {
+        "title": "Berufliche Kompetenzschulung",
+        "date": "",
+        "venue": "",
+        "description": "Praxisnahe Schulungen für Fähigkeiten in katholischen Werten und professioneller Exzellenz."
+      },
+      {
+        "title": "Gemeinschafts-Entertainment-Festival",
+        "date": "",
+        "venue": "",
+        "description": "A vibrant celebration blending music, culture, and faith to uplift and unite youth."
+      }
+    ],
+    "donateTitle": "Möchten Sie unser Projekt unterstützen?",
+    "donateBody": "Nutzen Sie die Schaltfläche unten oder überweisen Sie direkt mit den Bankdaten:",
+    "donateCta": "Spenden",
+    "bankDetails": "The Ten Talent Humanitarian Initiative"
+  },
+  "programsPage": {
+    "title": "Programme der Initiative",
+    "intro": "Erfahren Sie unten, wofür wir uns einsetzen und welche Veranstaltungen anstehen.",
+    "pillars": [
+      {
+        "name": "Säule 1: Digitale Medien & Kreative Künste",
+        "intro": "These programs below strive to promote the skills involving the use of media, film, entertainment and Digital or realistic Arts in General.",
+        "programs": [
+          {
+            "number": 1,
+            "title": "Die „Passion Play“-Kinoauszeichnungen",
+            "aim": "Annual submission of short films/videos depicting the Passion of Christ or other faith related contents. The aim is to Transform the ancient tradition of the Passion Play into a modern cinematic experience, rewarding storytelling that makes the Gospel move on screen."
+          },
+          {
+            "number": 2,
+            "title": "Die katholische Content-Creator-Herausforderung",
+            "body": "Engage in focused training across digital media where Catholic content creators are encourage to use their skills and platforms to correct the narratives regarding the catholic and to enlighten many who have strayed away or ignorant of the doctrines of the faith ."
+          },
+          {
+            "number": 3,
+            "title": "„Words of Grace“ – Poesie, Spoken Word und Schreibprogramme",
+            "body": "Benefit from personalized mentorship and participate in poetry community events that nurture growth and development in the use of poetry both spoken and written in the expression of catholic values especially those that touch deep on human life, justice, peace and truth in the society."
+          },
+          {
+            "number": 4,
+            "title": "Creator-Workshop & technische Befähigung",
+            "body": "Free seminars on video editing, storytelling, and digital branding. The aim is bridging the gap between 'having a gift' and 'having the skill,' equipping youths with the professional tools to compete in the global media space."
+          }
+        ]
+      },
+      {
+        "name": "Säule 2: Musik, Liturgie & Instrumentalexzellenz",
+        "intro": "Musikalische Gaben und die Schönheit katholischer Gottesdienste im Fokus.",
+        "programs": [
+          {
+            "number": 5,
+            "title": "Der „Salomos Vorhof“-Chor- und Solistenwettbewerb",
+            "body": "A search for the best vocalists and choirs within the Catholic Church to recognize, encourage and award them and to equip them further in order to serve the purpose of the liturgy as well as their personal dreams-whether those who want to make a living from this or purely from just passion and service. Aim includes elevating the standard of liturgical music by celebrating the voices that lead our hearts to heaven every Sunday and outside to encourage pious devotions and individual inculturated songs and worship."
+          },
+          {
+            "number": 6,
+            "title": "Der „Davidsharfe“-Instrumentistenwettbewerb",
+            "body": "Recognizing excellence in organists, guitarists, and orchestral players as well as many instrumentalists. There is a growing concern in the African space where these youths are convinced to join other denominations because they are not being appreciated, paid or even encouraged despite their long years of service to the church. Honoring the skill behind the sound, ensuring the next generation of Catholic instrumentalists plays with both technical mastery and spiritual devotion. It also aims to get them to feel appreciated, recognized and loved."
+          },
+          {
+            "number": 7,
+            "title": "Katholische Künstler oder Gospel-Musik-Förderung und Programme",
+            "body": "This is a live, recurring event for Catholic singers to encourage and support them but especially those who have written, sung and produced originals. This program hopes to go physical one day where catholics who are gospel artists are widely recognized and encouraged for their skills and efforts in mission and evangelization. The aim is also to regulate the soundness of the theology behind these songs and to ensure that they are catholic and liturgical.",
+            "aim": "Breaking geographical borders to create a virtual sanctuary of praise, where the global Catholic youth family meets for a night of song by professional catholic musicians often also referred to as 'gospel artists\"."
+          }
+        ]
+      },
+      {
+        "name": "Säule 3: Berufliche Fähigkeiten & wirtschaftliche Befähigung",
+        "intro": "A lot of youths in the Catholic church are in need of empowerment and aid to able to reach their human potentials and dreams.",
+        "programs": [
+          {
+            "number": 8,
+            "title": "Die „Talent-to-Trade“-Träume- und Wirtschaftsinitiative",
+            "body": "Grants for small-scale businesses, dreams, passions and school fee assistance for catholic students and youths in tertiary institutions. The aim is to ensure that no dream is buried due to poverty, neglect or lack of opportunity. It involves providing the financial seed for small businesses and the academic support for future leaders."
+          },
+          {
+            "number": 9,
+            "title": "Die „Hl. Anna & Hl. Dominikus“-Handwerkswettbewerbe",
+            "body": "Competitions in sewing (vestments/altar linens) and the traditional art of Rosary making. here the aim is found in promoting the dignity of manual labor and the preservation of Catholic sacramentals through craftsmanship and design.\""
+          }
+        ]
+      },
+      {
+        "name": "Säule 4: Gemeinschaft, Sport & glaubensbasierte Unterhaltung",
+        "intro": "Bringing youths together for \"Holy Leisure.\"and protecting he interest of their catholic faith rather than exposing them to platforms that offer such avenues in exchange for their faith and services.",
+        "programs": [
+          {
+            "number": 10,
+            "title": "Die „Catholic Reality“ (Das Cenakel-Projekt)",
+            "body": "A faith-based reality experience focused on community living, prayer, and tasks rooted in Catholic social teaching. This is meant to be a catholic reality TV show where catholic morals and societal values are promoted. It aims to teach the youth that they can still be catholics, live the faith and still look 'cool'.",
+            "aim": "„Eine Revolution im Reality-Entertainment – der Welt zeigen, dass gelebter Glaube ein lebendiges, herausforderndes und freudvolles Abenteuer ist.\""
+          },
+          {
+            "number": 11,
+            "title": "Der „Hl. Sebastian“-Fußballpokal",
+            "body": "Inter-parish or regional soccer tournaments to foster unity. Fun and competitions especially soccer moves the youths! This will involve building brotherhood on the pitch, where teamwork, discipline, and sportsmanship become a living witness of the Christian life."
+          },
+          {
+            "number": 12,
+            "title": "Die „Sterne der Kirche“-Preisverleihung",
+            "body": "A night of Catholic glamour and grace, honoring the youths who have used their ten talents to light up the world. A grand finale event recognizing the top contributors from all other categories. This does not mean the glory is given to the vessels rather than the maker but to tell the vessels that they can keep doing well to the greater glory of Christ and His body the church."
+          },
+          {
+            "number": 13,
+            "title": "Der augustinische „Tolle Lege“-Wettbewerb",
+            "body": "An annual or bi-annual program Themed: \"Pick up and Read\" – A Journey through Scripture and Tradition. This competition can be individual or parishes. This will involve motivating the youth to go back and begin to study the scriptures, traditional documents of the church etc voraciously and just maybe alot who are lost might find their way back to the church again through these! The aim is Inspired by the pivotal conversion moment of St. Augustine in a Milanese garden, this program seeks to replicate that \"divine encounter\" for modern youth. By hearing the call to Tolle Lege, participants are challenged to move from passive faith to active, intellectual, and spiritual engagement with the Word of God and the teachings of the Church. Think of this program as a form of spelling Bee Competition but on the faith and catholic doctrine."
+          },
+          {
+            "number": 14,
+            "title": "Catholic Family Life Mentorship and Marriage Preparation (The Ten Talents Initiative Catholic Singles Formation Group).",
+            "body": "This is a Catholic International platform started by a priest to help single Catholics who are in need of Catholic life partners meet, interact, pray and discern. IT IS BASICALLY ONLINE. It is not just a social match making platform. It is a place of prayer and discernment with God as the lead and the Holy Spirit as the guide.\n\nTHIS IS STRICTLY FOR CATHOLICS IN SEARCH OF THEIRS FELLOW CATHOLIC SPOUSES AND READY TO BE GUIDED IN THE CATHOLIC MARITAL TEACHINGS OF THE CHURCH.\n\nIT IS ALSO FOR CATHOLICS WJO WANT TO BEGIN EARLY ENOUGH TO UNDERSTAND WHAT THE CHURCH IS SAYING ON MARRIAGE AND DONT HAVE TO WAIT TILL THEY HAVE FOUND A LIFE PARTNER.\n\nThe platform also helps in guiding people who have decided to remain single for life by offering the official teachings of the Catholic Church on this and the official way to proceed about it."
+          }
+        ]
+      }
+    ],
+    "upcomingEventsTitle": "Kommende Veranstaltungen",
+    "upcomingEventsIntro": "Discover upcoming workshops, mentorship sessions, and community gatherings designed to foster growth and meaningful connections.",
+    "upcomingEvents": [
+      {
+        "title": "Catholic Youths Passion Play Video Clip Submission for Awards and Recognition, 2026.",
+        "details": [
+          "(The 2026 version of this program is organized in parnership with the Youth Animation Unit of the Catholic Secretariat of NIgera)",
+          "Details: Die Anmeldung ist beendet.",
+          "Einreichungen – vom 5. bis 11. April 2026.",
+          "Finale – am 15. April 2026."
+        ]
+      },
+      {
+        "title": "Oster-TikTok-Livekonzert für katholische Künstler.",
+        "details": [
+          "Datum: 7. April. Leitung: Fada Naz",
+          "Zeit – 19 Uhr (Westafrikanische Zeit) bis zum Morgengrauen."
+        ]
+      },
+      {
+        "title": "Der Tolle-Lege-Glaubenswettbewerb",
+        "details": [
+          "Beginnt am 15. Mai"
+        ]
+      }
+    ]
+  },
+  "dailyReflectionsPage": {
+    "title": "Tägliche Betrachtungen",
+    "intro": ""
+  },
+  "eventsPage": {
+    "title": "Kommende Veranstaltungen",
+    "intro": "Alle unsere Veranstaltungen finden Sie hier",
+    "emptyMessage": "Diese Woche sind keine Veranstaltungen geplant.",
+    "weekLabel": "Diese Woche"
+  },
+  "songsBooksPage": {
+    "title": "Lieder & Bücher",
+    "intro": "We have books and songs released by some of our catholic youths. You can access them below and make a donation if you wish.",
+    "releasesTitle": "Alte und neue Veröffentlichungen",
+    "releasesIntro": "Dieser Abschnitt stellt neue Bücher und Lieder aus unserer Gemeinschaft vor.",
+    "items": [
+      {
+        "title": "Poetry Anthology dedicated to the Victims of Persecution in Nigeria and The world by Catholic Poets titled \" A Peace Their Fire Cannot Consume.\"",
+        "subtitle": "Dialnet-EconomicContributionAndSportSuccessThroughTheSaleO-9046932",
+        "action": "Herunterladen"
+      },
+      {
+        "title": "Produkt Zwei",
+        "price": null,
+        "description": "Dieses Produkt bietet herausragende Qualität und außergewöhnlichen Wert.",
+        "badge": "Pro"
+      },
+      {
+        "title": "Produkt Eins",
+        "price": "$39.99",
+        "description": "Dieses Produkt ist mit erstklassigen Funktionen für maximale Leistung konzipiert."
+      },
+      {
+        "title": "Produkt Drei",
+        "price": "$29.99",
+        "description": "Dieses Produkt bietet höchste Zuverlässigkeit und unvergleichliche Funktionalität."
+      },
+      {
+        "title": "Produkt Zwei",
+        "price": "$19.99",
+        "description": "Dieses Produkt bietet herausragende Qualität und außergewöhnlichen Wert."
+      }
+    ]
+  },
+  "contactPage": {
+    "title": "Kontaktieren Sie uns",
+    "intro": "Check our social media pages, contact us through email or fill out the form below. We will come back to you as soon as possible.",
+    "social": [
+      "TikTok",
+      "WhatsApp",
+      "Facebook",
+      "Mail"
+    ]
+  },
+  "donationsPage": {
+    "title": "Spenden",
+    "intro": "Wenn Sie unsere Initiative unterstützen und die nächste Generation nigerianischer Talente fördern möchten, nutzen Sie die Optionen unten.",
+    "options": [
+      {
+        "title": "Banküberweisung",
+        "subtitle": "Bankverbindung",
+        "accountName": "The Ten Talents Humanitarian Initiative",
+        "cta": "Mehr entdecken"
+      },
+      {
+        "title": "Direktzahlung",
+        "cta": "Mehr entdecken"
+      }
+    ]
+  },
+  "donationFailedPage": {
+    "title": "Spende fehlgeschlagen",
+    "body": "Es tut uns leid, Ihre Spende konnte nicht verarbeitet werden. Bitte versuchen Sie es erneut oder kontaktieren Sie den Support."
+  },
+  "stats": [
+    {
+      "value": "2025",
+      "label": "In Glauben gegründet"
+    },
+    {
+      "value": "8",
+      "label": "Ziele, die uns leiten"
+    },
+    {
+      "value": "∞",
+      "label": "Gaben zum Entfalten"
+    }
+  ],
+  "pages": {
+    "upcomingPrograms": {
+      "title": "Ankündigungen und kommende Programme"
+    },
+    "donationConfirmation": {
+      "title": "Spendenbestätigung"
+    },
+    "donorDashboard": {
+      "title": "Spender-Dashboard"
+    },
+    "privacyPolicy": {
+      "title": "Datenschutzerklärung"
+    },
+    "cookiePolicy": {
+      "title": "Cookie-Richtlinie"
+    },
+    "tp": {
+      "title": "Tp"
+    }
+  },
+  "posts": {
+    "category": "Predigten/Betrachtungen",
+    "bySlug": {
+      "meet-the-creative-and-vibrant-youths-of-st-anthony-gbaja-surulere": {
+        "title": "MEET THE CREATIVE AND VIBRANT YOUTHS OF ST. ANTHONY GBAJA, SURULERE!",
+        "excerpt": "The T-Talent Spotlight series comes in three categories for now; including the Talent Series, Vibrant Catholic Youth Series and Catholic Youth Animator Series.This week, we have again, the T-Talent Vibrant Youth Series! and guess what? The second place winners of the National Catholic Youth Passion Play Contest 2026 ( organized by the Ten Talents Initiative […]"
+      },
+      "contest-results-search": {
+        "title": "Lektoren-Wettbewerb Ergebnisse 2026",
+        "excerpt": "Wettbewerbs-Chat-Ergebnisse Lektoren-Wettbewerb Ergebnisprüfer ➤"
+      },
+      "510-2": {
+        "title": "MEET HER: THE BEAUTIFUL AND TALENTED CATHOLIC MUSICOLOGIST-VICTORIA ONOZASI AJIMAH (MODELA).",
+        "excerpt": "The T-Talent Spotlight series comes in three categories for now; including the Talent Series, Vibrant Catholic Youth Series and Catholic Youth Animator Series. For this edition of the T-Talent Series, the popular young catholic vocalist, and pioneer of the classical Afro pop genre, Music producer, vocal coach and many more has decided to meet our […]"
+      },
+      "502-2": {
+        "title": "MEET THE YOUTHS OF St. Rita Catholic Church Unity Estate Mararaba, Lafia Diocese (The Digital Parish)",
+        "excerpt": "T-Talent Spotlight Series (Vibrant Youth Series)Parish: St. Rita Catholic Church Unity Estate Mararaba, Lafia Diocese (The Digital Parish) Our editorial team picked this catholic youth group to feature in today’s T-Talent Spotlight Series (Vibrant Youth edition) probably for a reason.They are simple yet a living witness that Catholic youths are not losing their faith, energy […]"
+      },
+      "t-talent-spotlight-series": {
+        "title": "T-TALENT SPOTLIGHT SERIES",
+        "excerpt": "This T-Talent Spotlight series comes in many categories including the Talent Series, Vibrant Catholic Youth Series, Catholic Youth Animator series etc. Today’s edition is Talent Series where we have featured the outstanding and glamorous Oma Pitch who is a devoted catholic and vocalist. She has graciously accepted to to answer out team on some basic […]"
+      },
+      "ten-solid-reasons-why-you-are-still-unmarried": {
+        "title": "Zehn gute Gründe, warum Sie noch unverheiratet sind",
+        "excerpt": "(By Fr. Eze Emmanuel OSA) What Number Best Exemplifies Your Current State and What Should You Do? 1. The Provider Hurdle The African mentality is that the man must be the overall provider. This can be pushed too hard at times and stops a lot of men from marrying the people they really love because […]"
+      },
+      "have-a-moment-with-godthursday-5th-week-of-ordinary-time-year-a-28-5-2026": {
+        "title": "HAVE A MOMENT WITH GODTHURSDAY, 5TH WEEK OF ORDINARY TIME, YEAR A (28/5/2026)",
+        "excerpt": "I Peter 2:2-5.9-12; Psalm 100:1-2.3.4.5. (R.2b); Mark 10:46-52HOLD IT TIGHT! By Rev. Fr. Linus Akase In the first reading, St. Peter reminded us of our identity: that we are a chosen race, a royal priesthood, a holy nation, God’s own people for the purpose of declaring His glory here on earth. This has always been […]"
+      },
+      "439-2": {
+        "title": "Ten Talents Initiative – Endgültige Liste der Lektoren-Teilnehmer",
+        "excerpt": "Official complete list of registered contestants with A–Z filtering, instant search, and pagination for faster mobile loading. Search S/N Name 1 Gregory Sunday Okpara 2 Lady Nwaforenyi Emmanuela Anulika 3 Abah Oche Michael 4 Abel Rabo Beatrice 5 Abel Yacham Bakam 6 Abhulimen Anthony Imudianose 7 Abigail Odeh 8 Aboi Blessing 9 Abubu Monica 10 […]"
+      },
+      "homily-for-fifth-sunday-of-easter-year-atheme-called-to-serve-built-on-christ": {
+        "title": "HOMILY FOR FIFTH SUNDAY OF EASTER, YEAR A                                       Theme: “Called to Serve, Built on Christ”",
+        "excerpt": "By Rev. Fr. Francis Atsua My dear brothers and sisters,Today’s readings speak directly to a challenge we face not only in the early Church, but also in our communities here in Nigeria: division, neglect, and the struggle for fair care of everyone.In the First Reading (Acts 6:1–7), we see tension arise. The Greek-speaking widows were […]"
+      },
+      "test": {
+        "title": "Katholische Talente im afrikanischen Raum.",
+        "excerpt": "Is there such as a thing as a catholic Talent? In the vibrant landscape of modern Africa, the Catholic Church has transformed from a quiet institution into a roaring greenhouse for indigenous talent. Nowhere is this more evident than in Nigeria, where the intersection of ancient faith and contemporary creativity has birthed a cultural revolution. […]"
+      },
+      "faith-meets-modernity-the-ten-talents-approach": {
+        "title": "Nigerianische katholische Jugendliche sehnen sich nach einer Bühne zum Strahlen",
+        "excerpt": "The Nigerian Catholic Church has long been a sanctuary of faith, and a guardian of moral values. Yet, beneath the grand cathedrals and the rhythmic chanting of the liturgy, a quiet crisis is unfolding. Our young people are looking across the street at their Pentecostal counterparts and seeing a starkly different reality—one where young voices […]"
+      },
+      "building-leaders-for-tomorrow-with-catholic-foundations": {
+        "title": "Die Zukunft der katholischen Jugend wertschätzen",
+        "excerpt": "A quiet crisis is unfolding. Our young people are drifting away, seeking purpose in places that do not know their names. This is not just a statistical concern; it is a spiritual emergency. We must realize that the youth are not merely the future of the Church—they are the Church of today, and they are […]"
+      },
+      "the-role-of-community-entertainment-in-faithful-development": {
+        "title": "Die Rolle von Unterhaltung in der glaubensgetreuen Entwicklung katholischer Jugendlicher",
+        "excerpt": "I often look into the eyes of our young men and women and see a fire that words alone cannot describe. This fire is not merely youthful energy; it is a divine spark of talent. However, I also see their wandering gazes. They look at the vibrant stages across the street—the Pentecostal platforms where music, […]"
+      },
+      "empowering-african-youth-through-music-and-vocational-skills": {
+        "title": "Wettbewerbe nutzen, um Talente im Dienst des Glaubens zu entfalten",
+        "excerpt": "In the vast and restless landscape of the African Church, particularly within the borders of Nigeria, a vibrant transformation is underway. The Church is increasingly recognized as a greenhouse for growth, where the spiritual and the creative intersect to form a powerful witness. By embracing a culture of healthy competition, we provide a structured path […]"
+      },
+      "mentorship-for-discernment-navigating-marriage-decisions": {
+        "title": "Die pastorale Notwendigkeit früher Ehevorbereitung",
+        "excerpt": "The vocation to marriage is a profound mystery, a “great sign” as St. Paul describes in his letter to the Ephesians, representing the union between Christ and His Church. However, in our contemporary African context, we often witness a pastoral delay: we wait until a couple is standing at the threshold of the rectory with […]"
+      },
+      "the-ten-talents-initiative-shaping-the-future-of-african-youths": {
+        "title": "The Ten Talents Initiative: Die Zukunft katholischer Jugendlicher und ihr Glaubensengagement gestalten",
+        "excerpt": "The Ten Talents Initiative is a non-profit organization founded in 2025 by Rev. Fr. Eze Emmanuel OSA, a Catholic Priest of the Order of St. Augustine, Province of Nigeria alongside a group of well-meaning Catholics. The organization was initially known as the Association of Catholic Artists. Its primary purpose is to empower and encourage talented […]"
+      }
+    }
+  },
+  "policies": {
+    "privacy": "Wer wir sind\nVorgeschlagener Text:\nUnsere Website-Adresse lautet: https://the10talentsinitiative.com.\nKommentare\nVorgeschlagener Text:\nWhen visitors leave comments on the site we collect the data shown in the comments form, and also the visitor’s IP address and browser user agent string to help spam detection.\nAn anonymized string created from your email address (also called a hash) may be provided to the Gravatar service to see if you are using it. The Gravatar service privacy policy is available here: https://automattic.com/privacy/. After approval of your comment, your profile picture is visible to the public in the context of your comment.\nMedien\nVorgeschlagener Text:\nIf you upload images to the website, you should avoid uploading images with embedded location data (EXIF GPS) included. Visitors to the website can download and extract any location data from images on the website.\nCookies\nVorgeschlagener Text:\nIf you leave a comment on our site you may opt-in to saving your name, email address and website in cookies. These are for your convenience so that you do not have to fill in your details again when you leave another comment. These cookies will last for one year.\nIf you visit our login page, we will set a temporary cookie to determine if your browser accepts cookies. This cookie contains no personal data and is discarded when you close your browser.\nWhen you log in, we will also set up several cookies to save your login information and your screen display choices. Login cookies last for two days, and screen options cookies last for a year. If you select \"Remember Me\", your login will persist for two weeks. If you log out of your account, the login cookies will be removed.\nIf you edit or publish an article, an additional cookie will be saved in your browser. This cookie includes no personal data and simply indicates the post ID of the article you just edited. It expires after 1 day.\nEingebettete Inhalte von anderen Websites\nVorgeschlagener Text:\nArticles on this site may include embedded content (e.g. videos, images, articles, etc.). Eingebettete Inhalte von anderen Websites behaves in the exact same way as if the visitor has visited the other website.\nThese websites may collect data about you, use cookies, embed additional third-party tracking, and monitor your interaction with that embedded content, including tracking your interaction with the embedded content if you have an account and are logged in to that website.\nMit wem wir Ihre Daten teilen\nVorgeschlagener Text:\nIf you request a password reset, your IP address will be included in the reset email.\nWie lange wir Ihre Daten aufbewahren\nVorgeschlagener Text:\nIf you leave a comment, the comment and its metadata are retained indefinitely. This is so we can recognize and approve any follow-up comments automatically instead of holding them in a moderation queue.\nFor users that register on our website (if any), we also store the personal information they provide in their user profile. All users can see, edit, or delete their personal information at any time (except they cannot change their username). Website administrators can also see and edit that information.\nWelche Rechte Sie in Bezug auf Ihre Daten haben\nVorgeschlagener Text:\nIf you have an account on this site, or have left comments, you can request to receive an exported file of the personal data we hold about you, including any data you have provided to us. You can also request that we erase any personal data we hold about you. This does not include any data we are obliged to keep for administrative, legal, or security purposes.\nWohin Ihre Daten gesendet werden\nVorgeschlagener Text:\nVisitor comments may be checked through an automated spam detection service.",
+    "cookie": "Diese Cookie-Richtlinie wurde zuletzt am 28. März 2026 aktualisiert und gilt für Bürger und rechtmäßige ständige Einwohner des Europäischen Wirtschaftsraums und der Schweiz.\n1. Einleitung\nUnsere Website,\nhttps://the10talentsinitiative.com\n(hereinafter: “the website”) uses cookies and other related technologies (for convenience all technologies are referred to as “cookies”). Cookies are also placed by third parties we have engaged. In the document below we inform you about the use of cookies on our website.\n2. Was sind Cookies?\nEin Cookie ist eine kleine, einfache Datei, die zusammen mit den Seiten dieser Website gesendet und von Ihrem Browser auf der Festplatte Ihres Computers oder eines anderen Geräts gespeichert wird. Die darin gespeicherten Informationen können bei einem späteren Besuch an unsere Server oder an die Server der relevanten Dritten zurückgegeben werden.\n3. Was sind Skripte?\nEin Skript ist ein Stück Programmcode, das verwendet wird, damit unsere Website ordnungsgemäß und interaktiv funktioniert. Dieser Code wird auf unserem Server oder auf Ihrem Gerät ausgeführt.\n4. Was ist ein Web-Beacon?\nEin Web-Beacon (oder Pixel-Tag) ist ein kleines, unsichtbares Text- oder Bildelement auf einer Website, das verwendet wird, um den Datenverkehr auf einer Website zu überwachen. Zu diesem Zweck werden verschiedene Daten über Sie mithilfe von Web-Beacons gespeichert.\n5. Cookies\n5.1 Technische oder funktionale Cookies\nEinige Cookies stellen sicher, dass bestimmte Teile der Website ordnungsgemäß funktionieren und dass Ihre Benutzereinstellungen bekannt bleiben. Durch das Setzen funktionaler Cookies erleichtern wir Ihnen den Besuch unserer Website. Auf diese Weise müssen Sie bei wiederholten Besuchen nicht immer dieselben Informationen eingeben, und z. B. bleiben Artikel in Ihrem Warenkorb, bis Sie bezahlt haben. Diese Cookies können wir ohne Ihre Einwilligung setzen.\n5.2 Statistik-Cookies\nWe use statistics cookies to optimize the website experience for our users. With these statistics cookies we get insights in the usage of our website. We ask your permission to place statistics cookies.\n5.3 Marketing-/Tracking-Cookies\nMarketing-/Tracking-Cookies sind Cookies oder jede andere Form lokaler Speicherung, die verwendet werden, um Nutzerprofile zu erstellen, Werbung anzuzeigen oder den Nutzer auf dieser Website oder über mehrere Websites hinweg zu ähnlichen Marketingzwecken zu verfolgen.\n5.4 Soziale Medien\nOn our website, we have included content from WhatsApp, Facebook and TikTok to promote web pages (e.g. “like”, “pin”) or share (e.g. “tweet”) on social networks like WhatsApp, Facebook and TikTok. This content is embedded with code derived from WhatsApp, Facebook and TikTok and places cookies. This content might store and process certain information for personalized advertising.\nBitte lesen Sie die Datenschutzerklärungen dieser sozialen Netzwerke (die sich regelmäßig ändern können), um zu erfahren, was sie mit Ihren (personenbezogenen) Daten tun, die sie mithilfe dieser Cookies verarbeiten. Die abgerufenen Daten werden so weit wie möglich anonymisiert. WhatsApp, Facebook und TikTok befinden sich in den Vereinigten Staaten.\n6. Gesetzte Cookies\nWordPress\nFunktional\nEinwilligung zum Dienst wordpress\nVerwendung\nWir verwenden WordPress für die Website-Entwicklung.\nMehr über WordPress erfahren\nDatenweitergabe\nDiese Daten werden nicht an Dritte weitergegeben.\nFunktional\nName\nWP_PREFERENCES_USER_*\nAblauf\npersistent\nFunktion\nBenutzereinstellungen speichern\nName\nwpEmojiSettingsSupports\nAblauf\nSitzung\nFunktion\nBrowserdetails speichern\nName\nwp-settings-*\nAblauf\npersistent\nFunktion\nBenutzereinstellungen speichern\nName\nwordpress_logged_in_*\nAblauf\npersistent\nFunktion\nAngemeldete Benutzer speichern\nName\nwordpress_test_cookie\nAblauf\nSitzung\nFunktion\nPrüfen, ob Cookies gesetzt werden können\nLiteSpeed\nFunktional\nEinwilligung zum Dienst litespeed\nVerwendung\nWir verwenden LiteSpeed für das Website-Hosting.\nMehr über LiteSpeed erfahren\nDatenweitergabe\nDiese Daten werden nicht an Dritte weitergegeben.\nFunktional\nName\n_lscache_vary\nAblauf\n2 Tage\nFunktion\nVerhinderung zwischengespeicherter Seiten bereitstellen\nFacebook\nMarketing, Funktional\nEinwilligung zum Dienst facebook\nVerwendung\nWir verwenden Facebook zur Anzeige aktueller Social-Media-Beiträge und/oder Social-Share-Buttons.\nMehr über Facebook erfahren\nDatenweitergabe\nWeitere Informationen finden Sie in der\nFacebook-Datenschutzerklärung\n.\nMarketing\nName\n_fbc\nAblauf\n2 Jahre\nFunktion\nLetzten Besuch speichern\nName\nfbm*\nAblauf\n1 Jahr\nFunktion\nKontodetails speichern\nName\nxs\nAblauf\n3 Monate\nFunktion\nStore a unique Sitzung ID\nName\nfr\nAblauf\n3 Monate\nFunktion\nWerbeauslieferung oder Retargeting bereitstellen\nName\nact\nAblauf\n90 Tage\nFunktion\nAngemeldete Benutzer speichern\nName\n_fbp\nAblauf\n3 Monate\nFunktion\nBesuche über Websites hinweg speichern und verfolgen\nName\ndatr\nAblauf\n2 Jahre\nFunktion\nBetrugsprävention bereitstellen\nName\nc_user\nAblauf\n30 Tage\nFunktion\nEindeutige Benutzer-ID speichern\nName\nsb\nAblauf\n2 Jahre\nFunktion\nBrowserdetails speichern\nName\n*_fbm_\nAblauf\n1 Jahr\nFunktion\nKontodetails speichern\nFunktional\nName\nwd\nAblauf\n1 Woche\nFunktion\nBildschirmauflösung auslesen\nName\ncsm\nAblauf\n90 Tage\nFunktion\nBetrugsprävention bereitstellen\nName\nactppresence\nAblauf\nSitzung\nFunktion\nSpeichern und verfolgen, ob der Browser-Tab aktiv ist\nWhatsApp\nFunktional\nEinwilligung zum Dienst whatsapp\nVerwendung\nWir verwenden WhatsApp für Chat-Support.\nMehr über WhatsApp erfahren\nDatenweitergabe\nWeitere Informationen finden Sie in der\nWhatsApp-Datenschutzerklärung\n.\nFunktional\nName\nwa_lang_pref\nAblauf\n6 Tage\nFunktion\nSpracheinstellungen speichern\nName\nwa_ul\nAblauf\nSitzung\nFunktion\nZugang bereitstellen\nTikTok\nMarketing, Funktional\nEinwilligung zum Dienst tiktok\nVerwendung\nWir verwenden TikTok für die Videoanzeige.\nMehr über TikTok erfahren\nDatenweitergabe\nWeitere Informationen finden Sie in der\nTikTok-Datenschutzerklärung\n.\nMarketing\nName\ns_v_web_id\nAblauf\nSitzung\nFunktion\nSpeichern, ob der Nutzer eingebettete Inhalte gesehen hat\nName\nMONITOR_WEB_ID\nAblauf\n3 Monate\nFunktion\nSpeichern, ob der Nutzer eingebettete Inhalte gesehen hat\nName\ntt_webid\nAblauf\n1 Jahr\nFunktion\nSpeichern, ob der Nutzer eingebettete Inhalte gesehen hat\nName\ntt_webid_v2\nAblauf\n1 Jahr\nFunktion\nSpeichern, ob der Nutzer eingebettete Inhalte gesehen hat\nName\nttwid\nAblauf\n1 Jahr\nFunktion\nSpeichern, ob der Nutzer eingebettete Inhalte gesehen hat\nName\nwebapp_launch_mode\nAblauf\nSitzung\nFunktion\nSpeichern, ob der Nutzer eingebettete Inhalte gesehen hat\nName\nwebapp_Sitzung_id\nAblauf\nSitzung\nFunktion\nStore a unique Sitzung ID\nName\nwebapp-Sitzung-referer\nAblauf\nSitzung\nFunktion\nVerweisende Website speichern\nName\nwebapp_tiktok_privious\nAblauf\nSitzung\nFunktion\nSpeichern, ob der Nutzer eingebettete Inhalte gesehen hat\nName\nwebapp_extra_data\nAblauf\nSitzung\nFunktion\nFunktionen über Seiten hinweg bereitstellen\nName\nwebapp_original_traffic_type\nAblauf\nSitzung\nFunktion\nSpeichern, ob der Nutzer eingebettete Inhalte gesehen hat\nName\nguide-login-config\nAblauf\npersistent\nFunktion\nEindeutige Benutzer-ID speichern\nName\n__tea_cache_tokens_*\nAblauf\npersistent\nFunktion\nStore a unique Sitzung ID\nFunktional\nName\ncsrf_Sitzung_id\nAblauf\nSitzung\nFunktion\nSchutz vor Hackern bereitstellen\nName\ntt_csrf_token\nAblauf\nSitzung\nFunktion\nSchutz vor Hackern bereitstellen\nName\n_abck\nAblauf\n1 Jahr\nFunktion\nSchutz vor Hackern bereitstellen\nName\n__tea_cache_first_*\nAblauf\npersistent\nFunktion\nLoad-Balancing-Funktionalität bereitstellen\nName\nwebapp-newuser\nAblauf\npersistent\nFunktion\nErsten Besuch der Website speichern\nName\nautoplay-config\nAblauf\npersistent\nFunktion\nKonfiguration speichern\nName\nwebapp-video-mute\nAblauf\npersistent\nFunktion\nKonfiguration speichern\nZweck noch in Untersuchung\nName\nf\nAblauf\npersistent\nFunktion\nVerschiedenes\nZweck noch in Untersuchung\nEinwilligung zum Dienst miscellaneous\nVerwendung\nDatenweitergabe\nDie Datenweitergabe wird noch untersucht\nZweck noch in Untersuchung\nName\ncmplz_policy_id\nAblauf\n365 Tage\nFunktion\nName\ncmplz_marketing\nAblauf\n365 Tage\nFunktion\nName\ncmplz_statistics\nAblauf\n365 Tage\nFunktion\nName\ncmplz_preferences\nAblauf\n365 Tage\nFunktion\nName\ncmplz_functional\nAblauf\n365 Tage\nFunktion\nName\ncmplz_banner-status\nAblauf\n365 Tage\nFunktion\nName\ncharitable-banner-charitablelitetopro-seen-0\nAblauf\nFunktion\nName\ncmplz_task_filter\nAblauf\n365 Tage\nFunktion\nName\nwp-settings-time-1\nAblauf\nFunktion\nName\nlitespeed_qc_hide_banner\nAblauf\nFunktion\nName\ncharitable_Sitzung\nAblauf\nFunktion\nName\ncookieadmin_consent\nAblauf\nFunktion\nName\ncmplz_consented_services\nAblauf\n365 Tage\nFunktion\nName\n__stripe_mid\nAblauf\nFunktion\nName\nlast-alert-timestamp\nAblauf\nFunktion\n7. Einwilligung\nWhen you visit our website for the first time, we will show you a pop-up with an explanation about cookies. As soon as you click on “Save preferences”, you consent to us using the categories of cookies and plug-ins you selected in the pop-up, as described in this Cookie Policy. You can disable the use of cookies via your browser, but please note that our website may no longer work properly.\n7.1 Einwilligungseinstellungen verwalten\nYou have loaded the Cookie Policy without javascript support. On AMP, you can use the manage consent button on the bottom of the page.\n8. Cookies aktivieren/deaktivieren und löschen\nSie können Ihren Internetbrowser verwenden, um Cookies automatisch oder manuell zu löschen. Sie können auch festlegen, dass bestimmte Cookies nicht gesetzt werden dürfen. Eine weitere Möglichkeit ist, die Einstellungen Ihres Internetbrowsers so zu ändern, dass Sie jedes Mal eine Nachricht erhalten, wenn ein Cookie gesetzt wird. Weitere Informationen zu diesen Optionen finden Sie in der Hilfe Ihres Browsers.\nBitte beachten Sie, dass unsere Website möglicherweise nicht ordnungsgemäß funktioniert, wenn alle Cookies deaktiviert sind. Wenn Sie die Cookies in Ihrem Browser löschen, werden sie nach Ihrer Einwilligung beim erneuten Besuch unserer Website erneut gesetzt.\n9. Ihre Rechte in Bezug auf personenbezogene Daten\nSie haben folgende Rechte in Bezug auf Ihre personenbezogenen Daten:\nSie haben das Recht zu erfahren, warum Ihre personenbezogenen Daten benötigt werden, was damit geschieht und wie lange sie aufbewahrt werden.\nAuskunftsrecht: Sie haben das Recht, die uns bekannten personenbezogenen Daten einzusehen.\nBerichtigungsrecht: Sie haben das Recht, Ihre personenbezogenen Daten jederzeit zu ergänzen, zu korrigieren, löschen oder sperren zu lassen.\nWenn Sie uns Ihre Einwilligung zur Verarbeitung Ihrer Daten erteilt haben, haben Sie das Recht, diese Einwilligung zu widerrufen und die Löschung Ihrer personenbezogenen Daten zu verlangen.\nRecht auf Datenübertragbarkeit: Sie haben das Recht, alle Ihre personenbezogenen Daten vom Verantwortlichen anzufordern und vollständig an einen anderen Verantwortlichen zu übertragen.\nWiderspruchsrecht: Sie können der Verarbeitung Ihrer Daten widersprechen. Wir kommen dem nach, sofern keine berechtigten Gründe für die Verarbeitung vorliegen.\nUm diese Rechte auszuüben, kontaktieren Sie uns bitte. Die Kontaktdaten finden Sie am Ende dieser Cookie-Richtlinie. Wenn Sie eine Beschwerde darüber haben, wie wir mit Ihren Daten umgehen, möchten wir von Ihnen hören; Sie haben jedoch auch das Recht, eine Beschwerde bei der Aufsichtsbehörde (Datenschutzbehörde) einzureichen.\n10. Kontaktdaten\nBei Fragen und/oder Kommentaren zu unserer Cookie-Richtlinie und dieser Erklärung kontaktieren Sie uns bitte unter folgenden Kontaktdaten:\nThe Ten Talents Initiative\nWarsaw, Poland\nPoland\nWebsite:\nhttps://the10talentsinitiative.com\nE-Mail:\nadmin@\nex.com\nthe10talentsinitiative.com\nDiese Cookie-Richtlinie wurde synchronisiert mit\ncookiedatabase.org\nam 1. Mai 2026."
+  }
+}

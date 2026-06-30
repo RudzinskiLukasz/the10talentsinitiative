@@ -1,8 +1,11 @@
+import { useTranslation } from "react-i18next";
 import PageHeader from "../components/PageHeader.jsx";
 import Reveal from "../components/Reveal.jsx";
-import { programsPage } from "../data/content.js";
 
 export default function ProgramsPage() {
+  const { t } = useTranslation();
+  const programsPage = t("programsPage", { returnObjects: true });
+
   return (
     <>
       <PageHeader
@@ -42,7 +45,7 @@ export default function ProgramsPage() {
                         )}
                         {program.aim && (
                           <p className="mt-3 text-sm leading-relaxed text-fg-muted sm:text-base">
-                            <span className="font-semibold text-fg">Aim: </span>
+                            <span className="font-semibold text-fg">{t("common.aim")} </span>
                             {program.aim}
                           </p>
                         )}

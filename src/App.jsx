@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import Layout from "./layouts/Layout.jsx";
 import PlaceholderPage from "./components/PlaceholderPage.jsx";
 import HomePage from "./pages/HomePage.jsx";
@@ -16,6 +17,11 @@ import DonationFailedPage from "./pages/DonationFailedPage.jsx";
 import DonationConfirmationPage from "./pages/DonationConfirmationPage.jsx";
 import { posts } from "./data/posts.js";
 
+function PlaceholderRoute({ titleKey }) {
+  const { t } = useTranslation();
+  return <PlaceholderPage title={t(titleKey)} />;
+}
+
 export default function App() {
   return (
     <Routes>
@@ -28,25 +34,28 @@ export default function App() {
         <Route path="contact" element={<ContactPage />} />
         <Route
           path="t-talents-records"
-          element={<PlaceholderPage title="T-Talents Records" />}
+          element={<PlaceholderRoute titleKey="secondaryNav.tTalentsRecords" />}
         />
         <Route
           path="t-talents-studios"
-          element={<PlaceholderPage title="T-Talents Studios" />}
+          element={<PlaceholderRoute titleKey="secondaryNav.tTalentsStudios" />}
         />
         <Route
           path="t-talents-series"
-          element={<PlaceholderPage title="T-Talents Series" />}
+          element={<PlaceholderRoute titleKey="secondaryNav.tTalentsSeries" />}
         />
         <Route
           path="t-talents-sports"
-          element={<PlaceholderPage title="T-Talents Sports" />}
+          element={<PlaceholderRoute titleKey="secondaryNav.tTalentsSports" />}
         />
         <Route
           path="catholic-singles-forum"
-          element={<PlaceholderPage title="Catholic Singles Forum" />}
+          element={<PlaceholderRoute titleKey="secondaryNav.catholicSinglesForum" />}
         />
-        <Route path="donations" element={<PlaceholderPage title="Donations" />} />
+        <Route
+          path="donations"
+          element={<PlaceholderRoute titleKey="secondaryNav.donations" />}
+        />
         <Route path="upcoming-programs" element={<UpcomingProgramsPage />} />
         <Route path="privacy-policy" element={<PrivacyPolicyPage />} />
         <Route path="cookie-policy-eu" element={<CookiePolicyPage />} />

@@ -1,5 +1,9 @@
+import { useTranslation } from "react-i18next";
+
 export default function ThemeToggle({ theme, onToggle, className = "" }) {
+  const { t } = useTranslation();
   const isDark = theme === "dark";
+  const label = isDark ? t("common.switchToLight") : t("common.switchToDark");
 
   return (
     <button
@@ -7,12 +11,11 @@ export default function ThemeToggle({ theme, onToggle, className = "" }) {
       onClick={onToggle}
       role="switch"
       aria-checked={!isDark}
-      aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
-      title={isDark ? "Switch to light mode" : "Switch to dark mode"}
+      aria-label={label}
+      title={label}
       className={`group relative grid h-10 w-10 place-items-center overflow-hidden rounded-xl border border-border bg-surface text-fg ring-1 ring-transparent transition hover:bg-surface-hover hover:ring-border-strong ${className}`}
     >
       <span className="relative block h-5 w-5">
-        {/* Sun */}
         <svg
           viewBox="0 0 24 24"
           fill="none"
@@ -30,7 +33,6 @@ export default function ThemeToggle({ theme, onToggle, className = "" }) {
           <circle cx="12" cy="12" r="4" />
           <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" />
         </svg>
-        {/* Moon */}
         <svg
           viewBox="0 0 24 24"
           fill="none"

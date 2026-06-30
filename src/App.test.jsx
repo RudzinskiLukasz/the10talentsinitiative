@@ -1,34 +1,28 @@
-import { render, screen } from "@testing-library/react";
-import { MemoryRouter } from "react-router-dom";
+import { screen } from "@testing-library/react";
 import App from "./App.jsx";
-import { homePage, programsPage, contactPage, mission } from "./data/content.js";
-
-function renderAt(path) {
-  return render(
-    <MemoryRouter initialEntries={[path]}>
-      <App />
-    </MemoryRouter>
-  );
-}
+import { renderWithI18n, i18n } from "./test/i18n.jsx";
 
 describe("App routing", () => {
   beforeEach(() => {
     document.documentElement.setAttribute("data-theme", "dark");
     localStorage.clear();
+    i18n.changeLanguage("en");
   });
 
   it("renders the home page at /", () => {
-    renderAt("/");
+    renderWithI18n(<App />, { route: "/" });
     expect(
-      screen.getByRole("heading", { level: 1, name: homePage.hero })
+      screen.getByRole("heading", { level: 1, name: i18n.t("homePage.hero") })
     ).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: homePage.introTitle })).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: i18n.t("homePage.introTitle") })
+    ).toBeInTheDocument();
   });
 
   it("renders the programs page at /programs", () => {
-    renderAt("/programs");
+    renderWithI18n(<App />, { route: "/programs" });
     expect(
-      screen.getByRole("heading", { name: programsPage.title })
+      screen.getByRole("heading", { name: i18n.t("programsPage.title") })
     ).toBeInTheDocument();
     expect(
       screen.getByRole("heading", { name: /Passion Play.*Cinema Awards/i })
@@ -36,10 +30,28 @@ describe("App routing", () => {
   });
 
   it("renders the contact page at /contact", () => {
-    renderAt("/contact");
-    expect(screen.getByRole("heading", { level: 1, name: /My Gifts Are For Christ/i })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: contactPage.title })).toBeInTheDocument();
-    expect(screen.getByText(mission.eyebrow)).toBeInTheDocument();
-    expect(screen.getByText(contactPage.intro)).toBeInTheDocument();
+    renderWithI18n(<App />, { route: "/contact" });
+    expect(
+      screen.getByRole("heading", { level: 1, name: /My Gifts Are For Christ/i })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: i18n.t("contactPage.title") })
+    ).toBeInTheDocument();
+    expect(screen.getByText(i18n.t("mission.eyebrow"))).toBeInTheDocument();
+    expect(screen.getByText(i18n.t("contactPage.intro"))).toBeInTheDocument();
+  });
+
+  it("renders translated home hero in Polish", () => {
+    renderWithI18n(<App />, { route: "/", language: "pl" });
+    expect(
+      screen.getByRole("heading", { level: 1, name: i18n.t("homePage.hero") })
+    ).toBeInTheDocument();
+  });
+
+  it("renders translated nav in German", () => {
+    renderWithI18n(<App />, { route: "/", language: "de" });
+    expect(screen.getAllByRole("link", { name: i18n.t("nav.programs") }).length).toBeGreaterThan(
+      0
+    );
   });
 });

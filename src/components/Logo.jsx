@@ -1,11 +1,14 @@
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export default function Logo({ className = "" }) {
+  const { t } = useTranslation();
+
   return (
     <Link
       to="/"
       className={`group flex items-center gap-2.5 ${className}`}
-      aria-label="The Ten Talents Initiative — home"
+      aria-label={`${t("site.name")} — ${t("nav.home").toLowerCase()}`}
     >
       <span className="relative grid h-9 w-9 place-items-center rounded-xl border border-border bg-surface-hover ring-1 ring-transparent transition group-hover:ring-accent/50">
         <svg viewBox="0 0 24 24" className="h-5 w-5" aria-hidden="true">

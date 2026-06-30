@@ -1,12 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import Logo from "./Logo.jsx";
 import SearchBar from "./SearchBar.jsx";
 import ThemeToggle from "./ThemeToggle.jsx";
 import ThemeVariantSelect from "./ThemeVariantSelect.jsx";
 import { useTheme } from "../hooks/useTheme.js";
 import { useThemeVariant } from "../hooks/useThemeVariant.js";
-import { mainNav, secondaryNav } from "../data/content.js";
+import { useMainNav, useSecondaryNav } from "../i18n/nav.js";
 
 function NavLink({ item, onClick, className = "", activeClassName = "", mobile = false }) {
   const { pathname } = useLocation();
@@ -55,6 +56,9 @@ function SecondaryNavLink({ item, onClick, className = "" }) {
 }
 
 export default function Navbar() {
+  const { t } = useTranslation();
+  const mainNav = useMainNav();
+  const secondaryNav = useSecondaryNav();
   const headerRef = useRef(null);
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
@@ -128,7 +132,7 @@ export default function Navbar() {
             <button
               type="button"
               onClick={() => setOpen((v) => !v)}
-              aria-label="Toggle menu"
+              aria-label={t("common.toggleMenu")}
               aria-expanded={open}
               className="grid h-10 w-10 place-items-center rounded-xl border border-border bg-surface text-fg transition hover:bg-surface-hover lg:hidden"
             >
@@ -175,7 +179,7 @@ export default function Navbar() {
             <SearchBar className="w-full" />
           </div>
           <p className="mb-2 px-4 text-[10px] font-bold uppercase tracking-[0.2em] text-fg-faint">
-            Menu
+            {t("common.menu")}
           </p>
           <div className="flex flex-col gap-1">
             {mainNav.map((item) => (
@@ -189,7 +193,7 @@ export default function Navbar() {
           </div>
 
           <p className="mb-2 mt-5 px-4 text-[10px] font-bold uppercase tracking-[0.2em] text-fg-faint">
-            More
+            {t("common.more")}
           </p>
           <div className="flex flex-col gap-1">
             {secondaryNav.map((item) => (

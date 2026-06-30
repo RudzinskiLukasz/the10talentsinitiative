@@ -1,21 +1,34 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { I18nextProvider } from "react-i18next";
 import { MemoryRouter } from "react-router-dom";
 import ContactPage from "./ContactPage.jsx";
-import { contactPage } from "../data/content.js";
+import { contactSocial } from "../data/site.js";
+import i18n from "../i18n/index.js";
 
-describe("ContactPage security", () => {
-  it("external links use rel=noopener noreferrer with target=_blank", () => {
-    render(
+function renderContactPage() {
+  return render(
+    <I18nextProvider i18n={i18n}>
       <MemoryRouter>
         <ContactPage />
       </MemoryRouter>
-    );
+    </I18nextProvider>
+  );
+}
 
-    const externalLinks = contactPage.social.filter((item) => item.href.startsWith("http"));
+describe("ContactPage security", () => {
+  beforeEach(() => {
+    i18n.changeLanguage("en");
+  });
+
+  it("external links use rel=noopener noreferrer with target=_blank", () => {
+    renderContactPage();
+
+    const externalLinks = contactSocial.filter((item) => item.href.startsWith("http"));
 
     for (const item of externalLinks) {
-      const link = screen.getByRole("link", { name: item.label });
+      const index = contactSocial.indexOf(item);
+      const link = screen.getByRole("link", { name: i18n.t(`contactPage.social.${index}`) });
       expect(link).toHaveAttribute("target", "_blank");
       expect(link).toHaveAttribute("rel", "noopener noreferrer");
     }
@@ -23,11 +36,7 @@ describe("ContactPage security", () => {
 
   it("does not render submitted form values as HTML", async () => {
     const user = userEvent.setup();
-    render(
-      <MemoryRouter>
-        <ContactPage />
-      </MemoryRouter>
-    );
+    renderContactPage();
 
     await user.type(screen.getByRole("textbox", { name: /name/i }), "<script>alert(1)</script>");
     await user.type(screen.getByRole("textbox", { name: /email/i }), "test@example.com");
@@ -35,6 +44,6 @@ describe("ContactPage security", () => {
     await user.click(screen.getByRole("button", { name: /submit/i }));
 
     expect(screen.queryByText("<script>alert(1)</script>")).not.toBeInTheDocument();
-    expect(screen.getByText(/thank you for your message/i)).toBeInTheDocument();
+    expect(screen.getByText(i18n.t("common.thankYouMessage"))).toBeInTheDocument();
   });
 });

@@ -1,7 +1,10 @@
+import { useTranslation } from "react-i18next";
 import Reveal from "./Reveal.jsx";
-import { goals, goalsSection } from "../data/content.js";
 
 export default function Goals() {
+  const { t } = useTranslation();
+  const goals = t("goals", { returnObjects: true });
+
   const numberedGoals = goals.flatMap((group) =>
     group.points.map((point) => ({ groupTitle: group.title, point }))
   );
@@ -17,7 +20,7 @@ export default function Goals() {
             as="h2"
             className="font-display text-3xl font-semibold leading-tight tracking-tight text-balance sm:text-4xl lg:text-5xl"
           >
-            {goalsSection.title}
+            {t("goalsSection.title")}
           </Reveal>
         </div>
 

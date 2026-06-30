@@ -3,9 +3,9 @@ import { useCallback, useEffect, useState } from "react";
 export const STORAGE_KEY = "ttt-theme-variant";
 
 export const THEME_VARIANTS = [
-  { value: "default", label: "Extendable theme" },
-  { value: "paper-glass", label: "Paper glass theme" },
-  { value: "ona", label: "Ona theme" },
+  { value: "default", labelKey: "extendable" },
+  { value: "paper-glass", labelKey: "paperGlass" },
+  { value: "ona", labelKey: "ona" },
 ];
 
 const VALID_VARIANTS = new Set(

@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import Reveal from "./Reveal.jsx";
-import { join } from "../data/content.js";
 
 export default function Join() {
+  const { t } = useTranslation();
+
   return (
     <section id="join" className="relative scroll-mt-20 px-5 py-20 sm:px-8 sm:py-28">
       <Reveal className="mx-auto max-w-5xl">
@@ -13,18 +15,18 @@ export default function Join() {
           </div>
 
           <h2 className="mx-auto max-w-2xl font-display text-3xl font-semibold leading-tight tracking-tight text-balance text-cream sm:text-5xl">
-            {join.title}
+            {t("join.title")}
           </h2>
           <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-cream/70 sm:text-lg">
-            {join.body}
+            {t("join.body")}
           </p>
 
           <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Link
-              to={join.ctaHref}
+              to={t("join.ctaHref")}
               className="group inline-flex w-full items-center justify-center gap-2 rounded-full bg-gold-500 px-8 py-4 text-sm font-bold text-night-950 shadow-xl shadow-gold-500/25 transition hover:bg-gold-400 sm:w-auto"
             >
-              {join.cta}
+              {t("join.cta")}
               <svg
                 viewBox="0 0 24 24"
                 className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
@@ -41,7 +43,7 @@ export default function Join() {
               to="/contact"
               className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-8 py-4 text-sm font-semibold text-cream transition hover:bg-white/10 sm:w-auto"
             >
-              Contact Us
+              {t("common.contactUs")}
             </Link>
           </div>
         </div>

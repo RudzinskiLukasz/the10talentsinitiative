@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useId, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { THEME_VARIANTS } from "../hooks/useThemeVariant.js";
 
 export default function ThemeVariantSelect({
@@ -7,6 +8,7 @@ export default function ThemeVariantSelect({
   className = "",
   id: idProp,
 }) {
+  const { t } = useTranslation();
   const autoId = useId();
   const id = idProp ?? autoId;
   const listboxId = `${id}-listbox`;
@@ -15,8 +17,13 @@ export default function ThemeVariantSelect({
   const [open, setOpen] = useState(false);
   const [highlightedIndex, setHighlightedIndex] = useState(-1);
 
-  const selectedIndex = THEME_VARIANTS.findIndex((o) => o.value === variant);
-  const selected = THEME_VARIANTS[selectedIndex >= 0 ? selectedIndex : 0];
+  const options = THEME_VARIANTS.map((option) => ({
+    ...option,
+    label: t(`themes.${option.labelKey}`),
+  }));
+
+  const selectedIndex = options.findIndex((o) => o.value === variant);
+  const selected = options[selectedIndex >= 0 ? selectedIndex : 0];
 
   const close = useCallback(() => {
     setOpen(false);
@@ -67,21 +74,21 @@ export default function ThemeVariantSelect({
 
     if (e.key === "ArrowDown") {
       e.preventDefault();
-      setHighlightedIndex((i) => (i + 1) % THEME_VARIANTS.length);
+      setHighlightedIndex((i) => (i + 1) % options.length);
       return;
     }
 
     if (e.key === "ArrowUp") {
       e.preventDefault();
       setHighlightedIndex(
-        (i) => (i - 1 + THEME_VARIANTS.length) % THEME_VARIANTS.length
+        (i) => (i - 1 + options.length) % options.length
       );
       return;
     }
 
     if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
-      const option = THEME_VARIANTS[highlightedIndex];
+      const option = options[highlightedIndex];
       if (option) select(option.value);
       return;
     }
@@ -111,7 +118,7 @@ export default function ThemeVariantSelect({
         aria-expanded={open}
         aria-controls={listboxId}
         aria-haspopup="listbox"
-        aria-label="Theme style"
+        aria-label={t("common.themeStyle")}
         onClick={() => (open ? close() : openMenu())}
         onKeyDown={onButtonKeyDown}
         className="flex h-10 w-full min-w-0 items-center gap-2 rounded-xl border border-border bg-surface py-0 pl-3 pr-2.5 text-left text-sm font-medium text-fg ring-1 ring-transparent transition hover:bg-surface-hover hover:ring-border-strong focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
@@ -137,12 +144,12 @@ export default function ThemeVariantSelect({
         <ul
           id={listboxId}
           role="listbox"
-          aria-label="Theme style"
+          aria-label={t("common.themeStyle")}
           tabIndex={-1}
           onKeyDown={onListboxKeyDown}
           className="absolute left-0 right-0 top-full z-[60] mt-1 overflow-hidden rounded-xl border border-border bg-surface py-1 shadow-lg ring-1 ring-border-subtle"
         >
-          {THEME_VARIANTS.map((option, index) => {
+          {options.map((option, index) => {
             const isSelected = variant === option.value;
             const isHighlighted = highlightedIndex === index;
 

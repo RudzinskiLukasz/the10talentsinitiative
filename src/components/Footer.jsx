@@ -1,8 +1,14 @@
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import Logo from "./Logo.jsx";
-import { mainNav, site } from "../data/content.js";
+import { useMainNav } from "../i18n/nav.js";
+import { site } from "../data/site.js";
+import LanguageSelector from "./LanguageSelector.jsx";
 
 export default function Footer() {
+  const { t } = useTranslation();
+  const mainNav = useMainNav();
+
   return (
     <footer className="border-t border-border bg-bg">
       <div className="mx-auto max-w-6xl px-5 py-12 sm:px-8">
@@ -10,14 +16,13 @@ export default function Footer() {
           <div className="max-w-sm">
             <Logo />
             <p className="mt-4 text-sm leading-relaxed text-fg-subtle">
-              Nurturing the God-given gifts of Catholic youth — for Christ and
-              His Church.
+              {t("footer.tagline")}
             </p>
           </div>
 
           <div className="flex flex-col gap-3">
             <span className="text-xs font-bold uppercase tracking-[0.2em] text-fg-faint">
-              Explore
+              {t("footer.explore")}
             </span>
             {mainNav.map((item) => (
               <Link
@@ -32,19 +37,19 @@ export default function Footer() {
               to="/privacy-policy"
               className="text-sm text-fg-muted transition hover:text-accent"
             >
-              Privacy Policy
+              {t("footer.privacyPolicy")}
             </Link>
             <Link
               to="/cookie-policy-eu"
               className="text-sm text-fg-muted transition hover:text-accent"
             >
-              Cookie Policy (EU)
+              {t("footer.cookiePolicy")}
             </Link>
           </div>
 
           <div className="flex flex-col gap-3">
             <span className="text-xs font-bold uppercase tracking-[0.2em] text-fg-faint">
-              Get In Touch
+              {t("footer.getInTouch")}
             </span>
             <a
               href={`mailto:${site.contactEmail}`}
@@ -58,13 +63,18 @@ export default function Footer() {
             >
               {site.email}
             </a>
-            <span className="text-sm text-fg-faint">Nigeria • Africa • Beyond</span>
+            <span className="text-sm text-fg-faint">{t("footer.region")}</span>
           </div>
         </div>
 
-        <div className="mt-10 flex flex-col items-center justify-between gap-3 border-t border-border-subtle pt-6 text-xs text-fg-faint sm:flex-row">
-          <p>© {new Date().getFullYear()} The Ten Talents Initiative. All rights reserved.</p>
-          <p className="italic">"To each according to his ability." — Matthew 25:15</p>
+        <div className="mt-10 flex flex-col items-center justify-between gap-6 border-t border-border-subtle pt-6 sm:flex-row">
+          <div className="flex flex-col items-center gap-4 sm:flex-row sm:items-end">
+            <LanguageSelector className="w-full sm:w-44" />
+          </div>
+          <div className="flex flex-col items-center gap-3 text-center text-xs text-fg-faint sm:items-end sm:text-right">
+            <p>{t("footer.copyright", { year: new Date().getFullYear() })}</p>
+            <p className="italic">{t("footer.quote")}</p>
+          </div>
         </div>
       </div>
     </footer>

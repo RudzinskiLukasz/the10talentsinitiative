@@ -1,8 +1,11 @@
+import { useTranslation } from "react-i18next";
 import PageHeader from "../components/PageHeader.jsx";
 import Reveal from "../components/Reveal.jsx";
-import { songsBooksPage } from "../data/content.js";
 
 export default function SongsBooksPage() {
+  const { t } = useTranslation();
+  const songsBooksPage = t("songsBooksPage", { returnObjects: true });
+
   return (
     <>
       <PageHeader

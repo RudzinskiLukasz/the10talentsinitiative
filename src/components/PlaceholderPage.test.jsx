@@ -1,16 +1,17 @@
 import { render, screen } from "@testing-library/react";
-import { MemoryRouter } from "react-router-dom";
+import { I18nextProvider } from "react-i18next";
 import PlaceholderPage from "./PlaceholderPage.jsx";
+import i18n from "../i18n/index.js";
 
 describe("PlaceholderPage", () => {
   it("renders the page title and coming soon message", () => {
     render(
-      <MemoryRouter>
+      <I18nextProvider i18n={i18n}>
         <PlaceholderPage title="Programs" />
-      </MemoryRouter>
+      </I18nextProvider>
     );
 
     expect(screen.getByRole("heading", { name: "Programs" })).toBeInTheDocument();
-    expect(screen.getByText("Coming soon")).toBeInTheDocument();
+    expect(screen.getByText(i18n.t("common.comingSoon"))).toBeInTheDocument();
   });
 });

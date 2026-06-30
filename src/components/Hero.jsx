@@ -1,8 +1,11 @@
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import Reveal from "./Reveal.jsx";
-import { hero, stats } from "../data/content.js";
 
 export default function Hero() {
+  const { t } = useTranslation();
+  const stats = t("stats", { returnObjects: true });
+
   return (
     <section id="top" className="relative overflow-hidden pt-page-top pb-20 sm:pb-28">
       <div className="pointer-events-none absolute inset-0 -z-10">
@@ -16,7 +19,7 @@ export default function Hero() {
         <Reveal className="flex justify-center">
           <span className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-primary-soft">
             <span className="h-1.5 w-1.5 rounded-full bg-cta" />
-            Faith • Gifts • Community
+            {t("common.faithGiftsCommunity")}
           </span>
         </Reveal>
 
@@ -25,7 +28,7 @@ export default function Hero() {
           delay={80}
           className="mx-auto mt-7 max-w-4xl text-center font-display text-4xl font-semibold leading-[1.05] tracking-tight text-balance sm:text-6xl lg:text-7xl"
         >
-          {hero.title}
+          {t("hero.title")}
         </Reveal>
 
         <Reveal
@@ -33,7 +36,7 @@ export default function Hero() {
           delay={160}
           className="mx-auto mt-6 max-w-2xl text-center text-base leading-relaxed text-fg-muted sm:text-lg text-balance"
         >
-          {hero.description}
+          {t("hero.description")}
         </Reveal>
 
         <Reveal
@@ -41,10 +44,10 @@ export default function Hero() {
           className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row"
         >
           <Link
-            to={hero.ctaPrimaryHref}
+            to={t("hero.ctaPrimaryHref")}
             className="group inline-flex w-full items-center justify-center gap-2 rounded-full bg-cta px-7 py-3.5 text-sm font-bold text-on-cta shadow-xl shadow-cta/25 transition hover:bg-cta-hover sm:w-auto"
           >
-            {hero.ctaPrimary}
+            {t("hero.ctaPrimary")}
             <svg
               viewBox="0 0 24 24"
               className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
@@ -58,10 +61,10 @@ export default function Hero() {
             </svg>
           </Link>
           <a
-            href={hero.ctaSecondaryHref}
+            href={t("hero.ctaSecondaryHref")}
             className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-border-strong bg-surface px-7 py-3.5 text-sm font-semibold text-fg transition hover:bg-surface-hover sm:w-auto"
           >
-            {hero.ctaSecondary}
+            {t("hero.ctaSecondary")}
           </a>
         </Reveal>
 

@@ -1,13 +1,15 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import Hero from "../components/Hero.jsx";
 import Mission from "../components/Mission.jsx";
 import Goals from "../components/Goals.jsx";
 import Team from "../components/Team.jsx";
 import Join from "../components/Join.jsx";
 import Reveal from "../components/Reveal.jsx";
-import { contactPage, site } from "../data/content.js";
+import { site, contactSocial } from "../data/site.js";
 
 export default function ContactPage() {
+  const { t } = useTranslation();
   const [submitted, setSubmitted] = useState(false);
 
   function handleSubmit(event) {
@@ -26,25 +28,25 @@ export default function ContactPage() {
         <div className="mx-auto max-w-6xl px-5 sm:px-8">
           <Reveal className="mx-auto max-w-2xl text-center">
             <h2 className="font-display text-3xl font-semibold text-fg sm:text-4xl">
-              {contactPage.title}
+              {t("contactPage.title")}
             </h2>
             <p className="mt-4 text-base leading-relaxed text-fg-muted sm:text-lg">
-              {contactPage.intro}
+              {t("contactPage.intro")}
             </p>
           </Reveal>
 
           <div className="mt-12 grid gap-10 lg:grid-cols-[1fr_1.2fr]">
             <Reveal>
               <div className="grid gap-3 sm:grid-cols-2">
-                {contactPage.social.map((item) => (
+                {contactSocial.map((item, index) => (
                   <a
-                    key={item.label}
+                    key={item.key}
                     href={item.href}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="rounded-2xl border border-border bg-surface px-5 py-4 text-center text-sm font-semibold text-fg transition hover:border-accent/40 hover:bg-surface-hover"
                   >
-                    {item.label}
+                    {t(`contactPage.social.${index}`)}
                   </a>
                 ))}
               </div>
@@ -56,15 +58,14 @@ export default function ContactPage() {
                 className="rounded-2xl border border-border bg-surface p-6 shadow-sm sm:p-8"
               >
                 {submitted ? (
-                  <p className="text-fg-muted">
-                    Thank you for your message. We will come back to you as soon as possible.
-                  </p>
+                  <p className="text-fg-muted">{t("common.thankYouMessage")}</p>
                 ) : (
                   <>
                     <div className="space-y-5">
                       <label className="block">
                         <span className="text-sm font-medium text-fg">
-                          Name <span className="text-accent">*</span>
+                          {t("common.name")}{" "}
+                          <span className="text-accent">{t("common.required")}</span>
                         </span>
                         <input
                           required
@@ -75,7 +76,8 @@ export default function ContactPage() {
                       </label>
                       <label className="block">
                         <span className="text-sm font-medium text-fg">
-                          Email <span className="text-accent">*</span>
+                          {t("common.emailLabel")}{" "}
+                          <span className="text-accent">{t("common.required")}</span>
                         </span>
                         <input
                           required
@@ -85,7 +87,7 @@ export default function ContactPage() {
                         />
                       </label>
                       <label className="block">
-                        <span className="text-sm font-medium text-fg">Subject</span>
+                        <span className="text-sm font-medium text-fg">{t("common.subject")}</span>
                         <input
                           type="text"
                           name="subject"
@@ -94,7 +96,8 @@ export default function ContactPage() {
                       </label>
                       <label className="block">
                         <span className="text-sm font-medium text-fg">
-                          Message <span className="text-accent">*</span>
+                          {t("common.message")}{" "}
+                          <span className="text-accent">{t("common.required")}</span>
                         </span>
                         <textarea
                           required
@@ -108,7 +111,7 @@ export default function ContactPage() {
                       type="submit"
                       className="mt-6 rounded-full bg-cta px-7 py-3 text-sm font-bold text-on-cta transition hover:bg-cta-hover"
                     >
-                      Submit
+                      {t("common.submit")}
                     </button>
                   </>
                 )}
