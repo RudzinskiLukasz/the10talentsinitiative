@@ -9,13 +9,20 @@ export const site = {
 export const mainNav = [
   { label: "Home", href: "/" },
   { label: "Programs", href: "/programs" },
-  { label: "Daily reflections", href: "/daily-reflections" },
+  { label: "Daily Reflections", href: "/daily-reflections" },
   { label: "Events", href: "/events" },
   { label: "Songs & Books", href: "/songs-books" },
-  { label: "About Us", href: "/about" },
+  { label: "Contact Us", href: "/contact" },
 ];
 
-export const secondaryNav = [{ label: "Tp", href: "/tp" }];
+export const secondaryNav = [
+  { label: "T-Talents Records", href: "/t-talents-records" },
+  { label: "T-Talents Studios", href: "/t-talents-studios" },
+  { label: "T-Talents Series", href: "/t-talents-series" },
+  { label: "T-Talents Sports", href: "/t-talents-sports" },
+  { label: "Catholic Singles Forum", href: "/catholic-singles-forum" },
+  { label: "Donations", href: "/donations" },
+];
 
 /** Combined nav for footer and other link lists */
 export const nav = [...mainNav, ...secondaryNav];

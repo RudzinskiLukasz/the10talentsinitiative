@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import Logo from "./Logo.jsx";
-import { mainNav, secondaryNav, site } from "../data/content.js";
+import { mainNav, site } from "../data/content.js";
 
 export default function Footer() {
   return (
@@ -20,15 +20,6 @@ export default function Footer() {
               Explore
             </span>
             {mainNav.map((item) => (
-              <Link
-                key={item.href}
-                to={item.href}
-                className="text-sm text-fg-muted transition hover:text-accent"
-              >
-                {item.label}
-              </Link>
-            ))}
-            {secondaryNav.map((item) => (
               <Link
                 key={item.href}
                 to={item.href}
