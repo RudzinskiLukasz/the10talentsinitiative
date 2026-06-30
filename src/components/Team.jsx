@@ -1,6 +1,7 @@
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import Reveal from "./Reveal.jsx";
-import { teamEmails } from "../data/site.js";
+import { teamEmails, teamPhotos } from "../data/site.js";
 
 function initials(name) {
   const cleaned = name
@@ -8,6 +9,48 @@ function initials(name) {
     .trim();
   const parts = cleaned.split(/\s+/).filter(Boolean);
   return ((parts[0]?.[0] ?? "") + (parts[1]?.[0] ?? "")).toUpperCase();
+}
+
+function TeamAvatar({ name, image, variant = "grid" }) {
+  const [failed, setFailed] = useState(false);
+  const showPhoto = image && !failed;
+
+  if (showPhoto) {
+    const isLead = variant === "lead";
+    return (
+      <div
+        className={
+          isLead
+            ? "h-24 w-24 shrink-0 overflow-hidden rounded-2xl ring-2 ring-gold-400/40 shadow-xl shadow-cta/25 transition hover:ring-gold-400/70"
+            : "h-14 w-14 shrink-0 overflow-hidden rounded-full ring-2 ring-border transition group-hover:ring-primary/40"
+        }
+      >
+        <img
+          src={image}
+          alt={name}
+          loading="lazy"
+          decoding="async"
+          width={isLead ? 96 : 56}
+          height={isLead ? 96 : 56}
+          className="aspect-square h-full w-full object-cover"
+          onError={() => setFailed(true)}
+        />
+      </div>
+    );
+  }
+
+  const isLead = variant === "lead";
+  return (
+    <div
+      className={
+        isLead
+          ? "grid h-24 w-24 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-gold-400 to-gold-600 font-display text-3xl font-bold text-on-cta shadow-xl shadow-cta/25"
+          : "grid h-14 w-14 shrink-0 place-items-center rounded-full bg-primary/15 font-display text-lg font-bold text-primary-soft ring-1 ring-border transition group-hover:bg-primary/25"
+      }
+    >
+      {initials(name)}
+    </div>
+  );
 }
 
 export default function Team() {
@@ -38,9 +81,11 @@ export default function Team() {
           <div className="surface-gradient relative overflow-hidden rounded-3xl border border-[color:var(--surface-grad-border)] p-8 shadow-xl shadow-black/[0.06] sm:p-10">
             <div className="glow-accent pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full blur-3xl" />
             <div className="relative flex flex-col items-center gap-6 text-center sm:flex-row sm:text-left">
-              <div className="grid h-24 w-24 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-gold-400 to-gold-600 font-display text-3xl font-bold text-on-cta shadow-xl shadow-cta/25">
-                {initials(lead.name)}
-              </div>
+              <TeamAvatar
+                name={lead.name}
+                image={teamPhotos[0]}
+                variant="lead"
+              />
               <div>
                 <h3 className="font-display text-2xl font-semibold text-fg sm:text-3xl">
                   {lead.name}
@@ -55,42 +100,46 @@ export default function Team() {
           {members.map((m, i) => {
             const email = teamEmails[i + 1];
             return (
-            <Reveal
-              key={m.name}
-              delay={(i % 3) * 70}
-              className="group rounded-2xl border border-border bg-surface p-6 shadow-sm shadow-black/[0.03] transition hover:border-primary/40 hover:bg-surface-hover"
-            >
-              <div className="flex items-center gap-4">
-                <div className="grid h-14 w-14 shrink-0 place-items-center rounded-xl bg-primary/15 font-display text-lg font-bold text-primary-soft ring-1 ring-border transition group-hover:bg-primary/25">
-                  {initials(m.name)}
+              <Reveal
+                key={m.name}
+                delay={(i % 3) * 70}
+                className="group rounded-2xl border border-border bg-surface p-6 shadow-sm shadow-black/[0.03] transition hover:border-primary/40 hover:bg-surface-hover"
+              >
+                <div className="flex items-center gap-4">
+                  <TeamAvatar
+                    name={m.name}
+                    image={teamPhotos[i + 1]}
+                    variant="grid"
+                  />
+                  <div className="min-w-0">
+                    <h3 className="font-semibold text-fg">{m.name}</h3>
+                    <p className="mt-0.5 text-sm text-fg-subtle">({m.role})</p>
+                  </div>
                 </div>
-                <div className="min-w-0">
-                  <h3 className="font-semibold text-fg">{m.name}</h3>
-                  <p className="mt-0.5 text-sm text-fg-subtle">({m.role})</p>
-                </div>
-              </div>
-              {email && (
-                <a
-                  href={`mailto:${email}`}
-                  className="mt-4 inline-flex items-center gap-2 text-xs font-medium text-primary-soft transition hover:text-accent"
-                >
-                  <svg
-                    viewBox="0 0 24 24"
-                    className="h-4 w-4"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.8"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
+                {email && (
+                  <a
+                    href={`mailto:${email}`}
+                    className="mt-4 inline-flex items-center gap-2 text-xs font-medium text-primary-soft transition hover:text-accent"
                   >
-                    <rect x="3" y="5" width="18" height="14" rx="2" />
-                    <path d="m3 7 9 6 9-6" />
-                  </svg>
-                  <span className="truncate">{t("common.email")} {email}</span>
-                </a>
-              )}
-            </Reveal>
-          );
+                    <svg
+                      viewBox="0 0 24 24"
+                      className="h-4 w-4"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.8"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <rect x="3" y="5" width="18" height="14" rx="2" />
+                      <path d="m3 7 9 6 9-6" />
+                    </svg>
+                    <span className="truncate">
+                      {t("common.email")} {email}
+                    </span>
+                  </a>
+                )}
+              </Reveal>
+            );
           })}
         </div>
       </div>

@@ -140,31 +140,38 @@
   "team": [
     {
       "name": "Rev. Fr. Eze Emmanuel OSA",
-      "role": "Founder and Spiritual Director"
+      "role": "Founder and Spiritual Director",
+      "image": "/images/team/eze-emmanuel.jpg"
     },
     {
       "name": "Mr. Bulus Maina",
-      "role": "Executive Board Member and Public relatiion Officer"
+      "role": "Executive Board Member and Public relatiion Officer",
+      "image": "/images/team/bulus-maina.jpg"
     },
     {
       "name": "Miss. Chidera G. Okafor.",
-      "role": "Music and Logistics Cor-dinator"
+      "role": "Music and Logistics Cor-dinator",
+      "image": "/images/team/chidera-okafor.jpg"
     },
     {
       "name": "Mrs. Godson Lilian (Eucyl)",
-      "role": "Music and Logistics Co-ordinator"
+      "role": "Music and Logistics Co-ordinator",
+      "image": "/images/team/godson-lilian.jpg"
     },
     {
       "name": "Mr. Luka Yusuf Rumu",
-      "role": "Digital strategy Cordinator."
+      "role": "Digital strategy Cordinator.",
+      "image": "/images/team/luka-rumu.jpg"
     },
     {
       "name": "Miss Eke Onyemauchechi",
-      "role": "Secretary and program's co-ordinator"
+      "role": "Secretary and program's co-ordinator",
+      "image": "/images/team/eke-onyemauchechi.jpg"
     },
     {
       "name": "Miss IBE NAOMI TIWA",
-      "role": "Singles and Catholic Marriage Programs' co-dinator"
+      "role": "Singles and Catholic Marriage Programs' co-dinator",
+      "image": "/images/team/ibe-naomi-tiwa.jpeg"
     }
   ],
   "goalsSection": {

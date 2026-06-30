@@ -25,3 +25,14 @@ export const teamEmails = [
   "uchechieke28@gmail.com",
   "franomi788@gmail.com",
 ];
+
+/** Team member photos by index (matches i18n team array order) */
+export const teamPhotos = [
+  "/images/team/eze-emmanuel.jpg",
+  "/images/team/bulus-maina.jpg",
+  "/images/team/chidera-okafor.jpg",
+  "/images/team/godson-lilian.jpg",
+  "/images/team/luka-rumu.jpg",
+  "/images/team/eke-onyemauchechi.jpg",
+  "/images/team/ibe-naomi-tiwa.jpeg",
+];

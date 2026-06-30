@@ -53,36 +53,43 @@ export const team = [
     name: "Rev. Fr. Eze Emmanuel OSA",
     role: "Founder and Spiritual Director",
     email: null,
+    image: "/images/team/eze-emmanuel.jpg",
   },
   {
     name: "Mr. Bulus Maina",
     role: "Executive Board Member and Public relatiion Officer",
     email: "bulusmaina25@gmail.com",
+    image: "/images/team/bulus-maina.jpg",
   },
   {
     name: "Miss. Chidera G. Okafor.",
     role: "Music and Logistics Cor-dinator",
     email: "okaforgeraldine50@gmail.com",
+    image: "/images/team/chidera-okafor.jpg",
   },
   {
     name: "Mrs. Godson Lilian (Eucyl)",
     role: "Music and Logistics Co-ordinator",
     email: "eucylily@gmail.com",
+    image: "/images/team/godson-lilian.jpg",
   },
   {
     name: "Mr. Luka Yusuf Rumu",
     role: "Digital strategy Cordinator.",
     email: "lukayusufrumu@gmail.com",
+    image: "/images/team/luka-rumu.jpg",
   },
   {
     name: "Miss Eke Onyemauchechi",
     role: "Secretary and program's co-ordinator",
     email: "uchechieke28@gmail.com",
+    image: "/images/team/eke-onyemauchechi.jpg",
   },
   {
     name: "Miss IBE NAOMI TIWA",
     role: "Singles and Catholic Marriage Programs' co-dinator",
     email: "franomi788@gmail.com",
+    image: "/images/team/ibe-naomi-tiwa.jpeg",
   },
 ];
 
