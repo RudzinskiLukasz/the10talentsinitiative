@@ -331,29 +331,6 @@ export const songsBooksPage = {
       subtitle: "Dialnet-EconomicContributionAndSportSuccessThroughTheSaleO-9046932",
       action: "Download",
     },
-    {
-      title: "Product Two",
-      price: null,
-      description: "This product provides outstanding quality and exceptional value.",
-      badge: "Pro",
-    },
-    {
-      title: "Product One",
-      price: "$39.99",
-      description:
-        "This product is designed with top-notch features for maximum performance.",
-    },
-    {
-      title: "Product Three",
-      price: "$29.99",
-      description:
-        "This product ensures superior reliability and unmatched functionality.",
-    },
-    {
-      title: "Product Two",
-      price: "$19.99",
-      description: "This product provides outstanding quality and exceptional value.",
-    },
   ],
 };
 
