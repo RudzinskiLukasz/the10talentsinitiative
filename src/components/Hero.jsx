@@ -4,7 +4,7 @@ import { hero, stats } from "../data/content.js";
 
 export default function Hero() {
   return (
-    <section id="top" className="relative overflow-hidden pt-36 pb-20 sm:pt-44 sm:pb-28 lg:pt-48">
+    <section id="top" className="relative overflow-hidden pt-page-top pb-20 sm:pb-28">
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="glow-primary absolute left-1/2 top-[-10%] h-[520px] w-[520px] -translate-x-1/2 rounded-full blur-[120px] animate-float-slow" />
         <div className="glow-accent absolute right-[8%] top-[20%] h-[340px] w-[340px] rounded-full blur-[110px] animate-float-slower" />

@@ -8,7 +8,7 @@ export default function Layout() {
     <div className="relative min-h-screen overflow-x-hidden">
       <ScrollToTop />
       <Navbar />
-      <main>
+      <main className="pt-[var(--header-height)]">
         <Outlet />
       </main>
       <Footer />

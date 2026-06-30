@@ -77,6 +77,10 @@
  * ------------------------------------------------------------------ */
 :root,
 [data-theme="dark"] {
+  /* Fixed header clearance — JS may override with measured height */
+  --header-height: 3rem; /* row 1: min-h-12 */
+  --page-top-spacing: 4rem;
+
   color-scheme: dark;
 
   --bg: #0d0820;
@@ -276,10 +280,31 @@
   --glass-saturate: 180%;
 }
 
+@media (min-width: 640px) {
+  :root {
+    --header-height: 3.5rem; /* row 1: min-h-14 */
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --header-height: 5.625rem; /* row 1 + divider + row 2 (h-8) */
+    --page-top-spacing: 5rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  :root {
+    --header-height: 5.875rem; /* row 2: h-9 */
+    --page-top-spacing: 6rem;
+  }
+}
+
 @layer base {
   html {
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+    scroll-padding-top: var(--header-height);
   }
 
   body {
@@ -321,6 +346,10 @@
 }
 
 @layer utilities {
+  .pt-page-top {
+    padding-top: var(--page-top-spacing);
+  }
+
   .font-display {
     font-family: var(--font-display);
   }

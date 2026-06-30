@@ -158,7 +158,7 @@ export default function SearchBar({ className = "", compact = false }) {
     <div ref={containerRef} className={`relative ${className}`}>
       <div
         className={`flex items-center gap-2 rounded-xl border border-border bg-surface px-3 transition focus-within:ring-1 focus-within:ring-border-strong ${
-          compact ? "w-full" : "h-9 w-44 xl:w-52"
+          compact ? "w-full" : "h-9 w-36 xl:w-52"
         }`}
       >
         <SearchIcon className="h-3.5 w-3.5 shrink-0 text-fg-faint" />
@@ -205,8 +205,8 @@ export default function SearchBar({ className = "", compact = false }) {
           id={listboxId}
           role="listbox"
           aria-label="Search results"
-          className={`absolute z-50 mt-1.5 overflow-hidden rounded-xl border border-border bg-surface-nav shadow-lg backdrop-blur-xl ${
-            compact ? "inset-x-0" : "left-0 w-72 xl:w-80"
+          className={`absolute z-[60] mt-1.5 overflow-hidden rounded-xl border border-border bg-surface-nav shadow-lg backdrop-blur-xl ${
+            compact ? "inset-x-0" : "left-0 w-64 xl:w-80"
           }`}
         >
           {pending ? (

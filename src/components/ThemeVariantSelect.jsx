@@ -140,7 +140,7 @@ export default function ThemeVariantSelect({
           aria-label="Theme style"
           tabIndex={-1}
           onKeyDown={onListboxKeyDown}
-          className="absolute left-0 right-0 top-full z-50 mt-1 overflow-hidden rounded-xl border border-border bg-surface py-1 shadow-lg ring-1 ring-border-subtle"
+          className="absolute left-0 right-0 top-full z-[60] mt-1 overflow-hidden rounded-xl border border-border bg-surface py-1 shadow-lg ring-1 ring-border-subtle"
         >
           {THEME_VARIANTS.map((option, index) => {
             const isSelected = variant === option.value;

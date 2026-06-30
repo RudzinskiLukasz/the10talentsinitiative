@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import Logo from "./Logo.jsx";
 import SearchBar from "./SearchBar.jsx";
@@ -55,6 +55,7 @@ function SecondaryNavLink({ item, onClick, className = "" }) {
 }
 
 export default function Navbar() {
+  const headerRef = useRef(null);
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
@@ -67,6 +68,25 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    const header = headerRef.current;
+    if (!header) return undefined;
+
+    const syncHeaderHeight = () => {
+      document.documentElement.style.setProperty(
+        "--header-height",
+        `${header.offsetHeight}px`
+      );
+    };
+
+    syncHeaderHeight();
+
+    const observer = new ResizeObserver(syncHeaderHeight);
+    observer.observe(header);
+
+    return () => observer.disconnect();
+  }, [open]);
+
   const headerSurface = scrolled
     ? "border-b border-border bg-surface-nav backdrop-blur-xl"
     : "border-b border-transparent";
@@ -77,30 +97,31 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${headerSurface}`}
+      ref={headerRef}
+      className={`fixed inset-x-0 top-0 z-50 overflow-visible transition-all duration-300 ${headerSurface}`}
     >
       <div className="mx-auto max-w-6xl">
-        <div className="flex min-h-12 items-center gap-2 px-5 sm:min-h-14 sm:gap-3 sm:px-8">
+        <div className="flex min-h-12 flex-nowrap items-center gap-2 px-5 sm:min-h-14 sm:gap-3 sm:px-8">
           <Logo className="shrink-0" />
 
           <nav
             className="hidden min-w-0 flex-1 lg:block"
             aria-label="Main"
           >
-            <div className="flex items-center gap-0.5 overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] xl:gap-1 [&::-webkit-scrollbar]:hidden">
+            <div className="flex flex-nowrap items-center gap-0.5 overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] xl:gap-1 [&::-webkit-scrollbar]:hidden">
               {mainNav.map((item) => (
                 <NavLink key={item.href} item={item} />
               ))}
             </div>
           </nav>
 
-          <div className="ml-auto flex shrink-0 items-center gap-1.5 sm:gap-2">
+          <div className="ml-auto flex shrink-0 flex-nowrap items-center gap-1.5 sm:gap-2">
             <SearchBar className="hidden lg:block" />
             <SearchBar className="lg:hidden" compact />
             <ThemeVariantSelect
               variant={variant}
               onChange={setVariant}
-              className="hidden w-44 sm:block xl:w-48"
+              className="hidden w-36 lg:block xl:w-44"
             />
             <ThemeToggle theme={theme} onToggle={toggleTheme} />
 

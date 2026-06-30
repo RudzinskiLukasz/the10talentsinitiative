@@ -12,6 +12,15 @@ global.IntersectionObserver = MockIntersectionObserver;
 // jsdom does not implement scrollTo — stub for ScrollToTop.
 window.scrollTo = vi.fn();
 
+// jsdom does not implement ResizeObserver — stub for Navbar header height sync.
+class MockResizeObserver {
+  observe() {}
+  unobserve() {}
+  disconnect() {}
+}
+
+global.ResizeObserver = MockResizeObserver;
+
 // jsdom does not implement matchMedia — stub for useTheme tests.
 Object.defineProperty(window, "matchMedia", {
   writable: true,
