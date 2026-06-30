@@ -6,6 +6,7 @@ import Goals from "../components/Goals.jsx";
 import Team from "../components/Team.jsx";
 import Join from "../components/Join.jsx";
 import Reveal from "../components/Reveal.jsx";
+import SocialIcon from "../components/SocialIcon.jsx";
 import { site, contactSocial } from "../data/site.js";
 
 export default function ContactPage() {
@@ -42,10 +43,11 @@ export default function ContactPage() {
                   <a
                     key={item.key}
                     href={item.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="rounded-2xl border border-border bg-surface px-5 py-4 text-center text-sm font-semibold text-fg transition hover:border-accent/40 hover:bg-surface-hover"
+                    target={item.href.startsWith("http") ? "_blank" : undefined}
+                    rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                    className="flex items-center justify-center gap-2.5 rounded-2xl border border-border bg-surface px-5 py-4 text-center text-sm font-semibold text-fg transition hover:border-accent/40 hover:bg-surface-hover"
                   >
+                    <SocialIcon name={item.key} className="h-5 w-5 shrink-0 text-fg-muted" />
                     {t(`contactPage.social.${index}`)}
                   </a>
                 ))}

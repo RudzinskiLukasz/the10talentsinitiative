@@ -5,6 +5,7 @@ import { useTheme } from "../hooks/useTheme.js";
 export default function Logo({ className = "" }) {
   const { t } = useTranslation();
   const { theme } = useTheme();
+  const isDark = theme === "dark";
 
   return (
     <Link
@@ -13,9 +14,11 @@ export default function Logo({ className = "" }) {
       aria-label={`${t("site.name")} — ${t("nav.home").toLowerCase()}`}
     >
       <img
-        src={theme === "dark" ? "/images/logo-white.png" : "/images/logo.png"}
+        src="/images/logo.png"
         alt="The Ten Talents Initiative"
-        className="h-9 w-auto object-contain"
+        className={`h-9 w-auto object-contain object-left ${
+          isDark ? "invert mix-blend-screen" : "mix-blend-multiply"
+        }`}
         width={120}
         height={67}
       />
