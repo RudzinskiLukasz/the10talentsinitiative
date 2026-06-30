@@ -34,27 +34,6 @@ function NavLink({ item, onClick, className = "", activeClassName = "", mobile =
   );
 }
 
-function SecondaryNavLink({ item, onClick, className = "" }) {
-  const { pathname } = useLocation();
-  const isActive =
-    pathname === item.href || pathname.startsWith(`${item.href}/`);
-
-  return (
-    <Link
-      to={item.href}
-      onClick={onClick}
-      aria-current={isActive ? "page" : undefined}
-      className={`shrink-0 whitespace-nowrap rounded-md px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] transition xl:px-3 xl:text-xs xl:tracking-[0.14em] ${
-        isActive
-          ? "bg-surface-hover text-accent ring-1 ring-border-subtle"
-          : "text-fg-subtle hover:bg-surface-hover hover:text-fg-muted"
-      } ${className}`}
-    >
-      {item.label}
-    </Link>
-  );
-}
-
 export default function Navbar() {
   const { t } = useTranslation();
   const mainNav = useMainNav();
@@ -161,9 +140,9 @@ export default function Navbar() {
           className={`hidden border-t lg:block ${secondaryBand}`}
           aria-label="Secondary"
         >
-          <div className="flex h-8 items-center gap-1.5 overflow-x-auto px-5 [-ms-overflow-style:none] [scrollbar-width:none] sm:px-8 xl:h-9 xl:gap-2 [&::-webkit-scrollbar]:hidden">
+          <div className="flex min-h-8 items-center gap-0.5 overflow-x-auto px-5 [-ms-overflow-style:none] [scrollbar-width:none] sm:px-8 xl:min-h-9 xl:gap-1 [&::-webkit-scrollbar]:hidden">
             {secondaryNav.map((item) => (
-              <SecondaryNavLink key={item.href} item={item} />
+              <NavLink key={item.href} item={item} />
             ))}
           </div>
         </nav>
@@ -197,11 +176,11 @@ export default function Navbar() {
           </p>
           <div className="flex flex-col gap-1">
             {secondaryNav.map((item) => (
-              <SecondaryNavLink
+              <NavLink
                 key={item.href}
                 item={item}
                 onClick={() => setOpen(false)}
-                className="rounded-xl px-4 py-3 text-left text-sm normal-case tracking-normal"
+                mobile
               />
             ))}
           </div>
