@@ -45,4 +45,17 @@ describe("Navbar", () => {
       screen.getAllByRole("switch", { name: /switch to (light|dark) mode/i }).length
     ).toBeGreaterThan(0);
   });
+
+  it("exposes a foldable theme variant selector", () => {
+    renderNavbar();
+    expect(
+      screen.getAllByRole("combobox", { name: "Theme style" }).length
+    ).toBeGreaterThan(0);
+  });
+
+  it("separates main and secondary navigation regions", () => {
+    renderNavbar();
+    expect(screen.getByRole("navigation", { name: "Main" })).toBeInTheDocument();
+    expect(screen.getByRole("navigation", { name: "Secondary" })).toBeInTheDocument();
+  });
 });

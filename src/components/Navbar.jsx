@@ -17,7 +17,7 @@ function NavLink({ item, onClick, className = "", activeClassName = "", mobile =
 
   const base = mobile
     ? "rounded-xl px-4 py-3 text-sm font-medium transition hover:bg-surface-hover hover:text-fg"
-    : "rounded-full px-4 py-2 text-sm font-medium transition hover:text-fg hover:bg-surface-hover";
+    : "shrink-0 whitespace-nowrap rounded-full px-2.5 py-1.5 text-xs font-medium transition hover:bg-surface-hover hover:text-fg xl:px-3.5 xl:py-2 xl:text-sm";
   const inactive = "text-fg-muted";
   const active = "bg-surface-hover text-fg ring-1 ring-border-subtle";
 
@@ -43,7 +43,7 @@ function SecondaryNavLink({ item, onClick, className = "" }) {
       to={item.href}
       onClick={onClick}
       aria-current={isActive ? "page" : undefined}
-      className={`rounded-md px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] transition ${
+      className={`shrink-0 whitespace-nowrap rounded-md px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] transition xl:px-3 xl:text-xs xl:tracking-[0.14em] ${
         isActive
           ? "bg-surface-hover text-accent ring-1 ring-border-subtle"
           : "text-fg-subtle hover:bg-surface-hover hover:text-fg-muted"
@@ -71,30 +71,36 @@ export default function Navbar() {
     ? "border-b border-border bg-surface-nav backdrop-blur-xl"
     : "border-b border-transparent";
 
+  const secondaryBand = scrolled
+    ? "border-border-subtle/80 bg-surface-nav/60"
+    : "border-border-subtle/60 bg-surface-nav/30";
+
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${headerSurface}`}
     >
       <div className="mx-auto max-w-6xl">
-        <nav
-          className="flex h-16 items-center justify-between px-5 sm:px-8"
-          aria-label="Main"
-        >
-          <Logo />
+        <div className="flex min-h-12 items-center gap-2 px-5 sm:min-h-14 sm:gap-3 sm:px-8">
+          <Logo className="shrink-0" />
 
-          <div className="hidden items-center gap-0.5 lg:flex">
-            {mainNav.map((item) => (
-              <NavLink key={item.href} item={item} />
-            ))}
-          </div>
+          <nav
+            className="hidden min-w-0 flex-1 lg:block"
+            aria-label="Main"
+          >
+            <div className="flex items-center gap-0.5 overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] xl:gap-1 [&::-webkit-scrollbar]:hidden">
+              {mainNav.map((item) => (
+                <NavLink key={item.href} item={item} />
+              ))}
+            </div>
+          </nav>
 
-          <div className="flex items-center gap-2 sm:gap-3">
+          <div className="ml-auto flex shrink-0 items-center gap-1.5 sm:gap-2">
             <SearchBar className="hidden lg:block" />
             <SearchBar className="lg:hidden" compact />
             <ThemeVariantSelect
               variant={variant}
               onChange={setVariant}
-              className="hidden sm:block"
+              className="hidden w-44 sm:block xl:w-48"
             />
             <ThemeToggle theme={theme} onToggle={toggleTheme} />
 
@@ -124,20 +130,18 @@ export default function Navbar() {
               </span>
             </button>
           </div>
-        </nav>
+        </div>
 
-        <div
-          className={`hidden border-t border-border-subtle lg:block ${
-            scrolled ? "bg-surface-nav/80" : "bg-transparent"
-          }`}
+        <nav
+          className={`hidden border-t lg:block ${secondaryBand}`}
           aria-label="Secondary"
         >
-          <div className="flex h-9 items-center gap-2 px-5 sm:px-8">
+          <div className="flex h-8 items-center gap-1.5 overflow-x-auto px-5 [-ms-overflow-style:none] [scrollbar-width:none] sm:px-8 xl:h-9 xl:gap-2 [&::-webkit-scrollbar]:hidden">
             {secondaryNav.map((item) => (
               <SecondaryNavLink key={item.href} item={item} />
             ))}
           </div>
-        </div>
+        </nav>
       </div>
 
       <div
