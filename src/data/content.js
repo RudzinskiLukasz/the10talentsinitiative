@@ -34,7 +34,7 @@ export const hero = {
   ctaPrimary: "Discover Our Programs",
   ctaPrimaryHref: "/programs",
   ctaSecondary: "Our Mission",
-  ctaSecondaryHref: "/#mission",
+  ctaSecondaryHref: "/contact#mission",
 };
 
 export const mission = {
@@ -358,7 +358,7 @@ export const songsBooksPage = {
 };
 
 export const contactPage = {
-  title: "Contact",
+  title: "Contact Us",
   intro:
     "Check our social media pages, contact us through email or fill out the form below. We will come back to you as soon as possible.",
   social: [

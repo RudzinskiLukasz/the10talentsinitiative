@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import Logo from "./Logo.jsx";
+import SearchBar from "./SearchBar.jsx";
 import ThemeToggle from "./ThemeToggle.jsx";
 import ThemeVariantSelect from "./ThemeVariantSelect.jsx";
 import { useTheme } from "../hooks/useTheme.js";
@@ -88,6 +89,8 @@ export default function Navbar() {
           </div>
 
           <div className="flex items-center gap-2 sm:gap-3">
+            <SearchBar className="hidden lg:block" />
+            <SearchBar className="lg:hidden" compact />
             <ThemeVariantSelect
               variant={variant}
               onChange={setVariant}
@@ -143,6 +146,9 @@ export default function Navbar() {
         }`}
       >
         <div className="mx-auto max-w-6xl px-5 py-4">
+          <div className="mb-4 px-1 lg:hidden">
+            <SearchBar className="w-full" />
+          </div>
           <p className="mb-2 px-4 text-[10px] font-bold uppercase tracking-[0.2em] text-fg-faint">
             Menu
           </p>
