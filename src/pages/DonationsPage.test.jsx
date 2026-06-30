@@ -5,7 +5,7 @@ import { renderWithI18n, i18n } from "../test/i18n.jsx";
 
 const mockDonations = vi.hoisted(() => ({
   donationBankConfig: {
-    accountName: "The Ten Talents Humanitarian Initiative",
+    accountName: "THE TEN TALENT HUMANITARIAN INITIATIVE",
     accountNumber: "",
     bankName: "Zenith Bank",
     sortCode: "",

@@ -168,7 +168,7 @@ export const homePage = {
   donateBody:
     "Use the button below or make a transfer directly using the bank account details:",
   donateCta: "Donate",
-  bankDetails: "The Ten Talent Humanitarian Initiative",
+  bankDetails: "THE TEN TALENT HUMANITARIAN INITIATIVE",
 };
 
 export const programsPage = {

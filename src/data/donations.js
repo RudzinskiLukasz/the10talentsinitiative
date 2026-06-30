@@ -1,11 +1,13 @@
-/** Bank and payment gateway config — values from Vite env (set on Render). */
+/** Bank and payment gateway config — env vars override these public defaults. */
 
-const DEFAULT_ACCOUNT_NAME = "The Ten Talents Humanitarian Initiative";
+const DEFAULT_ACCOUNT_NAME = "THE TEN TALENT HUMANITARIAN INITIATIVE";
+const DEFAULT_ACCOUNT_NUMBER = "1312265547";
 
 export const donationBankConfig = {
   accountName:
     import.meta.env.VITE_ZENITH_ACCOUNT_NAME?.trim() || DEFAULT_ACCOUNT_NAME,
-  accountNumber: import.meta.env.VITE_ZENITH_ACCOUNT_NUMBER?.trim() || "",
+  accountNumber:
+    import.meta.env.VITE_ZENITH_ACCOUNT_NUMBER?.trim() || DEFAULT_ACCOUNT_NUMBER,
   bankName: import.meta.env.VITE_ZENITH_BANK_NAME?.trim() || "Zenith Bank",
   sortCode: import.meta.env.VITE_ZENITH_SORT_CODE?.trim() || "",
 };
