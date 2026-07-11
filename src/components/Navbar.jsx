@@ -99,7 +99,6 @@ export default function Navbar() {
           </nav>
 
           <div className="ml-auto flex shrink-0 flex-nowrap items-center gap-1.5 sm:gap-2">
-            <SearchBar className="hidden lg:block" />
             <SearchBar className="lg:hidden" compact />
             <ThemeVariantSelect
               variant={variant}
@@ -140,10 +139,13 @@ export default function Navbar() {
           className={`hidden border-t lg:block ${secondaryBand}`}
           aria-label="Secondary"
         >
-          <div className="flex min-h-8 items-center gap-0.5 overflow-x-auto px-5 [-ms-overflow-style:none] [scrollbar-width:none] sm:px-8 xl:min-h-9 xl:gap-1 [&::-webkit-scrollbar]:hidden">
-            {secondaryNav.map((item) => (
-              <NavLink key={item.href} item={item} />
-            ))}
+          <div className="flex min-h-8 items-center gap-2 px-5 sm:px-8 xl:min-h-9">
+            <div className="flex min-w-0 flex-1 items-center gap-0.5 overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] xl:gap-1 [&::-webkit-scrollbar]:hidden">
+              {secondaryNav.map((item) => (
+                <NavLink key={item.href} item={item} />
+              ))}
+            </div>
+            <SearchBar className="hidden shrink-0 lg:block" align="end" />
           </div>
         </nav>
       </div>

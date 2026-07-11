@@ -37,7 +37,7 @@ function navigateToResult(result, navigate) {
   }
 }
 
-export default function SearchBar({ className = "", compact = false }) {
+export default function SearchBar({ className = "", compact = false, align = "start" }) {
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const listboxId = useId();
@@ -208,7 +208,11 @@ export default function SearchBar({ className = "", compact = false }) {
           role="listbox"
           aria-label={t("common.searchResults")}
           className={`absolute z-[60] mt-1.5 overflow-hidden rounded-xl border border-border bg-surface-nav shadow-lg backdrop-blur-xl ${
-            compact ? "inset-x-0" : "left-0 w-64 xl:w-80"
+            compact
+              ? "inset-x-0"
+              : align === "end"
+                ? "right-0 w-64 xl:w-80"
+                : "left-0 w-64 xl:w-80"
           }`}
         >
           {pending ? (
