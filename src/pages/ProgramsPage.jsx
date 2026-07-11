@@ -12,6 +12,17 @@ export default function ProgramsPage() {
         title={programsPage.title}
         description={programsPage.intro}
       />
+      <section className="mx-auto max-w-6xl px-5 pb-10 sm:px-8">
+        <Reveal className="overflow-hidden rounded-2xl border border-border shadow-sm">
+          <img
+            src="/images/programs/hero.jpg"
+            alt="Catholic youth programs"
+            loading="lazy"
+            decoding="async"
+            className="aspect-[16/9] w-full object-cover"
+          />
+        </Reveal>
+      </section>
       <section className="mx-auto max-w-6xl px-5 pb-20 sm:px-8">
         <div className="space-y-16">
           {programsPage.pillars.map((pillar, pillarIndex) => (

@@ -33,7 +33,10 @@ export default function BlogPostPage() {
         description={post.date}
       />
       <section className="mx-auto max-w-3xl px-5 pb-20 sm:px-8">
-        <ProseContent content={post.content.split("\n")} />
+        <ProseContent
+          content={post.content.split("\n")}
+          blocks={post.blocks}
+        />
         <Link
           to="/upcoming-programs"
           className="mt-10 inline-flex text-sm font-semibold text-primary-soft hover:text-accent"

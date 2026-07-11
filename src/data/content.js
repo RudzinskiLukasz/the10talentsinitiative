@@ -336,6 +336,8 @@ export const songsBooksPage = {
       title:
         'Poetry Anthology dedicated to the Victims of Persecution in Nigeria and The world by Catholic Poets titled " A Peace Their Fire Cannot Consume."',
       subtitle: "Dialnet-EconomicContributionAndSportSuccessThroughTheSaleO-9046932",
+      image: "/images/songs-books/poetry-anthology-cover.jpg",
+      downloadUrl: "/files/poetry-anthology.pdf",
       action: "Download",
     },
   ],

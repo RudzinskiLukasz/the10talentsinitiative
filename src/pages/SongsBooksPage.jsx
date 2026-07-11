@@ -25,8 +25,20 @@ export default function SongsBooksPage() {
             <Reveal
               key={`${item.title}-${i}`}
               delay={(i % 3) * 70}
-              className="flex h-full flex-col rounded-2xl border border-border bg-surface p-6 shadow-sm"
+              className="flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-surface shadow-sm"
             >
+              {item.image && (
+                <div className="aspect-[4/3] overflow-hidden border-b border-border-subtle bg-bg">
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    loading="lazy"
+                    decoding="async"
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+              )}
+              <div className="flex flex-1 flex-col p-6">
               <div className="flex items-start justify-between gap-3">
                 <h3 className="font-display text-lg font-semibold leading-snug text-fg">
                   {item.title}
@@ -51,13 +63,24 @@ export default function SongsBooksPage() {
                 </p>
               )}
               {item.action && (
-                <button
-                  type="button"
-                  className="mt-5 inline-flex w-fit rounded-full border border-border-strong bg-surface px-5 py-2 text-sm font-semibold text-fg transition hover:bg-surface-hover"
-                >
-                  {item.action}
-                </button>
+                item.downloadUrl ? (
+                  <a
+                    href={item.downloadUrl}
+                    download
+                    className="mt-5 inline-flex w-fit rounded-full border border-border-strong bg-surface px-5 py-2 text-sm font-semibold text-fg transition hover:bg-surface-hover"
+                  >
+                    {item.action}
+                  </a>
+                ) : (
+                  <button
+                    type="button"
+                    className="mt-5 inline-flex w-fit rounded-full border border-border-strong bg-surface px-5 py-2 text-sm font-semibold text-fg transition hover:bg-surface-hover"
+                  >
+                    {item.action}
+                  </button>
+                )
               )}
+              </div>
             </Reveal>
           ))}
         </div>
