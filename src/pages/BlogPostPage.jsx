@@ -38,10 +38,10 @@ export default function BlogPostPage() {
           blocks={post.blocks}
         />
         <Link
-          to="/upcoming-programs"
+          to="/daily-reflections"
           className="mt-10 inline-flex text-sm font-semibold text-primary-soft hover:text-accent"
         >
-          {t("common.backToAnnouncements")}
+          {t("common.backToDailyReflections")}
         </Link>
       </section>
     </>

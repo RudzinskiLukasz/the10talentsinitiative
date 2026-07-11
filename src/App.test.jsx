@@ -48,6 +48,20 @@ describe("App routing", () => {
     ).toBeInTheDocument();
   });
 
+  it("renders a daily reflection post at its slug URL", () => {
+    renderWithI18n(<App />, {
+      route: "/meet-the-wonderful-lectors-of-ss-peter-and-paul-nyanya-abuja",
+    });
+    expect(
+      screen.getByRole("heading", {
+        name: /Meet The Wonderful Lectors of SS\. Peter and Paul, Nyanya, Abuja!/i,
+      })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: i18n.t("common.backToDailyReflections") })
+    ).toHaveAttribute("href", "/daily-reflections");
+  });
+
   it("renders translated nav in German", () => {
     renderWithI18n(<App />, { route: "/", language: "de" });
     expect(screen.getAllByRole("link", { name: i18n.t("nav.programs") }).length).toBeGreaterThan(

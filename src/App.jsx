@@ -16,7 +16,6 @@ import DonorDashboardPage from "./pages/DonorDashboardPage.jsx";
 import DonationFailedPage from "./pages/DonationFailedPage.jsx";
 import DonationConfirmationPage from "./pages/DonationConfirmationPage.jsx";
 import DonationsPage from "./pages/DonationsPage.jsx";
-import { posts } from "./data/posts.js";
 
 function PlaceholderRoute({ titleKey }) {
   const { t } = useTranslation();
@@ -60,9 +59,7 @@ export default function App() {
         <Route path="donor-dashboard" element={<DonorDashboardPage />} />
         <Route path="donation-failed" element={<DonationFailedPage />} />
         <Route path="donation-confirmation" element={<DonationConfirmationPage />} />
-        {posts.map((post) => (
-          <Route key={post.slug} path={post.slug} element={<BlogPostPage />} />
-        ))}
+        <Route path=":slug" element={<BlogPostPage />} />
       </Route>
     </Routes>
   );
