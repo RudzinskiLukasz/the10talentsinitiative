@@ -2,6 +2,7 @@ import { Outlet } from "react-router-dom";
 import Navbar from "../components/Navbar.jsx";
 import Footer from "../components/Footer.jsx";
 import ScrollToTop from "../components/ScrollToTop.jsx";
+import InstallPrompt from "../components/InstallPrompt.jsx";
 
 export default function Layout() {
   return (
@@ -12,6 +13,7 @@ export default function Layout() {
         <Outlet />
       </main>
       <Footer />
+      <InstallPrompt />
     </div>
   );
 }

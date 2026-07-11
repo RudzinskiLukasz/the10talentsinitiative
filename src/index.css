@@ -403,12 +403,31 @@
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
     scroll-padding-top: var(--header-height);
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
   }
 
   body {
     background-color: var(--color-bg);
     color: var(--color-fg);
     font-family: var(--font-sans);
+    overflow-x: clip;
+  }
+
+  @media (display-mode: standalone) {
+    header.fixed {
+      padding-top: env(safe-area-inset-top);
+    }
+
+    body {
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+  }
+
+  @media (max-width: 767px) {
+    html {
+      scroll-padding-bottom: 6rem;
+    }
   }
 
   ::selection {
