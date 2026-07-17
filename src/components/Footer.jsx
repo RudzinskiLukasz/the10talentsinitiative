@@ -3,11 +3,13 @@ import { useTranslation } from "react-i18next";
 import Logo from "./Logo.jsx";
 import { useMainNav } from "../i18n/nav.js";
 import { site } from "../data/site.js";
-import LanguageSelector from "./LanguageSelector.jsx";
+import ThemeVariantSelect from "./ThemeVariantSelect.jsx";
+import { useThemeVariant } from "../hooks/useThemeVariant.js";
 
 export default function Footer() {
   const { t } = useTranslation();
   const mainNav = useMainNav();
+  const { variant, setVariant } = useThemeVariant();
 
   return (
     <footer className="border-t border-border bg-bg">
@@ -68,8 +70,17 @@ export default function Footer() {
         </div>
 
         <div className="mt-10 flex flex-col items-center justify-between gap-6 border-t border-border-subtle pt-6 sm:flex-row">
-          <div className="flex flex-col items-center gap-4 sm:flex-row sm:items-end">
-            <LanguageSelector className="w-full sm:w-44" />
+          <div className="flex w-full flex-col items-center gap-4 sm:w-auto sm:flex-row sm:items-end">
+            <div className="flex w-full flex-col gap-1.5 sm:w-44">
+              <span className="text-xs font-bold uppercase tracking-[0.2em] text-fg-faint">
+                {t("common.themeStyle")}
+              </span>
+              <ThemeVariantSelect
+                variant={variant}
+                onChange={setVariant}
+                className="w-full"
+              />
+            </div>
           </div>
           <div className="flex flex-col items-center gap-3 text-center text-xs text-fg-faint sm:items-end sm:text-right">
             <p>{t("footer.copyright", { year: new Date().getFullYear() })}</p>

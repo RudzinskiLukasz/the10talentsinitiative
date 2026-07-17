@@ -4,9 +4,8 @@ import { useTranslation } from "react-i18next";
 import Logo from "./Logo.jsx";
 import SearchBar from "./SearchBar.jsx";
 import ThemeToggle from "./ThemeToggle.jsx";
-import ThemeVariantSelect from "./ThemeVariantSelect.jsx";
+import LanguageSelector from "./LanguageSelector.jsx";
 import { useTheme } from "../hooks/useTheme.js";
-import { useThemeVariant } from "../hooks/useThemeVariant.js";
 import { useMainNav, useSecondaryNav } from "../i18n/nav.js";
 
 function NavLink({ item, onClick, className = "", activeClassName = "", mobile = false }) {
@@ -42,7 +41,6 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
-  const { variant, setVariant } = useThemeVariant();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 16);
@@ -84,7 +82,7 @@ export default function Navbar() {
       className={`fixed inset-x-0 top-0 z-50 overflow-visible transition-all duration-300 ${headerSurface}`}
     >
       <div className="mx-auto max-w-6xl">
-        <div className="flex min-h-12 flex-nowrap items-center gap-2 px-5 sm:min-h-14 sm:gap-3 sm:px-8">
+        <div className="flex min-h-[4.75rem] flex-nowrap items-center gap-2 px-5 sm:min-h-[5.5rem] sm:gap-3 sm:px-8">
           <Logo className="shrink-0" />
 
           <nav
@@ -100,9 +98,8 @@ export default function Navbar() {
 
           <div className="ml-auto flex shrink-0 flex-nowrap items-center gap-1.5 sm:gap-2">
             <SearchBar className="lg:hidden" compact />
-            <ThemeVariantSelect
-              variant={variant}
-              onChange={setVariant}
+            <LanguageSelector
+              compact
               className="hidden w-36 lg:block xl:w-44"
             />
             <ThemeToggle theme={theme} onToggle={toggleTheme} />
@@ -189,12 +186,7 @@ export default function Navbar() {
 
           <div className="mt-4 flex flex-col gap-3 border-t border-border-subtle pt-4">
             <div className="flex items-center gap-3 px-1">
-              <ThemeVariantSelect
-                id="theme-variant-mobile"
-                variant={variant}
-                onChange={setVariant}
-                className="flex-1"
-              />
+              <LanguageSelector compact className="flex-1" />
               <ThemeToggle theme={theme} onToggle={toggleTheme} />
             </div>
           </div>

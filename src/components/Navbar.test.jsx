@@ -55,10 +55,10 @@ describe("Navbar", () => {
     ).toBeGreaterThan(0);
   });
 
-  it("exposes a foldable theme variant selector", () => {
+  it("exposes a language selector", () => {
     renderNavbar();
     expect(
-      screen.getAllByRole("combobox", { name: i18n.t("common.themeStyle") }).length
+      screen.getAllByRole("combobox", { name: i18n.t("common.language") }).length
     ).toBeGreaterThan(0);
   });
 

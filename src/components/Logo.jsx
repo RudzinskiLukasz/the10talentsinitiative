@@ -16,9 +16,9 @@ export default function Logo({ className = "" }) {
       <img
         src={isDark ? "/images/logo-on-dark.png" : "/images/logo-on-light.png"}
         alt="The Ten Talents Initiative"
-        className="h-9 w-auto object-contain object-left"
-        width={120}
-        height={67}
+        className="h-auto w-[min(309px,55vw)] object-contain object-left sm:w-[309px]"
+        width={309}
+        height={173}
       />
     </Link>
   );

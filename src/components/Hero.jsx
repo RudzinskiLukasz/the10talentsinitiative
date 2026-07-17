@@ -34,7 +34,7 @@ export default function Hero() {
         <Reveal
           as="p"
           delay={160}
-          className="mx-auto mt-6 max-w-2xl text-center text-base leading-relaxed text-fg-muted sm:text-lg text-balance"
+          className="mx-auto mt-6 max-w-3xl text-center text-base leading-relaxed text-fg-muted sm:text-lg text-balance"
         >
           {t("hero.description")}
         </Reveal>

@@ -14,15 +14,15 @@ function initials(name) {
 function TeamAvatar({ name, image, variant = "grid" }) {
   const [failed, setFailed] = useState(false);
   const showPhoto = image && !failed;
+  const isLead = variant === "lead";
 
   if (showPhoto) {
-    const isLead = variant === "lead";
     return (
       <div
         className={
           isLead
-            ? "h-24 w-24 shrink-0 overflow-hidden rounded-2xl ring-2 ring-gold-400/40 shadow-xl shadow-cta/25 transition hover:ring-gold-400/70"
-            : "h-14 w-14 shrink-0 overflow-hidden rounded-full ring-2 ring-border transition group-hover:ring-primary/40"
+            ? "mx-auto aspect-[3/4] w-full max-w-[280px] overflow-hidden rounded-[3rem] ring-2 ring-gold-400/40 shadow-2xl shadow-cta/25 transition hover:ring-gold-400/70 sm:mx-0 sm:max-w-[320px]"
+            : "aspect-[3/4] w-full overflow-hidden rounded-[2.75rem] ring-2 ring-border transition group-hover:ring-primary/40"
         }
       >
         <img
@@ -30,22 +30,21 @@ function TeamAvatar({ name, image, variant = "grid" }) {
           alt={name}
           loading="lazy"
           decoding="async"
-          width={isLead ? 96 : 56}
-          height={isLead ? 96 : 56}
-          className="aspect-square h-full w-full object-cover"
+          width={isLead ? 320 : 280}
+          height={isLead ? 427 : 373}
+          className="h-full w-full object-cover object-top"
           onError={() => setFailed(true)}
         />
       </div>
     );
   }
 
-  const isLead = variant === "lead";
   return (
     <div
       className={
         isLead
-          ? "grid h-24 w-24 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-gold-400 to-gold-600 font-display text-3xl font-bold text-on-cta shadow-xl shadow-cta/25"
-          : "grid h-14 w-14 shrink-0 place-items-center rounded-full bg-primary/15 font-display text-lg font-bold text-primary-soft ring-1 ring-border transition group-hover:bg-primary/25"
+          ? "mx-auto grid aspect-[3/4] w-full max-w-[280px] place-items-center rounded-[3rem] bg-gradient-to-br from-gold-400 to-gold-600 font-display text-5xl font-bold text-on-cta shadow-2xl shadow-cta/25 sm:mx-0 sm:max-w-[320px]"
+          : "grid aspect-[3/4] w-full place-items-center rounded-[2.75rem] bg-primary/15 font-display text-4xl font-bold text-primary-soft ring-1 ring-border transition group-hover:bg-primary/25"
       }
     >
       {initials(name)}
@@ -80,50 +79,52 @@ export default function Team() {
         <Reveal className="mt-14">
           <div className="surface-gradient relative overflow-hidden rounded-3xl border border-[color:var(--surface-grad-border)] p-8 shadow-xl shadow-black/[0.06] sm:p-10">
             <div className="glow-accent pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full blur-3xl" />
-            <div className="relative flex flex-col items-center gap-6 text-center sm:flex-row sm:text-left">
+            <div className="relative flex flex-col items-center gap-8 text-center sm:flex-row sm:items-center sm:text-left">
               <TeamAvatar
                 name={lead.name}
                 image={teamPhotos[0]}
                 variant="lead"
               />
-              <div>
+              <div className="min-w-0 flex-1">
                 <h3 className="font-display text-2xl font-semibold text-fg sm:text-3xl">
                   {lead.name}
                 </h3>
-                <p className="mt-2 text-sm text-fg-subtle">({lead.role}).</p>
+                <p className="mt-2 text-sm text-fg-subtle sm:text-base">
+                  ({lead.role}).
+                </p>
               </div>
             </div>
           </div>
         </Reveal>
 
-        <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {members.map((m, i) => {
             const email = teamEmails[i + 1];
             return (
               <Reveal
                 key={m.name}
                 delay={(i % 3) * 70}
-                className="group rounded-2xl border border-border bg-surface p-6 shadow-sm shadow-black/[0.03] transition hover:border-primary/40 hover:bg-surface-hover"
+                className="group overflow-hidden rounded-3xl border border-border bg-surface p-5 shadow-sm shadow-black/[0.03] transition hover:border-primary/40 hover:bg-surface-hover sm:p-6"
               >
-                <div className="flex items-center gap-4">
-                  <TeamAvatar
-                    name={m.name}
-                    image={teamPhotos[i + 1]}
-                    variant="grid"
-                  />
-                  <div className="min-w-0">
-                    <h3 className="font-semibold text-fg">{m.name}</h3>
-                    <p className="mt-0.5 text-sm text-fg-subtle">({m.role})</p>
-                  </div>
+                <TeamAvatar
+                  name={m.name}
+                  image={teamPhotos[i + 1]}
+                  variant="grid"
+                />
+                <div className="mt-5 min-w-0 text-center">
+                  <h3 className="font-display text-lg font-semibold text-fg">
+                    {m.name}
+                  </h3>
+                  <p className="mt-1 text-sm text-fg-subtle">({m.role})</p>
                 </div>
                 {email && (
                   <a
                     href={`mailto:${email}`}
-                    className="mt-4 inline-flex items-center gap-2 text-xs font-medium text-primary-soft transition hover:text-accent"
+                    className="mt-4 flex items-center justify-center gap-2 text-xs font-medium text-primary-soft transition hover:text-accent"
                   >
                     <svg
                       viewBox="0 0 24 24"
-                      className="h-4 w-4"
+                      className="h-4 w-4 shrink-0"
                       fill="none"
                       stroke="currentColor"
                       strokeWidth="1.8"
