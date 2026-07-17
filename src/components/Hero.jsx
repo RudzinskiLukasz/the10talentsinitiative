@@ -16,17 +16,21 @@ export default function Hero() {
       </div>
 
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
-        <Reveal className="flex justify-center">
-          <span className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-primary-soft">
-            <span className="h-1.5 w-1.5 rounded-full bg-cta" />
-            {t("common.faithGiftsCommunity")}
-          </span>
+        <Reveal className="mx-auto max-w-3xl text-center">
+          <blockquote className="relative px-2 sm:px-6">
+            <p className="font-display text-xl font-medium leading-snug text-fg text-balance sm:text-2xl lg:text-[1.65rem]">
+              {t("hero.quote")}
+            </p>
+            <footer className="mt-4 text-xs font-medium tracking-wide text-fg-subtle sm:text-sm">
+              {t("hero.quoteAttribution")}
+            </footer>
+          </blockquote>
         </Reveal>
 
         <Reveal
           as="h1"
           delay={80}
-          className="mx-auto mt-7 max-w-4xl text-center font-display text-4xl font-semibold leading-[1.05] tracking-tight text-balance sm:text-6xl lg:text-7xl"
+          className="mx-auto mt-10 max-w-4xl text-center font-display text-4xl font-semibold leading-[1.05] tracking-tight text-balance sm:mt-12 sm:text-6xl lg:text-7xl"
         >
           {t("hero.title")}
         </Reveal>
@@ -34,7 +38,7 @@ export default function Hero() {
         <Reveal
           as="p"
           delay={160}
-          className="mx-auto mt-6 max-w-3xl text-center text-base leading-relaxed text-fg-muted sm:text-lg text-balance"
+          className="mx-auto mt-6 max-w-3xl text-center text-base leading-relaxed text-fg-muted sm:text-lg"
         >
           {t("hero.description")}
         </Reveal>

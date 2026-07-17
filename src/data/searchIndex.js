@@ -98,10 +98,17 @@ export function buildSearchIndex(t) {
       category: t("search.categories.about"),
     }),
     entry({
-      title: t("homePage.hero"),
-      excerpt: t("homePage.introBody"),
+      title: t("hero.title"),
+      excerpt: t("hero.description"),
       path: "/",
       section: t("search.sections.home"),
+      category: t("search.categories.home"),
+    }),
+    entry({
+      title: t("hero.quote"),
+      excerpt: t("hero.quoteAttribution"),
+      path: "/",
+      section: t("search.sections.hero"),
       category: t("search.categories.home"),
     }),
     entry({

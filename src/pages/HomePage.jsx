@@ -6,7 +6,6 @@ import { posts } from "../data/posts.js";
 export default function HomePage() {
   const { t } = useTranslation();
   const homePage = {
-    hero: t("homePage.hero"),
     discoverMoreHref: t("homePage.discoverMoreHref"),
     introTitle: t("homePage.introTitle"),
     introBody: t("homePage.introBody"),
@@ -35,13 +34,31 @@ export default function HomePage() {
         </div>
 
         <div className="mx-auto max-w-6xl px-5 text-center sm:px-8">
+          <Reveal className="mx-auto max-w-3xl">
+            <blockquote className="relative px-2 sm:px-6">
+              <p className="font-display text-xl font-medium leading-snug text-fg text-balance sm:text-2xl lg:text-[1.65rem]">
+                {t("hero.quote")}
+              </p>
+              <footer className="mt-4 text-xs font-medium tracking-wide text-fg-subtle sm:text-sm">
+                {t("hero.quoteAttribution")}
+              </footer>
+            </blockquote>
+          </Reveal>
           <Reveal
             as="h1"
-            className="mx-auto max-w-4xl font-display text-4xl font-semibold leading-[1.05] tracking-tight text-balance sm:text-6xl lg:text-7xl"
+            delay={80}
+            className="mx-auto mt-10 max-w-4xl font-display text-4xl font-semibold leading-[1.05] tracking-tight text-balance sm:mt-12 sm:text-6xl lg:text-7xl"
           >
-            {homePage.hero}
+            {t("hero.title")}
           </Reveal>
-          <Reveal delay={120} className="mt-9">
+          <Reveal
+            as="p"
+            delay={140}
+            className="mx-auto mt-6 max-w-3xl text-base leading-relaxed text-fg-muted sm:text-lg"
+          >
+            {t("hero.description")}
+          </Reveal>
+          <Reveal delay={200} className="mt-9">
             <Link
               to={homePage.discoverMoreHref}
               className="group inline-flex items-center justify-center gap-2 rounded-full bg-cta px-7 py-3.5 text-sm font-bold text-on-cta shadow-xl shadow-cta/25 transition hover:bg-cta-hover"

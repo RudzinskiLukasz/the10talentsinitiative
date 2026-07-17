@@ -12,8 +12,9 @@ describe("App routing", () => {
   it("renders the home page at /", () => {
     renderWithI18n(<App />, { route: "/" });
     expect(
-      screen.getByRole("heading", { level: 1, name: i18n.t("homePage.hero") })
+      screen.getByRole("heading", { level: 1, name: i18n.t("hero.title") })
     ).toBeInTheDocument();
+    expect(screen.getByText(i18n.t("hero.quote"))).toBeInTheDocument();
     expect(
       screen.getByRole("heading", { name: i18n.t("homePage.introTitle") })
     ).toBeInTheDocument();
@@ -44,8 +45,9 @@ describe("App routing", () => {
   it("renders translated home hero in Polish", () => {
     renderWithI18n(<App />, { route: "/", language: "pl" });
     expect(
-      screen.getByRole("heading", { level: 1, name: i18n.t("homePage.hero") })
+      screen.getByRole("heading", { level: 1, name: i18n.t("hero.title") })
     ).toBeInTheDocument();
+    expect(screen.getByText(i18n.t("hero.quote"))).toBeInTheDocument();
   });
 
   it("renders a daily reflection post at its slug URL", () => {
