@@ -20,12 +20,30 @@ function sortByDateDesc(a, b) {
   return String(b.date).localeCompare(String(a.date));
 }
 
-/** Published posts for the public site (Supabase or static fallback). */
+function staticPublishedPosts(category) {
+  let list = [...staticPosts];
+  if (category) list = list.filter((p) => p.category === category);
+  return list.sort(sortByDateDesc);
+}
+
+/**
+ * Merge CMS rows with the static WordPress snapshot.
+ * Supabase wins on slug collision; static posts fill gaps until seed/admin
+ * covers everything (empty CMS must not wipe the public archive).
+ */
+function mergeWithStatic(remotePosts, category) {
+  const remote = (remotePosts || []).map(normalizePost).filter(Boolean);
+  const remoteSlugs = new Set(remote.map((p) => p.slug));
+  const missing = staticPublishedPosts(category).filter(
+    (p) => !remoteSlugs.has(p.slug)
+  );
+  return [...remote, ...missing].sort(sortByDateDesc);
+}
+
+/** Published posts for the public site (Supabase merged with static archive). */
 export async function fetchPublishedPosts({ category } = {}) {
   if (!isSupabaseConfigured) {
-    let list = [...staticPosts];
-    if (category) list = list.filter((p) => p.category === category);
-    return list.sort(sortByDateDesc);
+    return staticPublishedPosts(category);
   }
 
   let query = supabase
@@ -38,7 +56,7 @@ export async function fetchPublishedPosts({ category } = {}) {
 
   const { data, error } = await query;
   if (error) throw error;
-  return (data || []).map(normalizePost);
+  return mergeWithStatic(data, category);
 }
 
 export async function fetchPublishedPostBySlug(slug) {
@@ -54,7 +72,7 @@ export async function fetchPublishedPostBySlug(slug) {
     .maybeSingle();
 
   if (error) throw error;
-  return normalizePost(data);
+  return normalizePost(data) || getStaticPostBySlug(slug) || null;
 }
 
 /** Admin: all posts including drafts. */

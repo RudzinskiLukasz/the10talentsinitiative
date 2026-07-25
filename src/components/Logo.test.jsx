@@ -22,7 +22,7 @@ describe("Logo", () => {
     const lightLogo = screen.getByRole("img", {
       name: /The Ten Talents Initiative/i,
     });
-    expect(lightLogo).toHaveAttribute("src", "/images/logo.png");
+    expect(lightLogo).toHaveAttribute("src", "/images/logo-on-light.png");
     expect(lightLogo.className).toMatch(/dark:hidden/);
 
     const darkLogo = document.querySelector(
