@@ -4,6 +4,9 @@ import tailwindcss from "@tailwindcss/vite";
 import { VitePWA } from "vite-plugin-pwa";
 
 export default defineConfig({
+  server: {
+    host: true,
+  },
   plugins: [
     react(),
     tailwindcss(),
@@ -17,8 +20,8 @@ export default defineConfig({
         "pwa-512x512.png",
       ],
       manifest: {
-        name: "The Ten Talents Initiative",
-        short_name: "Ten Talents",
+        name: "T-Talent app",
+        short_name: "T-Talent app",
         description:
           "Empowering Catholic youth to nurture their God-given gifts through faith, mentorship, media, and community.",
         theme_color: "#0d0820",
@@ -47,6 +50,7 @@ export default defineConfig({
         ],
       },
       workbox: {
+        cleanupOutdatedCaches: true,
         globPatterns: ["**/*.{js,css,html,ico,png,svg,jpg,jpeg,webp,woff2}"],
         globIgnores: ["**/images/posts/**", "**/files/**"],
         navigateFallback: "/index.html",

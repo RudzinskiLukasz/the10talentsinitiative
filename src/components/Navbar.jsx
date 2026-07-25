@@ -82,7 +82,7 @@ export default function Navbar() {
       className={`fixed inset-x-0 top-0 z-50 overflow-visible transition-all duration-300 ${headerSurface}`}
     >
       <div className="mx-auto max-w-6xl">
-        <div className="flex min-h-[4.75rem] flex-nowrap items-center gap-2 px-5 sm:min-h-[5.5rem] sm:gap-3 sm:px-8">
+        <div className="flex min-h-14 flex-nowrap items-center gap-2 px-5 sm:min-h-[5.5rem] sm:gap-3 sm:px-8">
           <Logo className="shrink-0" />
 
           <nav
@@ -148,8 +148,10 @@ export default function Navbar() {
       </div>
 
       <div
-        className={`overflow-hidden border-t border-border-subtle bg-surface-nav backdrop-blur-xl transition-all duration-300 lg:hidden ${
-          open ? "max-h-[36rem]" : "max-h-0"
+        className={`border-t border-border-subtle bg-surface-nav backdrop-blur-xl transition-[max-height] duration-300 lg:hidden ${
+          open
+            ? "max-h-[min(36rem,calc(100dvh-3.5rem))] overflow-y-auto overscroll-contain"
+            : "max-h-0 overflow-hidden"
         }`}
       >
         <div className="mx-auto max-w-6xl px-5 py-4">

@@ -56,7 +56,7 @@ export default function HomePage() {
           <Reveal
             as="p"
             delay={140}
-            className="mx-auto mt-6 max-w-3xl text-base leading-relaxed text-fg-muted sm:text-lg"
+            className="mx-auto mt-6 max-w-3xl text-base leading-relaxed text-fg-muted line-clamp-6 sm:line-clamp-none sm:text-lg"
           >
             {t("hero.description")}
           </Reveal>

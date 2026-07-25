@@ -23,6 +23,16 @@ services:
       - path: /assets/*
         name: Cache-Control
         value: public, max-age=31536000, immutable
+      # Keep the app shell and SW fresh so Safari / PWA installs pick up deploys.
+      - path: /index.html
+        name: Cache-Control
+        value: no-cache
+      - path: /sw.js
+        name: Cache-Control
+        value: no-cache
+      - path: /manifest.webmanifest
+        name: Cache-Control
+        value: no-cache
       # Site-wide security headers (also mirrored in index.html meta where applicable)
       - path: /*
         name: X-Content-Type-Options

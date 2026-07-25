@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 const imgClass =
-  "h-auto w-[min(309px,55vw)] object-contain object-left sm:w-[309px]";
+  "h-12 w-auto max-w-[min(11rem,42vw)] object-contain object-left lg:h-auto lg:max-w-none lg:w-[309px]";
 
 /**
  * Theme-aware logo. Uses CSS `dark:` visibility tied to `data-theme`
