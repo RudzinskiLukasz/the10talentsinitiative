@@ -73,7 +73,7 @@ export const team = [
   },
   {
     name: "Mrs. Godson Lilian (Eucyl)",
-    role: "Music and Logistics Coordinator",
+    role: "Catholic Youth Empowerment Coordinator and Account Officer",
     email: "eucylily@gmail.com",
     image: "/images/team/godson-lilian.jpg",
   },
