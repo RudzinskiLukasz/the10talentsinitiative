@@ -4,10 +4,6 @@ import { posts } from "./posts.js";
 import i18n from "../i18n/index.js";
 
 const PLACEHOLDER_PATHS = new Set([
-  "/t-talents-records",
-  "/t-talents-studios",
-  "/t-talents-series",
-  "/t-talents-sports",
   "/catholic-singles-forum",
   "/donations",
 ]);
@@ -29,9 +25,10 @@ function truncate(text, max = 120) {
   return `${text.slice(0, max).trim()}…`;
 }
 
-export function buildSearchIndex(t) {
+export function buildSearchIndex(t, postList = posts) {
   const items = [];
   const comingSoon = t("common.comingSoon");
+  const articles = Array.isArray(postList) ? postList : posts;
 
   for (const { key, href } of MAIN_NAV) {
     items.push(
@@ -255,7 +252,7 @@ export function buildSearchIndex(t) {
     })
   );
 
-  for (const post of posts) {
+  for (const post of articles) {
     const translated = t(`posts.bySlug.${post.slug}`, { returnObjects: true, defaultValue: {} });
     const title = translated.title || post.title;
     const excerpt = truncate(translated.excerpt || post.excerpt || post.content);
@@ -272,8 +269,8 @@ export function buildSearchIndex(t) {
   return items;
 }
 
-export function searchContent(query, limit = 8, t = i18n.t.bind(i18n)) {
-  const searchEntries = buildSearchIndex(t);
+export function searchContent(query, limit = 8, t = i18n.t.bind(i18n), postList = posts) {
+  const searchEntries = buildSearchIndex(t, postList);
   const trimmed = query.trim().toLowerCase();
   if (!trimmed) return [];
 

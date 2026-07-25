@@ -84,16 +84,40 @@ export const team = [
     image: "/images/team/luka-rumu.jpg",
   },
   {
-    name: "Miss Eke Onyemauchechi",
-    role: "Secretary and Programs Coordinator",
-    email: "uchechieke28@gmail.com",
-    image: "/images/team/eke-onyemauchechi.jpg",
-  },
-  {
     name: "Miss IBE NAOMI TIWA",
     role: "Singles and Catholic Marriage Programs Coordinator",
     email: "franomi788@gmail.com",
     image: "/images/team/ibe-naomi-tiwa.jpeg",
+  },
+  {
+    name: "João Pedro Silva Francisco",
+    role: "Advisory Council for Youths Sports mission. Master in Football Business partnership with Barcelona",
+    email: null,
+    image: "/images/team/joao-pedro-silva-francisco.png",
+  },
+  {
+    name: "Dr. Jan Lachowicz",
+    role: "Advisory Council member for Health mission",
+    email: null,
+    image: "/images/team/jan-lachowicz.png",
+  },
+  {
+    name: "Łukasz Rudziński",
+    role: "Advisory Council Member for Software and digital communications Mission",
+    email: null,
+    image: "/images/team/lukasz-rudzinski.png",
+  },
+  {
+    name: "Yvonne Uyanwune",
+    role: "Advisory Council member — Head of Legal Team",
+    email: null,
+    image: "/images/team/yvonne-uyanwune.png",
+  },
+  {
+    name: "Allison James",
+    role: "Advisory Council member — Girl child Welfare and sports mission",
+    email: null,
+    image: "/images/team/allison-james.png",
   },
 ];
 

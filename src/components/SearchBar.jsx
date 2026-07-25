@@ -2,6 +2,7 @@ import { useCallback, useEffect, useId, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { searchContent } from "../data/searchIndex.js";
+import { usePublishedPosts } from "../hooks/usePosts.js";
 
 const DEBOUNCE_MS = 200;
 
@@ -43,6 +44,7 @@ export default function SearchBar({ className = "", compact = false, align = "st
   const listboxId = useId();
   const inputRef = useRef(null);
   const containerRef = useRef(null);
+  const { posts: livePosts } = usePublishedPosts();
 
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
@@ -63,14 +65,14 @@ export default function SearchBar({ className = "", compact = false, align = "st
 
     setPending(true);
     const timer = window.setTimeout(() => {
-      const next = searchContent(query, 8, t);
+      const next = searchContent(query, 8, t, livePosts);
       setResults(next);
       setActiveIndex(next.length ? 0 : -1);
       setPending(false);
     }, DEBOUNCE_MS);
 
     return () => window.clearTimeout(timer);
-  }, [query, t, i18n.language]);
+  }, [query, t, i18n.language, livePosts]);
 
   useEffect(() => {
     const onPointerDown = (event) => {

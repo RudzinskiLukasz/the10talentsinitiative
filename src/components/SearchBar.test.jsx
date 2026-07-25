@@ -26,9 +26,18 @@ describe("searchContent", () => {
     expect(results.some((r) => r.title === i18n.t("nav.programs"))).toBe(true);
   });
 
-  it("returns coming soon for placeholder secondary nav items", () => {
+  it("does not mark post-section tabs as coming soon", () => {
     const results = searchContent("T-Talents Records");
     const match = results.find((r) => r.title === i18n.t("secondaryNav.tTalentsRecords"));
+    expect(match).toBeDefined();
+    expect(match.comingSoon).toBe(false);
+  });
+
+  it("returns coming soon for remaining placeholder secondary nav items", () => {
+    const results = searchContent("Catholic Singles");
+    const match = results.find(
+      (r) => r.title === i18n.t("secondaryNav.catholicSinglesForum")
+    );
     expect(match).toBeDefined();
     expect(match.comingSoon).toBe(true);
   });

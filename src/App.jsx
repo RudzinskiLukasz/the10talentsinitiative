@@ -2,9 +2,11 @@ import { Routes, Route } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import Layout from "./layouts/Layout.jsx";
 import PlaceholderPage from "./components/PlaceholderPage.jsx";
+import AdminRoute from "./components/admin/AdminRoute.jsx";
 import HomePage from "./pages/HomePage.jsx";
 import ProgramsPage from "./pages/ProgramsPage.jsx";
 import DailyReflectionsPage from "./pages/DailyReflectionsPage.jsx";
+import CategoryPostsPage from "./pages/CategoryPostsPage.jsx";
 import EventsPage from "./pages/EventsPage.jsx";
 import SongsBooksPage from "./pages/SongsBooksPage.jsx";
 import ContactPage from "./pages/ContactPage.jsx";
@@ -16,6 +18,10 @@ import DonorDashboardPage from "./pages/DonorDashboardPage.jsx";
 import DonationFailedPage from "./pages/DonationFailedPage.jsx";
 import DonationConfirmationPage from "./pages/DonationConfirmationPage.jsx";
 import DonationsPage from "./pages/DonationsPage.jsx";
+import AdminLoginPage from "./pages/admin/AdminLoginPage.jsx";
+import AdminLayout from "./pages/admin/AdminLayout.jsx";
+import AdminPostsPage from "./pages/admin/AdminPostsPage.jsx";
+import AdminPostEditorPage from "./pages/admin/AdminPostEditorPage.jsx";
 
 function PlaceholderRoute({ titleKey }) {
   const { t } = useTranslation();
@@ -25,6 +31,15 @@ function PlaceholderRoute({ titleKey }) {
 export default function App() {
   return (
     <Routes>
+      <Route path="/admin/login" element={<AdminLoginPage />} />
+      <Route path="/admin" element={<AdminRoute />}>
+        <Route element={<AdminLayout />}>
+          <Route index element={<AdminPostsPage />} />
+          <Route path="posts/new" element={<AdminPostEditorPage />} />
+          <Route path="posts/:id" element={<AdminPostEditorPage />} />
+        </Route>
+      </Route>
+
       <Route element={<Layout />}>
         <Route index element={<HomePage />} />
         <Route path="programs" element={<ProgramsPage />} />
@@ -34,19 +49,19 @@ export default function App() {
         <Route path="contact" element={<ContactPage />} />
         <Route
           path="t-talents-records"
-          element={<PlaceholderRoute titleKey="secondaryNav.tTalentsRecords" />}
+          element={<CategoryPostsPage categoryId="t-talents-records" />}
         />
         <Route
           path="t-talents-studios"
-          element={<PlaceholderRoute titleKey="secondaryNav.tTalentsStudios" />}
+          element={<CategoryPostsPage categoryId="t-talents-studios" />}
         />
         <Route
           path="t-talents-series"
-          element={<PlaceholderRoute titleKey="secondaryNav.tTalentsSeries" />}
+          element={<CategoryPostsPage categoryId="t-talents-series" />}
         />
         <Route
           path="t-talents-sports"
-          element={<PlaceholderRoute titleKey="secondaryNav.tTalentsSports" />}
+          element={<CategoryPostsPage categoryId="t-talents-sports" />}
         />
         <Route
           path="catholic-singles-forum"

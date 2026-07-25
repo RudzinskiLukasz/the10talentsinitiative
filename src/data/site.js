@@ -22,8 +22,12 @@ export const teamEmails = [
   "okaforgeraldine50@gmail.com",
   "eucylily@gmail.com",
   "lukayusufrumu@gmail.com",
-  "uchechieke28@gmail.com",
   "franomi788@gmail.com",
+  null,
+  null,
+  null,
+  null,
+  null,
 ];
 
 /** Team member photos by index (matches i18n team array order) */
@@ -33,6 +37,10 @@ export const teamPhotos = [
   "/images/team/chidera-okafor.jpg",
   "/images/team/godson-lilian.jpg",
   "/images/team/luka-rumu.jpg",
-  "/images/team/eke-onyemauchechi.jpg",
   "/images/team/ibe-naomi-tiwa.jpeg",
+  "/images/team/joao-pedro-silva-francisco.png",
+  "/images/team/jan-lachowicz.png",
+  "/images/team/lukasz-rudzinski.png",
+  "/images/team/yvonne-uyanwune.png",
+  "/images/team/allison-james.png",
 ];

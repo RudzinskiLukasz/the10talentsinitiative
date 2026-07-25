@@ -14,7 +14,7 @@ export default function Logo({ className = "" }) {
       aria-label={`${t("site.name")} — ${t("nav.home").toLowerCase()}`}
     >
       <img
-        src={isDark ? "/images/logo-on-dark.png" : "/images/logo-on-light.png"}
+        src={isDark ? "/images/logo-on-dark.png" : "/images/logo.png"}
         alt="The Ten Talents Initiative"
         className="h-auto w-[min(309px,55vw)] object-contain object-left sm:w-[309px]"
         width={309}

@@ -2,14 +2,23 @@ import { Link, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import PageHeader from "../components/PageHeader.jsx";
 import ProseContent from "../components/ProseContent.jsx";
-import { getPostBySlug } from "../data/posts.js";
+import { usePublishedPost } from "../hooks/usePosts.js";
+import { getCategoryByValue } from "../data/postCategories.js";
 
 export default function BlogPostPage() {
   const { t } = useTranslation();
   const { slug } = useParams();
-  const post = getPostBySlug(slug);
+  const { post, loading, notFound } = usePublishedPost(slug);
 
-  if (!post) {
+  if (loading) {
+    return (
+      <section className="mx-auto max-w-3xl px-5 py-32 text-center sm:px-8">
+        <p className="text-fg-muted">Loading…</p>
+      </section>
+    );
+  }
+
+  if (notFound || !post) {
     return (
       <section className="mx-auto max-w-3xl px-5 py-32 text-center sm:px-8">
         <h1 className="font-display text-3xl font-semibold text-fg">
@@ -24,19 +33,22 @@ export default function BlogPostPage() {
 
   const translated = t(`posts.bySlug.${post.slug}`, { returnObjects: true, defaultValue: {} });
   const title = translated.title || post.title;
+  const categoryMeta = getCategoryByValue(post.category);
+  const categoryLabel = categoryMeta
+    ? t(categoryMeta.labelKey)
+    : post.category || t("posts.category");
+  const contentParagraphs =
+    typeof post.content === "string" ? post.content.split("\n") : post.content;
 
   return (
     <>
       <PageHeader
-        eyebrow={t("posts.category")}
+        eyebrow={categoryLabel}
         title={title}
         description={post.date}
       />
       <section className="mx-auto max-w-3xl px-5 pb-20 sm:px-8">
-        <ProseContent
-          content={post.content.split("\n")}
-          blocks={post.blocks}
-        />
+        <ProseContent content={contentParagraphs} blocks={post.blocks} />
         <Link
           to="/daily-reflections"
           className="mt-10 inline-flex text-sm font-semibold text-primary-soft hover:text-accent"

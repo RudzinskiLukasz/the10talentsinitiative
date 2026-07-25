@@ -58,35 +58,54 @@ This static SPA uses defense-in-depth measures suitable for a client-rendered si
 | **No `dangerouslySetInnerHTML`** | Content is static JSX; contact form does not echo user input as HTML |
 | **Dependency audit** | `npm run audit` flags moderate+ vulnerabilities |
 
-**CSP tradeoff:** Vite bundles application scripts under `/assets`, but `index.html` includes a small inline theme bootstrap script to prevent flash-of-wrong-theme. That script requires `'unsafe-inline'` in `script-src`. Tailwind/runtime styles similarly need `'unsafe-inline'` in `style-src`. Google Fonts are allowed via `fonts.googleapis.com` and `fonts.gstatic.com`. Tightening further would require moving the theme script to a hashed external file or using CSP nonces (not supported on Render static headers alone).
+**CSP tradeoff:** Vite bundles application scripts under `/assets`, but `index.html` includes a small inline theme bootstrap script to prevent flash-of-wrong-theme. That script requires `'unsafe-inline'` in `script-src`. Tailwind/runtime styles similarly need `'unsafe-inline'` in `style-src`. Google Fonts are allowed via `fonts.googleapis.com` and `fonts.gstatic.com`. Supabase (`*.supabase.co`) is allowed in `connect-src` / `img-src` for the posts CMS. Tightening further would require moving the theme script to a hashed external file or using CSP nonces (not supported on Render static headers alone).
 
 ## Project structure
 
 ```
-index.html              # entry HTML, fonts & meta tags
-public/favicon.svg      # brand mark
+index.html                 # entry HTML, fonts & meta tags
+public/                    # static assets (logos, post images fallback)
+supabase/migrations/       # SQL schema for posts + storage RLS
+scripts/                   # locale tooling, WP sync, Supabase seed
 src/
-  main.jsx              # React entry
-  App.jsx               # page composition
-  index.css            # Tailwind import + design tokens (@theme) + animations
-  data/content.js      # all copy: nav, goals, team, stats (easy to edit)
-  components/
-    Navbar.jsx          # sticky nav with mobile menu
-    Hero.jsx            # headline + stats
-    Mission.jsx         # mission + value pillars
-    Goals.jsx           # the 8 goals, grouped into 4 themes
-    Team.jsx            # founder spotlight + team grid
-    Join.jsx            # call-to-action
-    Footer.jsx
-    Reveal.jsx          # scroll-reveal wrapper
-    Logo.jsx
+  main.jsx                 # React entry
+  App.jsx                  # routes (public + /admin)
+  index.css                # Tailwind + design tokens
+  lib/supabase.js          # Supabase client
+  lib/postsApi.js          # posts CRUD / public fetch
+  data/posts.js            # static fallback snapshot (used when env unset)
+  data/site.js             # site metadata / social links
+  i18n/                    # 8 locales
+  pages/                   # public pages
+  pages/admin/             # admin login + post editor
+  components/              # UI components
 ```
 
 ## Customizing
 
-- **Copy / content:** edit `src/data/content.js`.
+- **UI copy:** edit locale JSON under `src/i18n/locales/` (English source of truth: `en.json`).
+- **Posts:** use `/admin` once Supabase is configured (see below). Without env vars, the site falls back to `src/data/posts.js`.
 - **Brand colors & fonts:** edit the `@theme` block in `src/index.css`.
-- **Sections:** each lives in its own file under `src/components/`.
+
+## Posts CMS (Supabase)
+
+The public site stays a **Render Static Site**. Content lives in **Supabase** (Postgres + Auth + Storage).
+
+1. Create a project at [supabase.com](https://supabase.com).
+2. In **SQL Editor**, run [`supabase/migrations/001_posts.sql`](supabase/migrations/001_posts.sql).
+3. **Authentication → Users → Add user** — create 1–2 admin emails (password sign-in).
+4. Copy **Project URL** and **anon public** key into `.env` (see `.env.example`):
+   - `VITE_SUPABASE_URL`
+   - `VITE_SUPABASE_ANON_KEY`
+5. On Render → Environment, add the same two `VITE_*` variables and redeploy.
+6. Optional one-time import of the existing static posts:
+   ```bash
+   # add SUPABASE_SERVICE_ROLE_KEY to .env (never commit; never put in Vite/Render client env)
+   npm run seed:posts
+   ```
+7. Open `/admin`, sign in, create/edit/publish posts and upload images.
+
+Without Supabase env vars the app still builds and serves the committed `posts.js` snapshot (CI-friendly).
 
 ## Design notes
 
@@ -97,7 +116,7 @@ src/
 
 ## Deploy on Render
 
-This project is a **static Vite SPA** — deploy it as a **Static Site**, not a Node Web Service (no runtime server required).
+This project is a **static Vite SPA** — deploy it as a **Static Site**, not a Node Web Service (no runtime server required). The admin UI is also static; it talks to Supabase from the browser.
 
 ### Recommended: Blueprint (uses `render.yaml`)
 
@@ -155,5 +174,5 @@ No backend or webhook is required for the MVP — successful payments appear in 
 
 - Never commit real account numbers or API keys — use `.env` locally and Render env vars in production.
 - Only the Paystack **public** key is embedded in the client bundle; secret keys stay in Paystack Dashboard only.
-- `render.yaml` CSP allows `js.paystack.co`, `api.paystack.co`, and `checkout.paystack.com` when online payments are enabled.
+- `render.yaml` CSP allows `js.paystack.co`, `api.paystack.co`, `checkout.paystack.com`, and `*.supabase.co` (posts CMS).
 

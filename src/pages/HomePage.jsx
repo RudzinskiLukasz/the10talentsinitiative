@@ -1,10 +1,13 @@
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import Reveal from "../components/Reveal.jsx";
-import { posts } from "../data/posts.js";
+import { usePublishedPosts } from "../hooks/usePosts.js";
 
 export default function HomePage() {
   const { t } = useTranslation();
+  const { posts: publishedPosts } = usePublishedPosts({
+    category: "Homilies/Reflections",
+  });
   const homePage = {
     discoverMoreHref: t("homePage.discoverMoreHref"),
     introTitle: t("homePage.introTitle"),
@@ -20,9 +23,7 @@ export default function HomePage() {
     bankDetails: t("homePage.bankDetails"),
   };
 
-  const announcementPosts = posts
-    .filter((post) => post.category === "Homilies/Reflections")
-    .slice(0, 6);
+  const announcementPosts = publishedPosts.slice(0, 6);
 
   return (
     <>

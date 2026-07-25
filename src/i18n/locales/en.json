@@ -174,14 +174,34 @@
       "image": "/images/team/luka-rumu.jpg"
     },
     {
-      "name": "Miss Eke Onyemauchechi",
-      "role": "Secretary and Programs Coordinator",
-      "image": "/images/team/eke-onyemauchechi.jpg"
-    },
-    {
       "name": "Miss IBE NAOMI TIWA",
       "role": "Singles and Catholic Marriage Programs Coordinator",
       "image": "/images/team/ibe-naomi-tiwa.jpeg"
+    },
+    {
+      "name": "João Pedro Silva Francisco",
+      "role": "Advisory Council for Youths Sports mission. Master in Football Business partnership with Barcelona",
+      "image": "/images/team/joao-pedro-silva-francisco.png"
+    },
+    {
+      "name": "Dr. Jan Lachowicz",
+      "role": "Advisory Council member for Health mission",
+      "image": "/images/team/jan-lachowicz.png"
+    },
+    {
+      "name": "Łukasz Rudziński",
+      "role": "Advisory Council Member for Software and digital communications Mission",
+      "image": "/images/team/lukasz-rudzinski.png"
+    },
+    {
+      "name": "Yvonne Uyanwune",
+      "role": "Advisory Council member — Head of Legal Team",
+      "image": "/images/team/yvonne-uyanwune.png"
+    },
+    {
+      "name": "Allison James",
+      "role": "Advisory Council member — Girl child Welfare and sports mission",
+      "image": "/images/team/allison-james.png"
     }
   ],
   "goalsSection": {
@@ -388,6 +408,9 @@
   "dailyReflectionsPage": {
     "title": "Daily reflections",
     "intro": ""
+  },
+  "categoryPosts": {
+    "empty": "No published posts in {{category}} yet."
   },
   "eventsPage": {
     "title": "Upcoming Events",
