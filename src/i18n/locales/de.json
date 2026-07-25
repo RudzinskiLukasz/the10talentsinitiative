@@ -56,6 +56,8 @@
     "language": "Sprache",
     "contentComingSoon": "Inhalt für diesen Abschnitt folgt in Kürze.",
     "thankYouMessage": "Vielen Dank für Ihre Nachricht. Wir melden uns so schnell wie möglich bei Ihnen.",
+    "sending": "Wird gesendet…",
+    "sendError": "Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut oder schreiben Sie uns direkt.",
     "name": "Name",
     "emailLabel": "E-Mail",
     "subject": "Betreff",

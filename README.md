@@ -54,11 +54,11 @@ This static SPA uses defense-in-depth measures suitable for a client-rendered si
 | **Security headers** | `render.yaml` — `X-Content-Type-Options`, `X-Frame-Options: DENY`, `Referrer-Policy`, `Permissions-Policy`, `Content-Security-Policy` |
 | **Meta tags** | `index.html` — `X-Content-Type-Options`, `referrer` policy |
 | **External links** | `rel="noopener noreferrer"` on all `target="_blank"` links (e.g. Contact social links) |
-| **No secrets in client** | Public contact emails only; no API keys or tokens in the repo |
+| **No secrets in client** | Public keys only (`VITE_PAYSTACK_PUBLIC_KEY`, `VITE_WEB3FORMS_ACCESS_KEY`, Supabase anon); never service-role / secret keys |
 | **No `dangerouslySetInnerHTML`** | Content is static JSX; contact form does not echo user input as HTML |
 | **Dependency audit** | `npm run audit` flags moderate+ vulnerabilities |
 
-**CSP tradeoff:** Vite bundles application scripts under `/assets`, but `index.html` includes a small inline theme bootstrap script to prevent flash-of-wrong-theme. That script requires `'unsafe-inline'` in `script-src`. Tailwind/runtime styles similarly need `'unsafe-inline'` in `style-src`. Google Fonts are allowed via `fonts.googleapis.com` and `fonts.gstatic.com`. Supabase (`*.supabase.co`) is allowed in `connect-src` / `img-src` for the posts CMS. Tightening further would require moving the theme script to a hashed external file or using CSP nonces (not supported on Render static headers alone).
+**CSP tradeoff:** Vite bundles application scripts under `/assets`, but `index.html` includes a small inline theme bootstrap script to prevent flash-of-wrong-theme. That script requires `'unsafe-inline'` in `script-src`. Tailwind/runtime styles similarly need `'unsafe-inline'` in `style-src`. Google Fonts are allowed via `fonts.googleapis.com` and `fonts.gstatic.com`. Supabase (`*.supabase.co`) is allowed in `connect-src` / `img-src` for the posts CMS. Web3Forms (`api.web3forms.com`) is allowed in `connect-src` for the Contact Us form. Tightening further would require moving the theme script to a hashed external file or using CSP nonces (not supported on Render static headers alone).
 
 ## Project structure
 
@@ -139,6 +139,18 @@ If you already have a **Web Service** instead of a Static Site, the `start` scri
 
 Clear the build cache (**Settings → Clear build cache**) and trigger a **Manual Deploy** so Render picks up new build/start settings.
 
+## Contact form (Gmail)
+
+The Contact Us form sends messages to **thetentalentsinitiative@gmail.com** via [Web3Forms](https://web3forms.com) (no backend required).
+
+1. Open [web3forms.com](https://web3forms.com), enter `thetentalentsinitiative@gmail.com`, and create an access key.
+2. Confirm the email if Web3Forms asks you to.
+3. Add to `.env` (and Render → Environment):
+   - `VITE_WEB3FORMS_ACCESS_KEY` = your access key
+4. Redeploy so the production build picks up the key.
+
+Replies go to the visitor’s address (`replyto`). Without this env var, submit shows an error instead of a fake success.
+
 ## Donations & payments
 
 The `/donations` page supports **bank transfer** (always free) and optional **Paystack** online payments (no monthly fee; small per-transaction charge only).
@@ -174,5 +186,5 @@ No backend or webhook is required for the MVP — successful payments appear in 
 
 - Never commit real account numbers or API keys — use `.env` locally and Render env vars in production.
 - Only the Paystack **public** key is embedded in the client bundle; secret keys stay in Paystack Dashboard only.
-- `render.yaml` CSP allows `js.paystack.co`, `api.paystack.co`, `checkout.paystack.com`, and `*.supabase.co` (posts CMS).
+- `render.yaml` CSP allows `js.paystack.co`, `api.paystack.co`, `checkout.paystack.com`, `api.web3forms.com` (contact form), and `*.supabase.co` (posts CMS).
 

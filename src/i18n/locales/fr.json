@@ -56,6 +56,8 @@
     "language": "Language",
     "contentComingSoon": "Content for this section is coming soon.",
     "thankYouMessage": "Merci pour votre message. Nous vous répondrons dès que possible.",
+    "sending": "Envoi…",
+    "sendError": "Une erreur s’est produite. Veuillez réessayer ou nous écrire directement.",
     "name": "Name",
     "emailLabel": "Email",
     "subject": "Subject",

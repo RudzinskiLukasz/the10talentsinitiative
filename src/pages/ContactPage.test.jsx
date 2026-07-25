@@ -1,10 +1,17 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import { I18nextProvider } from "react-i18next";
 import { MemoryRouter } from "react-router-dom";
 import ContactPage from "./ContactPage.jsx";
 import { contactSocial } from "../data/site.js";
 import i18n from "../i18n/index.js";
+
+vi.mock("../lib/contact.js", () => ({
+  submitContactMessage: vi.fn().mockResolvedValue({ success: true }),
+}));
+
+import { submitContactMessage } from "../lib/contact.js";
 
 function renderContactPage() {
   return render(
@@ -19,6 +26,8 @@ function renderContactPage() {
 describe("ContactPage security", () => {
   beforeEach(() => {
     i18n.changeLanguage("en");
+    vi.mocked(submitContactMessage).mockClear();
+    vi.mocked(submitContactMessage).mockResolvedValue({ success: true });
   });
 
   it("external links use rel=noopener noreferrer with target=_blank", () => {
@@ -43,7 +52,29 @@ describe("ContactPage security", () => {
     await user.type(screen.getByRole("textbox", { name: /message/i }), "Hello");
     await user.click(screen.getByRole("button", { name: /submit/i }));
 
+    await waitFor(() => {
+      expect(screen.getByText(i18n.t("common.thankYouMessage"))).toBeInTheDocument();
+    });
     expect(screen.queryByText("<script>alert(1)</script>")).not.toBeInTheDocument();
-    expect(screen.getByText(i18n.t("common.thankYouMessage"))).toBeInTheDocument();
+    expect(submitContactMessage).toHaveBeenCalledWith({
+      name: "<script>alert(1)</script>",
+      email: "test@example.com",
+      subject: "",
+      message: "Hello",
+    });
+  });
+
+  it("shows an error when sending fails", async () => {
+    vi.mocked(submitContactMessage).mockRejectedValueOnce(new Error("network"));
+    const user = userEvent.setup();
+    renderContactPage();
+
+    await user.type(screen.getByRole("textbox", { name: /name/i }), "Ada");
+    await user.type(screen.getByRole("textbox", { name: /email/i }), "ada@example.com");
+    await user.type(screen.getByRole("textbox", { name: /message/i }), "Hello");
+    await user.click(screen.getByRole("button", { name: /submit/i }));
+
+    expect(await screen.findByRole("alert")).toHaveTextContent(i18n.t("common.sendError"));
+    expect(screen.queryByText(i18n.t("common.thankYouMessage"))).not.toBeInTheDocument();
   });
 });

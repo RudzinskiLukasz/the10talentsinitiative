@@ -71,12 +71,22 @@ describe("App routing", () => {
     );
   });
 
-  it("uses the dark-mode logo asset in dark theme", () => {
+  it("renders both light and dark logo assets for CSS theme switching", () => {
     renderWithI18n(<App />, { route: "/" });
-    const logos = screen.getAllByRole("img", { name: /The Ten Talents Initiative/i });
-    expect(logos.length).toBeGreaterThan(0);
-    for (const logo of logos) {
-      expect(logo).toHaveAttribute("src", "/images/logo-on-dark.png");
+    const lightLogos = screen.getAllByRole("img", {
+      name: /The Ten Talents Initiative/i,
+    });
+    expect(lightLogos.length).toBeGreaterThan(0);
+    for (const logo of lightLogos) {
+      expect(logo).toHaveAttribute("src", "/images/logo.png");
+      expect(logo.className).toMatch(/dark:hidden/);
+    }
+    const darkLogos = document.querySelectorAll(
+      'img[src="/images/logo-on-dark.png"]'
+    );
+    expect(darkLogos.length).toBeGreaterThan(0);
+    for (const logo of darkLogos) {
+      expect(logo.className).toMatch(/dark:block/);
     }
   });
 });

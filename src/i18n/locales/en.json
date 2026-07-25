@@ -64,6 +64,8 @@
     "language": "Language",
     "contentComingSoon": "Content for this section is coming soon.",
     "thankYouMessage": "Thank you for your message. We will come back to you as soon as possible.",
+    "sending": "Sending…",
+    "sendError": "Something went wrong. Please try again or email us directly.",
     "name": "Name",
     "emailLabel": "Email",
     "subject": "Subject",

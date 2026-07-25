@@ -8,14 +8,35 @@ import Join from "../components/Join.jsx";
 import Reveal from "../components/Reveal.jsx";
 import SocialIcon from "../components/SocialIcon.jsx";
 import { site, contactSocial } from "../data/site.js";
+import { submitContactMessage } from "../lib/contact.js";
 
 export default function ContactPage() {
   const { t } = useTranslation();
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState("");
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
-    setSubmitted(true);
+    setError("");
+    setSending(true);
+
+    const form = event.currentTarget;
+    const data = new FormData(form);
+
+    try {
+      await submitContactMessage({
+        name: String(data.get("name") || "").trim(),
+        email: String(data.get("email") || "").trim(),
+        subject: String(data.get("subject") || "").trim(),
+        message: String(data.get("message") || "").trim(),
+      });
+      setSubmitted(true);
+    } catch {
+      setError(t("common.sendError"));
+    } finally {
+      setSending(false);
+    }
   }
 
   return (
@@ -73,7 +94,9 @@ export default function ContactPage() {
                           required
                           type="text"
                           name="name"
-                          className="mt-2 w-full rounded-xl border border-border bg-bg px-4 py-3 text-sm text-fg outline-none ring-ring transition focus:ring-2"
+                          autoComplete="name"
+                          disabled={sending}
+                          className="mt-2 w-full rounded-xl border border-border bg-bg px-4 py-3 text-sm text-fg outline-none ring-ring transition focus:ring-2 disabled:opacity-60"
                         />
                       </label>
                       <label className="block">
@@ -85,7 +108,9 @@ export default function ContactPage() {
                           required
                           type="email"
                           name="email"
-                          className="mt-2 w-full rounded-xl border border-border bg-bg px-4 py-3 text-sm text-fg outline-none ring-ring transition focus:ring-2"
+                          autoComplete="email"
+                          disabled={sending}
+                          className="mt-2 w-full rounded-xl border border-border bg-bg px-4 py-3 text-sm text-fg outline-none ring-ring transition focus:ring-2 disabled:opacity-60"
                         />
                       </label>
                       <label className="block">
@@ -93,7 +118,8 @@ export default function ContactPage() {
                         <input
                           type="text"
                           name="subject"
-                          className="mt-2 w-full rounded-xl border border-border bg-bg px-4 py-3 text-sm text-fg outline-none ring-ring transition focus:ring-2"
+                          disabled={sending}
+                          className="mt-2 w-full rounded-xl border border-border bg-bg px-4 py-3 text-sm text-fg outline-none ring-ring transition focus:ring-2 disabled:opacity-60"
                         />
                       </label>
                       <label className="block">
@@ -105,15 +131,22 @@ export default function ContactPage() {
                           required
                           name="message"
                           rows={5}
-                          className="mt-2 w-full rounded-xl border border-border bg-bg px-4 py-3 text-sm text-fg outline-none ring-ring transition focus:ring-2"
+                          disabled={sending}
+                          className="mt-2 w-full rounded-xl border border-border bg-bg px-4 py-3 text-sm text-fg outline-none ring-ring transition focus:ring-2 disabled:opacity-60"
                         />
                       </label>
                     </div>
+                    {error ? (
+                      <p className="mt-4 text-sm text-red-600 dark:text-red-400" role="alert">
+                        {error}
+                      </p>
+                    ) : null}
                     <button
                       type="submit"
-                      className="mt-6 rounded-full bg-cta px-7 py-3 text-sm font-bold text-on-cta transition hover:bg-cta-hover"
+                      disabled={sending}
+                      className="mt-6 rounded-full bg-cta px-7 py-3 text-sm font-bold text-on-cta transition hover:bg-cta-hover disabled:cursor-not-allowed disabled:opacity-60"
                     >
-                      {t("common.submit")}
+                      {sending ? t("common.sending") : t("common.submit")}
                     </button>
                   </>
                 )}
