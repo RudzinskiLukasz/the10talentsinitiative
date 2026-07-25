@@ -10,10 +10,7 @@ describe("Logo", () => {
     i18n.changeLanguage("en");
   });
 
-  it("uses black logo.png in light mode for contrast", () => {
-    localStorage.setItem("ttt-theme", "light");
-    document.documentElement.setAttribute("data-theme", "light");
-
+  it("renders black logo for light mode and white logo for dark mode (CSS switched)", () => {
     render(
       <I18nextProvider i18n={i18n}>
         <MemoryRouter>
@@ -22,25 +19,16 @@ describe("Logo", () => {
       </I18nextProvider>
     );
 
-    expect(
-      screen.getByRole("img", { name: /The Ten Talents Initiative/i })
-    ).toHaveAttribute("src", "/images/logo.png");
-  });
+    const lightLogo = screen.getByRole("img", {
+      name: /The Ten Talents Initiative/i,
+    });
+    expect(lightLogo).toHaveAttribute("src", "/images/logo.png");
+    expect(lightLogo.className).toMatch(/dark:hidden/);
 
-  it("uses logo-on-dark.png in dark mode", () => {
-    localStorage.setItem("ttt-theme", "dark");
-    document.documentElement.setAttribute("data-theme", "dark");
-
-    render(
-      <I18nextProvider i18n={i18n}>
-        <MemoryRouter>
-          <Logo />
-        </MemoryRouter>
-      </I18nextProvider>
+    const darkLogo = document.querySelector(
+      'img[src="/images/logo-on-dark.png"]'
     );
-
-    expect(
-      screen.getByRole("img", { name: /The Ten Talents Initiative/i })
-    ).toHaveAttribute("src", "/images/logo-on-dark.png");
+    expect(darkLogo).toBeTruthy();
+    expect(darkLogo.className).toMatch(/dark:block/);
   });
 });

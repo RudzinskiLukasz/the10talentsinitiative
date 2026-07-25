@@ -48,4 +48,19 @@ describe("useTheme", () => {
 
     expect(meta.getAttribute("content")).toBe("#f7f3ec");
   });
+
+  it("keeps multiple hook instances in sync when toggling", () => {
+    const a = renderHook(() => useTheme());
+    const b = renderHook(() => useTheme());
+
+    expect(a.result.current.theme).toBe("dark");
+    expect(b.result.current.theme).toBe("dark");
+
+    act(() => {
+      a.result.current.toggleTheme();
+    });
+
+    expect(a.result.current.theme).toBe("light");
+    expect(b.result.current.theme).toBe("light");
+  });
 });
