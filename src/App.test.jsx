@@ -70,4 +70,13 @@ describe("App routing", () => {
       0
     );
   });
+
+  it("uses the dark-mode logo asset in dark theme", () => {
+    renderWithI18n(<App />, { route: "/" });
+    const logos = screen.getAllByRole("img", { name: /The Ten Talents Initiative/i });
+    expect(logos.length).toBeGreaterThan(0);
+    for (const logo of logos) {
+      expect(logo).toHaveAttribute("src", "/images/logo-on-dark.png");
+    }
+  });
 });

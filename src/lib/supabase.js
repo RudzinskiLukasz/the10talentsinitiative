@@ -3,7 +3,7 @@ import { createClient } from "@supabase/supabase-js";
 const url = import.meta.env.VITE_SUPABASE_URL?.trim() || "";
 const anonKey = import.meta.env.VITE_SUPABASE_ANON_KEY?.trim() || "";
 
-function isValidHttpUrl(value) {
+export function isValidHttpUrl(value) {
   try {
     const parsed = new URL(value);
     return parsed.protocol === "http:" || parsed.protocol === "https:";
