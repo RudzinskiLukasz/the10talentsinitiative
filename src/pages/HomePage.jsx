@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import FacebookPageEmbed from "../components/FacebookPageEmbed.jsx";
 import Reveal from "../components/Reveal.jsx";
 import { usePublishedPosts } from "../hooks/usePosts.js";
 
@@ -145,6 +146,10 @@ export default function HomePage() {
             );
             })}
           </div>
+
+          <Reveal className="mt-12">
+            <FacebookPageEmbed />
+          </Reveal>
 
           <Reveal className="mt-10 text-center">
             <Link

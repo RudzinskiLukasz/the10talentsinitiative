@@ -22,6 +22,9 @@ import AdminLoginPage from "./pages/admin/AdminLoginPage.jsx";
 import AdminLayout from "./pages/admin/AdminLayout.jsx";
 import AdminPostsPage from "./pages/admin/AdminPostsPage.jsx";
 import AdminPostEditorPage from "./pages/admin/AdminPostEditorPage.jsx";
+import AdminTracksPage from "./pages/admin/AdminTracksPage.jsx";
+import AdminTrackEditorPage from "./pages/admin/AdminTrackEditorPage.jsx";
+import TTalentsRecordsPage from "./pages/TTalentsRecordsPage.jsx";
 
 function PlaceholderRoute({ titleKey }) {
   const { t } = useTranslation();
@@ -37,6 +40,9 @@ export default function App() {
           <Route index element={<AdminPostsPage />} />
           <Route path="posts/new" element={<AdminPostEditorPage />} />
           <Route path="posts/:id" element={<AdminPostEditorPage />} />
+          <Route path="tracks" element={<AdminTracksPage />} />
+          <Route path="tracks/new" element={<AdminTrackEditorPage />} />
+          <Route path="tracks/:id" element={<AdminTrackEditorPage />} />
         </Route>
       </Route>
 
@@ -47,10 +53,7 @@ export default function App() {
         <Route path="events" element={<EventsPage />} />
         <Route path="songs-books" element={<SongsBooksPage />} />
         <Route path="contact" element={<ContactPage />} />
-        <Route
-          path="t-talents-records"
-          element={<CategoryPostsPage categoryId="t-talents-records" />}
-        />
+        <Route path="t-talents-records" element={<TTalentsRecordsPage />} />
         <Route
           path="t-talents-studios"
           element={<CategoryPostsPage categoryId="t-talents-studios" />}

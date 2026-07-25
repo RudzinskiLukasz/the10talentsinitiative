@@ -78,7 +78,7 @@ describe("App routing", () => {
     });
     expect(lightLogos.length).toBeGreaterThan(0);
     for (const logo of lightLogos) {
-      expect(logo).toHaveAttribute("src", "/images/logo.png");
+      expect(logo).toHaveAttribute("src", "/images/logo-on-light.png");
       expect(logo.className).toMatch(/dark:hidden/);
     }
     const darkLogos = document.querySelectorAll(

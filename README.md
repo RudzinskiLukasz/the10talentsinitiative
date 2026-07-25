@@ -58,7 +58,7 @@ This static SPA uses defense-in-depth measures suitable for a client-rendered si
 | **No `dangerouslySetInnerHTML`** | Content is static JSX; contact form does not echo user input as HTML |
 | **Dependency audit** | `npm run audit` flags moderate+ vulnerabilities |
 
-**CSP tradeoff:** Vite bundles application scripts under `/assets`, but `index.html` includes a small inline theme bootstrap script to prevent flash-of-wrong-theme. That script requires `'unsafe-inline'` in `script-src`. Tailwind/runtime styles similarly need `'unsafe-inline'` in `style-src`. Google Fonts are allowed via `fonts.googleapis.com` and `fonts.gstatic.com`. Supabase (`*.supabase.co`) is allowed in `connect-src` / `img-src` for the posts CMS. Web3Forms (`api.web3forms.com`) is allowed in `connect-src` for the Contact Us form. Tightening further would require moving the theme script to a hashed external file or using CSP nonces (not supported on Render static headers alone).
+**CSP tradeoff:** Vite bundles application scripts under `/assets`, but `index.html` includes a small inline theme bootstrap script to prevent flash-of-wrong-theme. That script requires `'unsafe-inline'` in `script-src`. Tailwind/runtime styles similarly need `'unsafe-inline'` in `style-src`. Google Fonts are allowed via `fonts.googleapis.com` and `fonts.gstatic.com`. Supabase (`*.supabase.co`) is allowed in `connect-src` / `img-src` / `media-src` for the posts CMS and Records audio. Web3Forms (`api.web3forms.com`) is allowed in `connect-src` for the Contact Us form. Tightening further would require moving the theme script to a hashed external file or using CSP nonces (not supported on Render static headers alone).
 
 ## Project structure
 
@@ -92,7 +92,7 @@ src/
 The public site stays a **Render Static Site**. Content lives in **Supabase** (Postgres + Auth + Storage).
 
 1. Create a project at [supabase.com](https://supabase.com).
-2. In **SQL Editor**, run [`supabase/migrations/001_posts.sql`](supabase/migrations/001_posts.sql).
+2. In **SQL Editor**, run [`supabase/migrations/001_posts.sql`](supabase/migrations/001_posts.sql), then [`002_tracks.sql`](supabase/migrations/002_tracks.sql) (T-Talents Records music).
 3. **Authentication → Users → Add user** — create 1–2 admin emails (password sign-in).
 4. Copy **Project URL** and **anon public** key into `.env` (see `.env.example`):
    - `VITE_SUPABASE_URL`
@@ -103,9 +103,11 @@ The public site stays a **Render Static Site**. Content lives in **Supabase** (P
    # add SUPABASE_SERVICE_ROLE_KEY to .env (never commit; never put in Vite/Render client env)
    npm run seed:posts
    ```
-7. Open `/admin`, sign in, create/edit/publish posts and upload images.
+7. Open `/admin`, sign in:
+   - **Posts** — create/edit/publish articles and upload images
+   - **Records** (`/admin/tracks`) — upload songs for T-Talents Records (visitors download on `/t-talents-records`)
 
-Without Supabase env vars the app still builds and serves the committed `posts.js` snapshot (CI-friendly).
+Without Supabase env vars the app still builds and serves the committed `posts.js` snapshot (CI-friendly). Records stays empty until tracks are published in admin.
 
 ## Design notes
 
