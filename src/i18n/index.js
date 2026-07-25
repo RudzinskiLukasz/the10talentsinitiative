@@ -24,12 +24,6 @@ export const SUPPORTED_LANGUAGES = [
 
 const SUPPORTED_CODES = new Set(SUPPORTED_LANGUAGES.map((l) => l.code));
 
-function normalizeLanguage(code) {
-  if (!code) return "en";
-  const base = code.toLowerCase().split("-")[0];
-  return SUPPORTED_CODES.has(base) ? base : "en";
-}
-
 function getStoredLanguage() {
   try {
     const stored = localStorage.getItem(STORAGE_KEY);
@@ -40,33 +34,8 @@ function getStoredLanguage() {
   return null;
 }
 
-function getBrowserLanguageHint() {
-  if (typeof navigator === "undefined") return "en";
-  const langs = navigator.languages?.length
-    ? navigator.languages
-    : [navigator.language];
-  for (const lang of langs) {
-    const normalized = normalizeLanguage(lang);
-    if (normalized !== "en" || lang?.toLowerCase().startsWith("en")) {
-      return normalized;
-    }
-  }
-  return "en";
-}
-
 function resolveInitialLanguage() {
-  const stored = getStoredLanguage();
-  if (stored) return stored;
-
-  const hinted = getBrowserLanguageHint();
-  try {
-    if (hinted !== "en") {
-      localStorage.setItem(STORAGE_KEY, hinted);
-    }
-  } catch {
-    /* ignore */
-  }
-  return hinted;
+  return getStoredLanguage() ?? "en";
 }
 
 export function setDocumentLanguage(lng) {

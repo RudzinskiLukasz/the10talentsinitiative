@@ -23,22 +23,29 @@ describe("LanguageSelector", () => {
   it("renders with language label and current selection", () => {
     renderSelector("en");
     expect(screen.getByLabelText(/language/i)).toBeInTheDocument();
-    expect(screen.getByRole("combobox", { name: /language/i })).toHaveValue("en");
+    expect(screen.getByRole("combobox", { name: /language/i })).toHaveTextContent(
+      /english/i
+    );
   });
 
   it("changes language on selection", async () => {
     const user = userEvent.setup();
     renderSelector("en");
 
-    await user.selectOptions(screen.getByRole("combobox", { name: /language/i }), "pl");
+    await user.click(screen.getByRole("combobox", { name: /language/i }));
+    await user.click(screen.getByRole("option", { name: "Polski" }));
 
     expect(i18n.language).toBe("pl");
     expect(document.documentElement.lang).toBe("pl");
     expect(localStorage.getItem("ttt-lang")).toBe("pl");
   });
 
-  it("shows native language names in options", () => {
+  it("shows native language names in options", async () => {
+    const user = userEvent.setup();
     renderSelector("en");
+
+    await user.click(screen.getByRole("combobox", { name: /language/i }));
+
     expect(screen.getByRole("option", { name: "Polski" })).toBeInTheDocument();
     expect(screen.getByRole("option", { name: "Deutsch" })).toBeInTheDocument();
   });
