@@ -395,6 +395,7 @@
   "eventsPage": {
     "title": "Próximos eventos",
     "intro": "Find here all our events",
+    "calendarTitle": "Calendario de Google de The Ten Talents Initiative",
     "emptyMessage": "There are no events scheduled this week.",
     "weekLabel": "Esta semana"
   },
