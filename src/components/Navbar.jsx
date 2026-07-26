@@ -83,7 +83,7 @@ export default function Navbar() {
     >
       <div className="mx-auto max-w-6xl">
         <div className="flex min-h-12 flex-nowrap items-center gap-2 px-5 sm:min-h-14 sm:gap-3 sm:px-8">
-          <Logo className="shrink-0" />
+          <Logo className="shrink-0" size="compact" />
 
           <nav
             className="hidden min-w-0 flex-1 lg:block"
