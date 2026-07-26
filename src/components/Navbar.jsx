@@ -82,7 +82,7 @@ export default function Navbar() {
       className={`fixed inset-x-0 top-0 z-50 overflow-visible transition-all duration-300 ${headerSurface}`}
     >
       <div className="mx-auto max-w-6xl">
-        <div className="flex min-h-14 flex-nowrap items-center gap-2 px-5 sm:min-h-[5.5rem] sm:gap-3 sm:px-8">
+        <div className="flex min-h-12 flex-nowrap items-center gap-2 px-5 sm:min-h-14 sm:gap-3 sm:px-8">
           <Logo className="shrink-0" />
 
           <nav
