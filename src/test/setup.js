@@ -2,7 +2,12 @@ import "@testing-library/jest-dom";
 
 // jsdom does not implement IntersectionObserver — stub for Reveal tests.
 class MockIntersectionObserver {
-  observe() {}
+  constructor(callback) {
+    this.callback = callback;
+  }
+  observe(target) {
+    this.callback([{ isIntersecting: true, target }], this);
+  }
   unobserve() {}
   disconnect() {}
 }

@@ -52,7 +52,9 @@ export default function CategoryPostsPage({ categoryId }) {
               });
               const postTitle = translated.title || post.title;
               const excerpt =
-                translated.excerpt || post.excerpt || post.content.slice(0, 220);
+                translated.excerpt ||
+                post.excerpt ||
+                String(post.content || "").slice(0, 220);
               return (
                 <Reveal key={post.slug} delay={(i % 2) * 70}>
                   <article className="h-full rounded-2xl border border-border bg-surface p-6 shadow-sm transition hover:border-accent/40 hover:bg-surface-hover">

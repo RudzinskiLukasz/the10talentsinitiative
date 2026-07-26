@@ -119,7 +119,10 @@ export default function HomePage() {
             {announcementPosts.map((post, i) => {
               const translated = t(`posts.bySlug.${post.slug}`, { returnObjects: true, defaultValue: {} });
               const title = translated.title || post.title;
-              const excerpt = translated.excerpt || post.excerpt || post.content.slice(0, 160);
+              const excerpt =
+                translated.excerpt ||
+                post.excerpt ||
+                String(post.content || "").slice(0, 160);
               return (
               <Reveal key={post.slug} delay={(i % 3) * 70}>
                 <article className="flex h-full flex-col rounded-2xl border border-border bg-surface p-6 shadow-sm transition hover:border-accent/40 hover:bg-surface-hover">
@@ -172,14 +175,16 @@ export default function HomePage() {
           </Reveal>
 
           <div className="mt-10 grid gap-5 lg:grid-cols-3">
-            {homePage.programTeasers.map((program, i) => (
+            {(Array.isArray(homePage.programTeasers) ? homePage.programTeasers : []).map(
+              (program, i) => (
               <Reveal key={program.title} delay={i * 70}>
                 <div className="h-full rounded-2xl border border-border bg-surface p-6 shadow-sm">
                   <h3 className="font-display text-lg font-semibold text-fg">{program.title}</h3>
                   <p className="mt-3 text-sm leading-relaxed text-fg-muted">{program.description}</p>
                 </div>
               </Reveal>
-            ))}
+            )
+            )}
           </div>
 
           <Reveal className="mt-10 text-center">
