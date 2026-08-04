@@ -25,6 +25,11 @@ function truncate(text, max = 120) {
   return `${text.slice(0, max).trim()}…`;
 }
 
+/**
+ * Build the site search index.
+ * Pass the live published post list from Supabase (SearchBar does this via
+ * usePublishedPosts) so newly published CMS posts are searchable without a redeploy.
+ */
 export function buildSearchIndex(t, postList = posts) {
   const items = [];
   const comingSoon = t("common.comingSoon");

@@ -6,7 +6,7 @@
   "description": "Landing page for The Ten Talents Initiative — empowering Catholic youth to nurture their God-given gifts.",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && node scripts/ensure-spa-shells.mjs",
     "preview": "vite preview",
     "start": "serve -s build -l $PORT",
     "test": "vitest",
@@ -14,6 +14,7 @@
     "test:coverage": "vitest run --coverage",
     "audit": "npm audit --audit-level=moderate",
     "check": "npm run test:run && npm run build",
+    "smoke:routes": "node scripts/check-spa-fallback.mjs",
     "seed:posts": "node --env-file=.env scripts/seed-posts-from-static.mjs"
   },
   "engines": {

@@ -15,25 +15,37 @@ export function usePublishedTracks() {
     }
 
     let active = true;
-    setLoading(true);
 
-    fetchPublishedTracks()
-      .then((list) => {
-        if (!active) return;
-        setTracks(list);
-        setError(null);
-      })
-      .catch((err) => {
-        if (!active) return;
-        setError(err);
-        setTracks([]);
-      })
-      .finally(() => {
-        if (active) setLoading(false);
-      });
+    function load({ silent = false } = {}) {
+      if (!silent) setLoading(true);
+      return fetchPublishedTracks()
+        .then((list) => {
+          if (!active) return;
+          setTracks(list);
+          setError(null);
+        })
+        .catch((err) => {
+          if (!active) return;
+          setError(err);
+          if (!silent) setTracks([]);
+        })
+        .finally(() => {
+          if (active && !silent) setLoading(false);
+        });
+    }
+
+    load();
+
+    const onVisible = () => {
+      if (document.visibilityState === "visible") load({ silent: true });
+    };
+    document.addEventListener("visibilitychange", onVisible);
+    window.addEventListener("focus", onVisible);
 
     return () => {
       active = false;
+      document.removeEventListener("visibilitychange", onVisible);
+      window.removeEventListener("focus", onVisible);
     };
   }, []);
 
