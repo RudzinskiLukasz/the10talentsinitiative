@@ -3,8 +3,12 @@ import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import { registerSW } from "virtual:pwa-register";
 import App from "./App.jsx";
+import { applySpaEntryNormalize } from "./lib/normalizeSpaEntry.js";
 import "./i18n/index.js";
 import "./index.css";
+
+// Map /admin.html (and similar file shells) onto React Router paths before mount.
+applySpaEntryNormalize();
 
 // Stale service-worker caches can 404 hashed chunks after a deploy → blank page.
 window.addEventListener("vite:preloadError", () => {

@@ -124,14 +124,16 @@ This project is a **static Vite SPA** — deploy it as a **Static Site**, not a 
 
 1. In the [Render Dashboard](https://dashboard.render.com/), choose **New → Blueprint**.
 2. Connect the GitHub repo and grant Render access if the repo is private (**GitHub → Settings → Applications → Render → Configure → Repository access**).
-3. Render reads `render.yaml` and creates a **Static Site** (`runtime: static`) with build command `npm ci --include=dev && npm run build` and publish directory `./build`. No start command is used.
+3. Render reads `render.yaml` and creates a **Static Site** (`runtime: static`) with build command `npm ci --include=dev && npm run build` and publish directory `./build`. No start command is used. The Blueprint includes SPA rewrite rules so `/admin` and other deep links serve `index.html`.
 
 ### Alternative: Manual Static Site
 
 1. **New → Static Site** → connect the repo.
 2. **Build command:** `npm ci --include=dev && npm run build`
 3. **Publish directory:** `build`
-4. Add SPA rewrite `/*` → `/index.html` and cache headers for `/assets/*` if not inherited from the dashboard defaults.
+4. **Required:** add SPA rewrite `/*` → `/index.html` (**Redirects/Rewrites** tab) and cache headers for `/assets/*` if not inherited from the dashboard defaults.
+
+> Manual Static Sites do **not** auto-apply `render.yaml` routes. If you created the service without a Blueprint, you must add the rewrite in the Dashboard (or convert the service to a Blueprint) — otherwise every deep link returns CDN `404 Not Found`.
 
 ### Web Service fallback (not preferred)
 
@@ -140,6 +142,33 @@ If you already have a **Web Service** instead of a Static Site, the `start` scri
 ### After config changes
 
 Clear the build cache (**Settings → Clear build cache**) and trigger a **Manual Deploy** so Render picks up new build/start settings.
+
+### Custom domain (Namecheap → Render) + `/admin`
+
+`the10talentsinitiative.com` / `www` should be a **Render custom domain** (CNAME/ALIAS to the `*.onrender.com` service), not a naked HTTP “URL redirect” that drops paths. Both hosts serve the same Static Site; React Router paths are identical (`/admin`, `/admin/login`, …).
+
+**Why only `/admin` looks broken:** public pages are usually opened via in-app links (client-side routing) or after the PWA service worker is installed (it can fall back to `index.html`). `/admin` is almost always typed or bookmarked as a **first request** to the CDN. Without the SPA rewrite, Render returns plain `404 Not Found` for that request on **both** the custom domain and `*.onrender.com`.
+
+**Fix (do this once in Render):**
+
+1. Open the Static Site → **Redirects/Rewrites**.
+2. Add: Source `/*` · Destination `/index.html` · Action **Rewrite** (or sync Blueprint so `render.yaml` applies).
+3. Redeploy if prompted.
+4. Verify:
+   ```bash
+   npm run smoke:routes
+   # or: npm run smoke:routes -- https://the10talentsinitiative.onrender.com
+   ```
+   `/admin` and `/programs` must return HTML (`200`), not plain `Not Found`.
+
+**Supabase Auth URLs** (Authentication → URL Configuration), so sign-in works on every host:
+
+| Field | Value |
+|-------|--------|
+| Site URL | `https://www.the10talentsinitiative.com` |
+| Redirect URLs | `https://www.the10talentsinitiative.com/**` · `https://the10talentsinitiative.com/**` · `https://the10talentsinitiative.onrender.com/**` |
+
+Until the rewrite is live, the build also emits file-based shells (`/admin.html`, `/admin/index.html`) that load the same app and normalize onto `/admin`. Prefer fixing the rewrite so the canonical URL stays `/admin`.
 
 ## Contact form (Gmail)
 
