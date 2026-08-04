@@ -41,6 +41,21 @@ describe("searchContent", () => {
     expect(match).toBeDefined();
     expect(match.comingSoon).toBe(true);
   });
+
+  it("indexes CMS-only published posts passed as the live post list", () => {
+    const cmsPost = {
+      slug: "brand-new-cms-reflection",
+      title: "Brand New CMS Reflection",
+      excerpt: "Fresh from the admin panel",
+      content: "Body",
+      category: "Homilies/Reflections",
+      status: "published",
+      date: "2026-08-04",
+    };
+    const results = searchContent("Brand New CMS", 8, i18n.t.bind(i18n), [cmsPost]);
+    expect(results.some((r) => r.path === "/brand-new-cms-reflection")).toBe(true);
+    expect(results.some((r) => r.title === "Brand New CMS Reflection")).toBe(true);
+  });
 });
 
 describe("SearchBar", () => {

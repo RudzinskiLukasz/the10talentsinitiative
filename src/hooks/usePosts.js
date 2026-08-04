@@ -32,24 +32,36 @@ export function usePublishedPosts({ category } = {}) {
       return undefined;
     }
 
-    setLoading(true);
-    fetchPublishedPosts({ category })
-      .then((list) => {
-        if (!active) return;
-        setPosts(list);
-        setError(null);
-      })
-      .catch((err) => {
-        if (!active) return;
-        setError(err);
-        setPosts(staticList(category));
-      })
-      .finally(() => {
-        if (active) setLoading(false);
-      });
+    function load({ silent = false } = {}) {
+      if (!silent) setLoading(true);
+      return fetchPublishedPosts({ category })
+        .then((list) => {
+          if (!active) return;
+          setPosts(list);
+          setError(null);
+        })
+        .catch((err) => {
+          if (!active) return;
+          setError(err);
+          if (!silent) setPosts(staticList(category));
+        })
+        .finally(() => {
+          if (active && !silent) setLoading(false);
+        });
+    }
+
+    load();
+
+    const onVisible = () => {
+      if (document.visibilityState === "visible") load({ silent: true });
+    };
+    document.addEventListener("visibilitychange", onVisible);
+    window.addEventListener("focus", onVisible);
 
     return () => {
       active = false;
+      document.removeEventListener("visibilitychange", onVisible);
+      window.removeEventListener("focus", onVisible);
     };
   }, [category]);
 
@@ -74,30 +86,46 @@ export function usePublishedPost(slug) {
       return undefined;
     }
 
-    setLoading(true);
-    // Show static immediately while CMS resolves (same slug).
-    setPost(getStaticPostBySlug(slug) || null);
+    function load({ silent = false } = {}) {
+      if (!silent) {
+        setLoading(true);
+        // Show static immediately while CMS resolves (same slug).
+        setPost(getStaticPostBySlug(slug) || null);
+      }
 
-    fetchPublishedPostBySlug(slug)
-      .then((row) => {
-        if (!active) return;
-        setPost(row);
-        setNotFound(!row);
-        setError(null);
-      })
-      .catch((err) => {
-        if (!active) return;
-        setError(err);
-        const staticPost = getStaticPostBySlug(slug) || null;
-        setPost(staticPost);
-        setNotFound(!staticPost);
-      })
-      .finally(() => {
-        if (active) setLoading(false);
-      });
+      return fetchPublishedPostBySlug(slug)
+        .then((row) => {
+          if (!active) return;
+          setPost(row);
+          setNotFound(!row);
+          setError(null);
+        })
+        .catch((err) => {
+          if (!active) return;
+          setError(err);
+          if (!silent) {
+            const staticPost = getStaticPostBySlug(slug) || null;
+            setPost(staticPost);
+            setNotFound(!staticPost);
+          }
+        })
+        .finally(() => {
+          if (active && !silent) setLoading(false);
+        });
+    }
+
+    load();
+
+    const onVisible = () => {
+      if (document.visibilityState === "visible") load({ silent: true });
+    };
+    document.addEventListener("visibilitychange", onVisible);
+    window.addEventListener("focus", onVisible);
 
     return () => {
       active = false;
+      document.removeEventListener("visibilitychange", onVisible);
+      window.removeEventListener("focus", onVisible);
     };
   }, [slug]);
 

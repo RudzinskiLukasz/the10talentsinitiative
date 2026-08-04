@@ -170,6 +170,12 @@ Clear the build cache (**Settings → Clear build cache**) and trigger a **Manua
 
 Until the rewrite is live, the build also emits file-based shells (`/admin.html`, `/admin/index.html`) that load the same app and normalize onto `/admin`. Prefer fixing the rewrite so the canonical URL stays `/admin`.
 
+### Publishing content (no redeploy)
+
+With Supabase env vars set on Render, **Save** with status **Published** writes straight to the database. Public pages and site search fetch that list live (merged with the static archive). New posts, images, and Records tracks appear on the next page load — typically **within seconds**. Open tabs also refetch when you return to them (focus / visibility), so you usually do not need a hard refresh after publishing in `/admin`.
+
+Drafts stay private. Videos are not in the CMS yet.
+
 ## Contact form (Gmail)
 
 The Contact Us form sends messages to **thetentalentsinitiative@gmail.com** via [Web3Forms](https://web3forms.com) (no backend required).
