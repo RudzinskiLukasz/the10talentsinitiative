@@ -1,3 +1,4 @@
+import { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import Layout from "./layouts/Layout.jsx";
@@ -21,14 +22,21 @@ import DonationsPage from "./pages/DonationsPage.jsx";
 import AdminLoginPage from "./pages/admin/AdminLoginPage.jsx";
 import AdminLayout from "./pages/admin/AdminLayout.jsx";
 import AdminPostsPage from "./pages/admin/AdminPostsPage.jsx";
-import AdminPostEditorPage from "./pages/admin/AdminPostEditorPage.jsx";
 import AdminTracksPage from "./pages/admin/AdminTracksPage.jsx";
 import AdminTrackEditorPage from "./pages/admin/AdminTrackEditorPage.jsx";
 import TTalentsRecordsPage from "./pages/TTalentsRecordsPage.jsx";
 
+const AdminPostEditorPage = lazy(
+  () => import("./pages/admin/AdminPostEditorPage.jsx")
+);
+
 function PlaceholderRoute({ titleKey }) {
   const { t } = useTranslation();
   return <PlaceholderPage title={t(titleKey)} />;
+}
+
+function AdminEditorFallback() {
+  return <p className="text-sm text-fg-muted">Loading editor…</p>;
 }
 
 export default function App() {
@@ -38,8 +46,22 @@ export default function App() {
       <Route path="/admin" element={<AdminRoute />}>
         <Route element={<AdminLayout />}>
           <Route index element={<AdminPostsPage />} />
-          <Route path="posts/new" element={<AdminPostEditorPage />} />
-          <Route path="posts/:id" element={<AdminPostEditorPage />} />
+          <Route
+            path="posts/new"
+            element={
+              <Suspense fallback={<AdminEditorFallback />}>
+                <AdminPostEditorPage />
+              </Suspense>
+            }
+          />
+          <Route
+            path="posts/:id"
+            element={
+              <Suspense fallback={<AdminEditorFallback />}>
+                <AdminPostEditorPage />
+              </Suspense>
+            }
+          />
           <Route path="tracks" element={<AdminTracksPage />} />
           <Route path="tracks/new" element={<AdminTrackEditorPage />} />
           <Route path="tracks/:id" element={<AdminTrackEditorPage />} />

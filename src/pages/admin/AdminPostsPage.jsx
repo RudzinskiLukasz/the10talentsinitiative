@@ -81,7 +81,9 @@ export default function AdminPostsPage() {
                     className={`rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide ${
                       post.status === "published"
                         ? "bg-accent/15 text-accent"
-                        : "bg-fg-subtle/15 text-fg-subtle"
+                        : post.status === "scheduled"
+                          ? "bg-primary/20 text-primary-soft"
+                          : "bg-fg-subtle/15 text-fg-subtle"
                     }`}
                   >
                     {post.status}
@@ -89,10 +91,16 @@ export default function AdminPostsPage() {
                 </div>
                 <p className="mt-1 text-xs text-fg-subtle">
                   {post.category} · {post.date} · /{post.slug}
+                  {post.status === "scheduled" && post.publish_at
+                    ? ` · goes live ${new Date(post.publish_at).toLocaleString()}`
+                    : ""}
                 </p>
               </div>
               <div className="flex shrink-0 items-center gap-2">
-                {post.status === "published" && (
+                {(post.status === "published" ||
+                  (post.status === "scheduled" &&
+                    post.publish_at &&
+                    new Date(post.publish_at) <= new Date())) && (
                   <Link
                     to={`/${post.slug}`}
                     className="rounded-full border border-border px-3 py-1.5 text-xs font-semibold text-fg-muted hover:text-fg"

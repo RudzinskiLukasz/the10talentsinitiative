@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import {
   contentToTextBlocks,
   fetchPublishedPosts,
+  normalizePublishFields,
   slugifyTitle,
 } from "./postsApi.js";
 import { posts as staticPosts } from "../data/posts.js";
@@ -18,6 +19,25 @@ describe("postsApi helpers", () => {
       { type: "text", content: "Hello" },
       { type: "text", content: "World" },
     ]);
+  });
+
+  it("normalizes publish fields for scheduling", () => {
+    expect(normalizePublishFields({ status: "draft" })).toEqual({
+      status: "draft",
+      publish_at: null,
+    });
+    expect(
+      normalizePublishFields({
+        status: "scheduled",
+        publish_at: "2026-08-01T10:00:00.000Z",
+      })
+    ).toEqual({
+      status: "scheduled",
+      publish_at: "2026-08-01T10:00:00.000Z",
+    });
+    expect(() =>
+      normalizePublishFields({ status: "scheduled", publish_at: null })
+    ).toThrow(/require a publish date/i);
   });
 });
 
