@@ -36,7 +36,7 @@ export default function AdminLoginPage() {
       <div className="w-full max-w-md rounded-2xl border border-border bg-surface p-6 shadow-sm sm:p-8">
         <h1 className="font-display text-2xl font-semibold text-fg">Admin sign in</h1>
         <p className="mt-2 text-sm text-fg-muted">
-          Manage posts for The Ten Talents Initiative.
+          Manage posts, records, and live site code.
         </p>
 
         {!configured && (

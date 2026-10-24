@@ -1,4 +1,4 @@
-import { useCallback, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { EditorContent, NodeViewWrapper, ReactNodeViewRenderer, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Link from "@tiptap/extension-link";
@@ -127,9 +127,21 @@ const EditorEmbed = Node.create({
   draggable: true,
   addAttributes() {
     return {
-      provider: { default: "youtube" },
-      url: { default: "" },
-      embedUrl: { default: "" },
+      provider: {
+        default: "youtube",
+        parseHTML: (element) => element.getAttribute("data-provider"),
+        renderHTML: (attributes) => ({ "data-provider": attributes.provider }),
+      },
+      url: {
+        default: "",
+        parseHTML: (element) => element.getAttribute("data-url"),
+        renderHTML: (attributes) => ({ "data-url": attributes.url }),
+      },
+      embedUrl: {
+        default: "",
+        parseHTML: (element) => element.getAttribute("data-embed-url"),
+        renderHTML: (attributes) => ({ "data-embed-url": attributes.embedUrl }),
+      },
     };
   },
   parseHTML() {
@@ -183,6 +195,12 @@ export default function PostRichEditor({
 }) {
   const imageInputRef = useRef(null);
   const videoInputRef = useRef(null);
+  const rootRef = useRef(null);
+  const modeRef = useRef("visual");
+  const codeRef = useRef("");
+  const editorRef = useRef(null);
+  const [mode, setMode] = useState("visual");
+  const [codeDraft, setCodeDraft] = useState("");
 
   const editor = useEditor({
     immediatelyRender: false,
@@ -212,6 +230,58 @@ export default function PostRichEditor({
       onChange?.(tipTapDocToBlocks(ed.getJSON()));
     },
   });
+
+  editorRef.current = editor;
+
+  useEffect(() => {
+    if (!editor) return undefined;
+    const form = rootRef.current?.closest("form");
+    if (!form) return undefined;
+
+    function onSubmitCapture() {
+      const current = editorRef.current;
+      if (!current || modeRef.current !== "code") return;
+      try {
+        current.commands.setContent(codeRef.current, { emitUpdate: true });
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    form.addEventListener("submit", onSubmitCapture, true);
+    return () => form.removeEventListener("submit", onSubmitCapture, true);
+  }, [editor]);
+
+  function switchMode(next) {
+    if (!editor || next === modeRef.current) return;
+    if (next === "code") {
+      const html = editor.getHTML();
+      codeRef.current = html;
+      setCodeDraft(html);
+    } else {
+      editor.commands.setContent(codeRef.current, { emitUpdate: true });
+    }
+    modeRef.current = next;
+    setMode(next);
+  }
+
+  function updateCode(value) {
+    codeRef.current = value;
+    setCodeDraft(value);
+  }
+
+  function onCodeKeyDown(event) {
+    if (event.key !== "Tab") return;
+    event.preventDefault();
+    const el = event.currentTarget;
+    const start = el.selectionStart;
+    const end = el.selectionEnd;
+    const next = `${codeDraft.slice(0, start)}  ${codeDraft.slice(end)}`;
+    updateCode(next);
+    requestAnimationFrame(() => {
+      el.selectionStart = el.selectionEnd = start + 2;
+    });
+  }
 
   const setUploading = useCallback(
     (value) => onUploadingChange?.(value),
@@ -281,9 +351,17 @@ export default function PostRichEditor({
     return <p className="text-sm text-fg-muted">Loading editor…</p>;
   }
 
+  const modeButtonClass = (active) =>
+    `rounded-md px-2.5 py-1 text-xs font-semibold ${
+      active ? "bg-accent/20 text-accent" : "text-fg-muted hover:text-fg"
+    }`;
+
   return (
+    <div ref={rootRef}>
     <div className="overflow-hidden rounded-xl border border-border bg-bg">
       <div className="flex flex-wrap items-center gap-1 border-b border-border-subtle bg-surface px-2 py-2">
+        {mode === "visual" && (
+          <>
         <ToolbarButton
           active={editor.isActive("bold")}
           onClick={() => editor.chain().focus().toggleBold().run()}
@@ -343,9 +421,41 @@ export default function PostRichEditor({
           Video
         </ToolbarButton>
         <ToolbarButton onClick={handleEmbed}>Embed</ToolbarButton>
+          </>
+        )}
+        <div className="ml-auto flex rounded-lg border border-border-subtle p-0.5">
+          <button
+            type="button"
+            onClick={() => switchMode("visual")}
+            className={modeButtonClass(mode === "visual")}
+          >
+            Visual
+          </button>
+          <button
+            type="button"
+            onClick={() => switchMode("code")}
+            className={modeButtonClass(mode === "code")}
+          >
+            Code
+          </button>
+        </div>
       </div>
 
-      <EditorContent editor={editor} />
+      <div className={mode === "visual" ? undefined : "hidden"}>
+        <EditorContent editor={editor} />
+      </div>
+      {mode === "code" && (
+        <textarea
+          value={codeDraft}
+          onChange={(event) => updateCode(event.target.value)}
+          onKeyDown={onCodeKeyDown}
+          spellCheck={false}
+          autoCapitalize="off"
+          autoCorrect="off"
+          aria-label="Post HTML"
+          className="min-h-[280px] w-full resize-y bg-bg px-4 py-3 font-mono text-[13px] leading-6 text-fg outline-none"
+        />
+      )}
 
       <input
         ref={imageInputRef}
@@ -361,6 +471,12 @@ export default function PostRichEditor({
         className="hidden"
         onChange={handleVideoFile}
       />
+    </div>
+    <p className="mt-2 text-xs text-fg-subtle">
+      {mode === "code"
+        ? "HTML source, like the Code tab in WordPress. Saving applies this markup."
+        : "Visual editor. Switch to Code to edit the HTML source."}
+    </p>
     </div>
   );
 }

@@ -26,6 +26,11 @@ class MockResizeObserver {
 
 global.ResizeObserver = MockResizeObserver;
 
+// CodeMirror measures text ranges. jsdom leaves getClientRects unimplemented.
+if (!Range.prototype.getClientRects) {
+  Range.prototype.getClientRects = () => [];
+}
+
 // jsdom does not implement matchMedia — stub for useTheme tests.
 Object.defineProperty(window, "matchMedia", {
   writable: true,

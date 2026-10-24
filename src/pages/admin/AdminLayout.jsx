@@ -1,14 +1,17 @@
-import { Link, NavLink, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth.js";
 
 export default function AdminLayout() {
   const { user, signOut } = useAuth();
+  const { pathname } = useLocation();
+  const wide = pathname.startsWith("/admin/code");
+  const shell = wide ? "max-w-[1400px]" : "max-w-5xl";
 
   return (
     <div className="min-h-screen bg-bg text-fg">
       <header className="border-b border-border bg-surface-nav">
-        <div className="mx-auto flex max-w-5xl items-center justify-between gap-4 px-5 py-4 sm:px-8">
-          <div className="flex items-center gap-6">
+        <div className={`mx-auto flex ${shell} flex-wrap items-center justify-between gap-4 px-5 py-4 sm:px-8`}>
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
             <Link to="/admin" className="font-display text-lg font-semibold text-fg">
               Admin
             </Link>
@@ -29,6 +32,14 @@ export default function AdminLayout() {
             >
               Records
             </NavLink>
+            <NavLink
+              to="/admin/code"
+              className={({ isActive }) =>
+                `text-sm font-medium ${isActive ? "text-accent" : "text-fg-muted hover:text-fg"}`
+              }
+            >
+              Code
+            </NavLink>
             <Link to="/" className="text-sm text-fg-muted hover:text-fg">
               View site
             </Link>
@@ -45,7 +56,7 @@ export default function AdminLayout() {
           </div>
         </div>
       </header>
-      <main className="mx-auto max-w-5xl px-5 py-8 sm:px-8">
+      <main className={`mx-auto ${shell} px-5 py-8 sm:px-8`}>
         <Outlet />
       </main>
     </div>

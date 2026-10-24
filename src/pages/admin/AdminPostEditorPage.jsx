@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import PostRichEditor from "../../components/admin/PostRichEditor.jsx";
 import {
@@ -47,7 +47,8 @@ export default function AdminPostEditorPage() {
   const navigate = useNavigate();
 
   const [form, setForm] = useState(emptyForm);
-  const [slugTouched, setSlugTouched] = useState(false);
+  const formRef = useRef(emptyForm);
+  const slugTouchedRef = useRef(false);
   const [loading, setLoading] = useState(!isNew);
   const [saving, setSaving] = useState(false);
   const [uploading, setUploading] = useState(false);
@@ -69,7 +70,7 @@ export default function AdminPostEditorPage() {
           setError("Post not found.");
           return;
         }
-        setForm({
+        const loaded = {
           title: post.title || "",
           slug: post.slug || "",
           date: post.date || emptyForm.date,
@@ -81,8 +82,10 @@ export default function AdminPostEditorPage() {
           status: post.status || "draft",
           publish_at: toDatetimeLocalValue(post.publish_at),
           blocks: Array.isArray(post.blocks) ? post.blocks : [],
-        });
-        setSlugTouched(true);
+        };
+        formRef.current = loaded;
+        slugTouchedRef.current = true;
+        setForm(loaded);
         setEditorReady(true);
       })
       .catch((err) => {
@@ -98,13 +101,13 @@ export default function AdminPostEditorPage() {
   }, [id, isNew]);
 
   function setField(key, value) {
-    setForm((prev) => {
-      const next = { ...prev, [key]: value };
-      if (key === "title" && !slugTouched) {
-        next.slug = slugifyTitle(value);
-      }
-      return next;
-    });
+    const prev = formRef.current;
+    const next = { ...prev, [key]: value };
+    if (key === "title" && !slugTouchedRef.current) {
+      next.slug = slugifyTitle(value);
+    }
+    formRef.current = next;
+    setForm(next);
   }
 
   async function handleSubmit(event) {
@@ -113,28 +116,29 @@ export default function AdminPostEditorPage() {
     setError("");
 
     try {
+      const current = formRef.current;
       const publishFields = normalizePublishFields({
-        status: form.status,
+        status: current.status,
         publish_at:
-          form.status === "scheduled"
-            ? fromDatetimeLocalValue(form.publish_at)
-            : form.publish_at
-              ? fromDatetimeLocalValue(form.publish_at)
+          current.status === "scheduled"
+            ? fromDatetimeLocalValue(current.publish_at)
+            : current.publish_at
+              ? fromDatetimeLocalValue(current.publish_at)
               : null,
       });
 
-      const blocks = form.blocks?.length ? form.blocks : null;
+      const blocks = current.blocks?.length ? current.blocks : null;
       const plain = blocksToPlainContent(blocks);
       const hasMedia = (blocks || []).some((b) =>
         ["image", "video", "embed"].includes(b?.type)
       );
       const payload = {
-        title: form.title.trim(),
-        slug: form.slug.trim() || slugifyTitle(form.title),
-        date: form.date,
-        category: form.category.trim() || DEFAULT_POST_CATEGORY,
-        excerpt: form.excerpt.trim(),
-        content: plain || form.excerpt.trim(),
+        title: current.title.trim(),
+        slug: current.slug.trim() || slugifyTitle(current.title),
+        date: current.date,
+        category: current.category.trim() || DEFAULT_POST_CATEGORY,
+        excerpt: current.excerpt.trim(),
+        content: plain || current.excerpt.trim(),
         status: publishFields.status,
         publish_at: publishFields.publish_at,
         blocks,
@@ -170,7 +174,7 @@ export default function AdminPostEditorPage() {
             {isNew ? "New post" : "Edit post"}
           </h1>
           <p className="mt-1 text-sm text-fg-muted">
-            Visual editor with images, uploaded video, and YouTube/Vimeo embeds.
+            Visual or HTML editor, with images, uploaded video, and YouTube/Vimeo embeds.
             Schedule publish date and time when ready.
           </p>
         </div>
@@ -206,7 +210,7 @@ export default function AdminPostEditorPage() {
               required
               value={form.slug}
               onChange={(e) => {
-                setSlugTouched(true);
+                slugTouchedRef.current = true;
                 setField("slug", e.target.value);
               }}
               className="mt-2 w-full rounded-xl border border-border bg-bg px-4 py-3 text-sm text-fg outline-none ring-ring focus:ring-2"

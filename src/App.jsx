@@ -29,6 +29,9 @@ import TTalentsRecordsPage from "./pages/TTalentsRecordsPage.jsx";
 const AdminPostEditorPage = lazy(
   () => import("./pages/admin/AdminPostEditorPage.jsx")
 );
+const AdminCodeEditorPage = lazy(
+  () => import("./pages/admin/AdminCodeEditorPage.jsx")
+);
 
 function PlaceholderRoute({ titleKey }) {
   const { t } = useTranslation();
@@ -65,6 +68,14 @@ export default function App() {
           <Route path="tracks" element={<AdminTracksPage />} />
           <Route path="tracks/new" element={<AdminTrackEditorPage />} />
           <Route path="tracks/:id" element={<AdminTrackEditorPage />} />
+          <Route
+            path="code"
+            element={
+              <Suspense fallback={<AdminEditorFallback />}>
+                <AdminCodeEditorPage />
+              </Suspense>
+            }
+          />
         </Route>
       </Route>
 
