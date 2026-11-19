@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import FacebookPageEmbed from "../components/FacebookPageEmbed.jsx";
+import HeroPhotoBackground from "../components/HeroPhotoBackground.jsx";
 import Reveal from "../components/Reveal.jsx";
 import { usePublishedPosts } from "../hooks/usePosts.js";
 
@@ -28,14 +29,13 @@ export default function HomePage() {
 
   return (
     <>
-      <section id="top" className="relative overflow-hidden pt-page-top pb-20 sm:pb-28">
-        <div className="pointer-events-none absolute inset-0 -z-10">
-          <div className="glow-primary absolute left-1/2 top-[-10%] h-[520px] w-[520px] -translate-x-1/2 rounded-full blur-[120px] animate-float-slow" />
-          <div className="glow-accent absolute right-[8%] top-[20%] h-[340px] w-[340px] rounded-full blur-[110px] animate-float-slower" />
-          <div className="bg-grid absolute inset-0" />
-        </div>
+      <section
+        id="top"
+        className="hero-on-photo relative min-h-[min(88vh,52rem)] overflow-hidden pt-page-top pb-24 sm:pb-32"
+      >
+        <HeroPhotoBackground />
 
-        <div className="mx-auto max-w-6xl px-5 text-center sm:px-8">
+        <div className="relative mx-auto flex max-w-6xl flex-col justify-center px-5 text-center sm:px-8">
           <Reveal className="mx-auto max-w-3xl">
             <blockquote className="relative px-2 sm:px-6">
               <p className="font-display text-xl font-medium leading-snug text-fg text-balance sm:text-2xl lg:text-[1.65rem]">
@@ -49,7 +49,7 @@ export default function HomePage() {
           <Reveal
             as="h1"
             delay={80}
-            className="mx-auto mt-10 max-w-4xl font-display text-4xl font-semibold leading-[1.05] tracking-tight text-balance sm:mt-12 sm:text-6xl lg:text-7xl"
+            className="mx-auto mt-10 max-w-4xl font-display text-4xl font-semibold leading-[1.05] tracking-tight text-balance drop-shadow-sm sm:mt-12 sm:text-6xl lg:text-7xl"
           >
             {t("hero.title")}
           </Reveal>

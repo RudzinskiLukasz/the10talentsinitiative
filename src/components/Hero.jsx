@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import HeroPhotoBackground from "./HeroPhotoBackground.jsx";
 import Reveal from "./Reveal.jsx";
 
 export default function Hero() {
@@ -7,15 +8,13 @@ export default function Hero() {
   const stats = t("stats", { returnObjects: true });
 
   return (
-    <section id="top" className="relative overflow-hidden pt-page-top pb-20 sm:pb-28">
-      <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="glow-primary absolute left-1/2 top-[-10%] h-[520px] w-[520px] -translate-x-1/2 rounded-full blur-[120px] animate-float-slow" />
-        <div className="glow-accent absolute right-[8%] top-[20%] h-[340px] w-[340px] rounded-full blur-[110px] animate-float-slower" />
-        <div className="glow-primary-soft absolute left-[6%] bottom-[-10%] h-[360px] w-[360px] rounded-full blur-[120px]" />
-        <div className="bg-grid absolute inset-0" />
-      </div>
+    <section
+      id="top"
+      className="hero-on-photo relative min-h-[min(88vh,52rem)] overflow-hidden pt-page-top pb-24 sm:pb-32"
+    >
+      <HeroPhotoBackground />
 
-      <div className="mx-auto max-w-6xl px-5 sm:px-8">
+      <div className="relative mx-auto max-w-6xl px-5 sm:px-8">
         <Reveal className="mx-auto max-w-3xl text-center">
           <blockquote className="relative px-2 sm:px-6">
             <p className="font-display text-xl font-medium leading-snug text-fg text-balance sm:text-2xl lg:text-[1.65rem]">
@@ -30,7 +29,7 @@ export default function Hero() {
         <Reveal
           as="h1"
           delay={80}
-          className="mx-auto mt-10 max-w-4xl text-center font-display text-4xl font-semibold leading-[1.05] tracking-tight text-balance sm:mt-12 sm:text-6xl lg:text-7xl"
+          className="mx-auto mt-10 max-w-4xl text-center font-display text-4xl font-semibold leading-[1.05] tracking-tight text-balance drop-shadow-sm sm:mt-12 sm:text-6xl lg:text-7xl"
         >
           {t("hero.title")}
         </Reveal>
@@ -66,7 +65,7 @@ export default function Hero() {
           </Link>
           <a
             href={t("hero.ctaSecondaryHref")}
-            className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-border-strong bg-surface px-7 py-3.5 text-sm font-semibold text-fg transition hover:bg-surface-hover sm:w-auto"
+            className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/35 bg-white/10 px-7 py-3.5 text-sm font-semibold text-white backdrop-blur-sm transition hover:bg-white/18 sm:w-auto"
           >
             {t("hero.ctaSecondary")}
           </a>

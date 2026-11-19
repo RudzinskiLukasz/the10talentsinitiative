@@ -641,6 +641,101 @@
   animation: float-slower 17s ease-in-out infinite;
 }
 
+/* Full-bleed hero photo slideshow */
+.hero-photo-slide {
+  opacity: 0;
+  transition-property: opacity;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: opacity;
+}
+
+.hero-photo-slide.is-active {
+  opacity: 1;
+  z-index: 1;
+}
+
+.hero-photo-slide.motion-static {
+  transition: none;
+}
+
+.hero-photo-img {
+  transform: scale(1.04);
+  transform-origin: center center;
+}
+
+.hero-photo-slide.is-active:not(.motion-static) .hero-photo-img {
+  animation: hero-ken-burns 7.2s ease-out forwards;
+}
+
+@keyframes hero-ken-burns {
+  from {
+    transform: scale(1.04);
+  }
+  to {
+    transform: scale(1.12);
+  }
+}
+
+.hero-photo-scrim {
+  z-index: 2;
+  background:
+    radial-gradient(
+      ellipse 80% 70% at 50% 42%,
+      rgba(8, 4, 18, 0.35) 0%,
+      rgba(8, 4, 18, 0.62) 55%,
+      rgba(8, 4, 18, 0.78) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(8, 4, 18, 0.45) 0%,
+      rgba(8, 4, 18, 0.28) 40%,
+      rgba(8, 4, 18, 0.72) 100%
+    );
+}
+
+.hero-photo-fade {
+  z-index: 3;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    var(--color-bg) 100%
+  );
+}
+
+.hero-photo-dots {
+  z-index: 4;
+}
+
+/* Light typography over photo heroes (independent of theme) */
+.hero-on-photo {
+  color: #f7f4ef;
+}
+
+.hero-on-photo .text-fg {
+  color: #f7f4ef;
+}
+
+.hero-on-photo .text-fg-muted {
+  color: rgba(247, 244, 239, 0.82);
+}
+
+.hero-on-photo .text-fg-subtle {
+  color: rgba(247, 244, 239, 0.62);
+}
+
+.hero-on-photo .text-gradient-gold {
+  background: linear-gradient(120deg, #f6c64b, #e8a84a);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-photo-slide.is-active:not(.motion-static) .hero-photo-img {
+    animation: none;
+  }
+}
+
 /* TipTap admin editor */
 .post-rich-editor.ProseMirror {
   min-height: 280px;
