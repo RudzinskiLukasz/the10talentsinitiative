@@ -5,12 +5,14 @@ const INTERVAL_MS = 6500;
 const FADE_MS = 1400;
 
 /**
- * Full-bleed photo slideshow for hero sections.
+ * Full-bleed photo slideshow for heroes and page headers.
  * Crossfades with a subtle Ken Burns zoom; respects reduced motion.
  */
 export default function HeroPhotoBackground({
   images = HERO_BACKGROUNDS,
   intervalMs = INTERVAL_MS,
+  showDots = true,
+  showFade = true,
   className = "",
 }) {
   const [index, setIndex] = useState(0);
@@ -63,19 +65,18 @@ export default function HeroPhotoBackground({
         );
       })}
 
-      {/* Readability: deep vignette + bottom fade into page bg */}
       <div className="hero-photo-scrim absolute inset-0" />
-      <div className="hero-photo-fade absolute inset-x-0 bottom-0 h-1/3" />
+      {showFade ? (
+        <div className="hero-photo-fade absolute inset-x-0 bottom-0 h-1/3" />
+      ) : null}
 
-      {!reduceMotion && images.length > 1 ? (
+      {showDots && !reduceMotion && images.length > 1 ? (
         <div className="hero-photo-dots absolute bottom-5 left-1/2 z-[1] flex -translate-x-1/2 gap-1.5 sm:bottom-7">
           {images.map((image, i) => (
             <span
               key={image.src}
               className={`h-1 rounded-full transition-all duration-500 ${
-                i === index
-                  ? "w-5 bg-white/90"
-                  : "w-1.5 bg-white/35"
+                i === index ? "w-5 bg-white/90" : "w-1.5 bg-white/35"
               }`}
             />
           ))}

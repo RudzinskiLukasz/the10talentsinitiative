@@ -1,13 +1,14 @@
+import HeroPhotoBackground from "./HeroPhotoBackground.jsx";
 import Reveal from "./Reveal.jsx";
 
 export default function PageHeader({ eyebrow, title, description, className = "" }) {
   return (
-    <section className={`relative overflow-hidden pt-page-top pb-12 sm:pb-16 ${className}`}>
-      <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="glow-primary absolute left-1/2 top-[-20%] h-[420px] w-[420px] -translate-x-1/2 rounded-full blur-[120px] opacity-70" />
-        <div className="bg-grid absolute inset-0" />
-      </div>
-      <div className="mx-auto max-w-4xl px-5 text-center sm:px-8">
+    <section
+      className={`hero-on-photo relative min-h-[min(48vh,26rem)] overflow-hidden pt-page-top pb-16 sm:min-h-[min(52vh,30rem)] sm:pb-20 ${className}`}
+    >
+      <HeroPhotoBackground showDots={false} />
+
+      <div className="relative mx-auto flex max-w-4xl flex-col justify-center px-5 text-center sm:px-8">
         {eyebrow && (
           <Reveal
             as="span"
@@ -19,7 +20,7 @@ export default function PageHeader({ eyebrow, title, description, className = ""
         <Reveal
           as="h1"
           delay={60}
-          className="mt-4 font-display text-3xl font-semibold leading-tight tracking-tight text-balance sm:text-5xl"
+          className="mt-4 font-display text-3xl font-semibold leading-tight tracking-tight text-balance drop-shadow-sm sm:text-5xl"
         >
           {title}
         </Reveal>

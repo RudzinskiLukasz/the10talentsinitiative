@@ -60,12 +60,12 @@ export default function HomePage() {
           >
             {t("hero.description")}
           </Reveal>
-          <Reveal delay={200} className="mt-9">
+          <Reveal delay={200} className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Link
-              to={homePage.discoverMoreHref}
+              to="/account/register"
               className="group inline-flex items-center justify-center gap-2 rounded-full bg-cta px-7 py-3.5 text-sm font-bold text-on-cta shadow-xl shadow-cta/25 transition hover:bg-cta-hover"
             >
-              {t("common.discoverMore")}
+              {t("account.createAccount")}
               <svg
                 viewBox="0 0 24 24"
                 className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
@@ -77,6 +77,12 @@ export default function HomePage() {
               >
                 <path d="M5 12h14M13 6l6 6-6 6" />
               </svg>
+            </Link>
+            <Link
+              to={homePage.discoverMoreHref}
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-white/35 bg-white/10 px-7 py-3.5 text-sm font-semibold text-white backdrop-blur-sm transition hover:bg-white/18"
+            >
+              {t("common.discoverMore")}
             </Link>
           </Reveal>
         </div>

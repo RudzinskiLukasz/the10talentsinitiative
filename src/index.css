@@ -730,6 +730,10 @@
   color: transparent;
 }
 
+.hero-on-photo .text-accent {
+  color: #f0c85a;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .hero-photo-slide.is-active:not(.motion-static) .hero-photo-img {
     animation: none;
