@@ -221,10 +221,69 @@
     }
   ],
   "join": {
-    "title": "Ignite Your Journey with Ten Talents Now",
-    "body": "Join us to discover how your unique gifts can flourish through faith, mentorship, and community support. Embrace the path to growth and spiritual empowerment today.",
-    "cta": "Discover Our Programs",
-    "ctaHref": "/programs"
+    "title": "Rozpocznij drogę z Ten Talents",
+    "body": "Załóż darmowe konto i rozwijaj się z naszą wspólnotą — to samo logowanie otworzy później CAST. Razem programy, wydarzenia i wiara.",
+    "cta": "Załóż darmowe konto",
+    "ctaHref": "/account/register",
+    "secondaryCta": "Poznaj nasze programy",
+    "secondaryHref": "/programs"
+  },
+  "account": {
+    "navSignIn": "Zaloguj się",
+    "navAccount": "Konto",
+    "pageTitle": "Twoje konto",
+    "loginTitle": "Witaj ponownie",
+    "loginBody": "Zaloguj się na konto Ten Talents. Te same dane zadziałają w CAST, gdy wystartuje.",
+    "registerTitle": "Załóż konto",
+    "registerBody": "Jedno konto dla The Ten Talents Initiative — przygotowane do współdzielenia z CAST.",
+    "displayName": "Nazwa wyświetlana",
+    "password": "Hasło",
+    "confirmPassword": "Potwierdź hasło",
+    "signIn": "Zaloguj się",
+    "signingIn": "Logowanie…",
+    "createAccount": "Załóż konto",
+    "creatingAccount": "Tworzenie konta…",
+    "createOne": "Załóż je",
+    "noAccount": "Nie masz jeszcze konta?",
+    "haveAccount": "Masz już konto?",
+    "goToAccount": "Przejdź do konta",
+    "signedInAs": "Zalogowano jako",
+    "adminBadge": "Dostęp administratora",
+    "openAdmin": "Otwórz panel admina",
+    "save": "Zapisz zmiany",
+    "saving": "Zapisywanie…",
+    "saved": "Profil zaktualizowany.",
+    "signOut": "Wyloguj",
+    "loading": "Ładowanie konta…",
+    "checkEmail": "Sprawdź skrzynkę i potwierdź adres e-mail, potem się zaloguj.",
+    "notConfigured": "Konta są jeszcze niedostępne. Wymagana konfiguracja Supabase.",
+    "sharedTitle": "Wspólna tożsamość",
+    "sharedBody": "Logowanie Ten Talents to ta sama tożsamość, której użyje CAST. Otwórz CAST, żeby kontynuować bez ponownego logowania.",
+    "openCast": "Przejdź do CAST",
+    "openingCast": "Otwieranie CAST…",
+    "signInForCast": "Zaloguj się, by otworzyć CAST",
+    "castComingSoon": "Handoff do CAST pojawi się tu po ustawieniu VITE_CAST_APP_URL.",
+    "completingSignIn": "Kończenie logowania…",
+    "apps": {
+      "ten_talents": "The Ten Talents Initiative",
+      "cast": "CAST"
+    },
+    "errors": {
+      "signInFailed": "Logowanie nie powiodło się.",
+      "signUpFailed": "Nie udało się utworzyć konta.",
+      "passwordTooShort": "Hasło musi mieć co najmniej {{min}} znaków.",
+      "passwordMismatch": "Hasła nie są takie same.",
+      "saveFailed": "Nie udało się zapisać profilu.",
+      "signOutFailed": "Nie udało się wylogować.",
+      "castFailed": "Nie udało się otworzyć CAST."
+    }
+  },
+  "forum": {
+    "intro": "Catholic Singles Forum staje się przestrzenią wiary dla przyjaźni, rozeznawania powołania i wspólnoty — w duchu misji The Ten Talents Initiative.",
+    "castTitle": "Wspólne z CAST",
+    "castBody": "CAST pogłębia to doświadczenie. To samo konto Ten Talents — „Przejdź do CAST” przenosi sesję, bez drugiego logowania.",
+    "ctaTitle": "Jedno konto, obie aplikacje",
+    "ctaBody": "Załóż konto lub zaloguj się tutaj, potem przejdź do CAST gdy będzie dostępny. Powrót z CAST ląduje na /auth/callback."
   },
   "homePage": {
     "hero": "Uniting FAITH, TALENTS and SKILLS to inspire the next generation of Catholic youths who are vibrant and at home.",

@@ -96,19 +96,26 @@ The public site stays a **Render Static Site**. Content lives in **Supabase** (P
    - [`supabase/migrations/001_posts.sql`](supabase/migrations/001_posts.sql)
    - [`supabase/migrations/002_tracks.sql`](supabase/migrations/002_tracks.sql) (T-Talents Records music)
    - [`supabase/migrations/003_post_scheduling_and_video.sql`](supabase/migrations/003_post_scheduling_and_video.sql) (scheduled posts + video uploads)
-3. **Authentication → Users → Add user** — create 1–2 admin emails (password sign-in).
+   - [`supabase/migrations/004_site_files.sql`](supabase/migrations/004_site_files.sql) (theme file editor)
+   - [`supabase/migrations/005_profiles_and_member_auth.sql`](supabase/migrations/005_profiles_and_member_auth.sql) (**required** before public sign-up — profiles + admin-only CMS writes)
+   - [`supabase/migrations/006_cast_app_link.sql`](supabase/migrations/006_cast_app_link.sql) (optional CAST `apps` link RPC)
+3. **Authentication → Users → Add user** — create 1–2 admin emails (password sign-in). After migration `005`, existing users are backfilled as `role = 'admin'`. New public sign-ups become `member`.
 4. Copy **Project URL** and **anon public** key into `.env` (see `.env.example`):
    - `VITE_SUPABASE_URL`
    - `VITE_SUPABASE_ANON_KEY`
-5. On Render → Environment, add the same two `VITE_*` variables and redeploy.
+   - optional `VITE_CAST_APP_URL` (CAST origin for SSO handoff)
+5. On Render → Environment, add the same `VITE_*` variables and redeploy.
 6. Optional one-time import of the existing static posts:
    ```bash
    # add SUPABASE_SERVICE_ROLE_KEY to .env (never commit; never put in Vite/Render client env)
    npm run seed:posts
    ```
-7. Open `/admin`, sign in:
+7. Public accounts: `/account/register` and `/account/login` (nav **Sign in**). Profiles store `apps` (starts with `ten_talents`).
+8. **CAST SSO:** with `VITE_CAST_APP_URL` set, **Continue to CAST** sends the Supabase session to `{CAST}/auth/callback#access_token=…&refresh_token=…`. CAST must use the **same** Supabase project and `detectSessionInUrl: true` (or `setSession`). Return trips land on this app’s `/auth/callback`.
+9. Open `/admin`, sign in with an **admin** profile:
    - **Posts** — create/edit articles with a TipTap visual editor (images, uploaded video, YouTube/Vimeo embeds). Statuses: `draft`, `published`, or `scheduled` (with publish date/time). Scheduled posts appear on the public site once `publish_at` is reached (RLS + client filter; no Edge Function).
    - **Records** (`/admin/tracks`) — upload songs for T-Talents Records (visitors download on `/t-talents-records`)
+   - Promote a member later: `update public.profiles set role = 'admin' where id = '<user-uuid>';`
 
 Without Supabase env vars the app still builds and serves the committed `posts.js` snapshot (CI-friendly). Records stays empty until tracks are published in admin.
 

@@ -23,7 +23,7 @@ export default function Join() {
 
           <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Link
-              to={t("join.ctaHref")}
+              to="/account/register"
               className="group inline-flex w-full items-center justify-center gap-2 rounded-full bg-gold-500 px-8 py-4 text-sm font-bold text-night-950 shadow-xl shadow-gold-500/25 transition hover:bg-gold-400 sm:w-auto"
             >
               {t("join.cta")}
@@ -40,10 +40,10 @@ export default function Join() {
               </svg>
             </Link>
             <Link
-              to="/contact"
+              to={t("join.secondaryHref")}
               className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-8 py-4 text-sm font-semibold text-cream transition hover:bg-white/10 sm:w-auto"
             >
-              {t("common.contactUs")}
+              {t("join.secondaryCta")}
             </Link>
           </div>
         </div>

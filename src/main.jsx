@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import { registerSW } from "virtual:pwa-register";
 import App from "./App.jsx";
+import { AuthProvider } from "./hooks/useAuth.jsx";
 import { applySpaEntryNormalize } from "./lib/normalizeSpaEntry.js";
 import "./i18n/index.js";
 import "./index.css";
@@ -36,7 +37,9 @@ if ("serviceWorker" in navigator) {
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
-      <App />
+      <AuthProvider>
+        <App />
+      </AuthProvider>
     </BrowserRouter>
   </StrictMode>
 );

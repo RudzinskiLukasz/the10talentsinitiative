@@ -1,8 +1,6 @@
 import { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
-import { useTranslation } from "react-i18next";
 import Layout from "./layouts/Layout.jsx";
-import PlaceholderPage from "./components/PlaceholderPage.jsx";
 import AdminRoute from "./components/admin/AdminRoute.jsx";
 import HomePage from "./pages/HomePage.jsx";
 import ProgramsPage from "./pages/ProgramsPage.jsx";
@@ -19,6 +17,11 @@ import DonorDashboardPage from "./pages/DonorDashboardPage.jsx";
 import DonationFailedPage from "./pages/DonationFailedPage.jsx";
 import DonationConfirmationPage from "./pages/DonationConfirmationPage.jsx";
 import DonationsPage from "./pages/DonationsPage.jsx";
+import AccountLoginPage from "./pages/account/AccountLoginPage.jsx";
+import AccountRegisterPage from "./pages/account/AccountRegisterPage.jsx";
+import AccountPage from "./pages/account/AccountPage.jsx";
+import AuthCallbackPage from "./pages/AuthCallbackPage.jsx";
+import CatholicSinglesForumPage from "./pages/CatholicSinglesForumPage.jsx";
 import AdminLoginPage from "./pages/admin/AdminLoginPage.jsx";
 import AdminLayout from "./pages/admin/AdminLayout.jsx";
 import AdminPostsPage from "./pages/admin/AdminPostsPage.jsx";
@@ -32,11 +35,6 @@ const AdminPostEditorPage = lazy(
 const AdminCodeEditorPage = lazy(
   () => import("./pages/admin/AdminCodeEditorPage.jsx")
 );
-
-function PlaceholderRoute({ titleKey }) {
-  const { t } = useTranslation();
-  return <PlaceholderPage title={t(titleKey)} />;
-}
 
 function AdminEditorFallback() {
   return <p className="text-sm text-fg-muted">Loading editor…</p>;
@@ -99,10 +97,7 @@ export default function App() {
           path="t-talents-sports"
           element={<CategoryPostsPage categoryId="t-talents-sports" />}
         />
-        <Route
-          path="catholic-singles-forum"
-          element={<PlaceholderRoute titleKey="secondaryNav.catholicSinglesForum" />}
-        />
+        <Route path="catholic-singles-forum" element={<CatholicSinglesForumPage />} />
         <Route path="donations" element={<DonationsPage />} />
         <Route path="upcoming-programs" element={<UpcomingProgramsPage />} />
         <Route path="privacy-policy" element={<PrivacyPolicyPage />} />
@@ -110,6 +105,10 @@ export default function App() {
         <Route path="donor-dashboard" element={<DonorDashboardPage />} />
         <Route path="donation-failed" element={<DonationFailedPage />} />
         <Route path="donation-confirmation" element={<DonationConfirmationPage />} />
+        <Route path="account" element={<AccountPage />} />
+        <Route path="account/login" element={<AccountLoginPage />} />
+        <Route path="account/register" element={<AccountRegisterPage />} />
+        <Route path="auth/callback" element={<AuthCallbackPage />} />
         <Route path=":slug" element={<BlogPostPage />} />
       </Route>
     </Routes>

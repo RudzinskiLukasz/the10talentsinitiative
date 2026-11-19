@@ -222,9 +222,11 @@
   ],
   "join": {
     "title": "Starten Sie jetzt Ihre Reise mit Ten Talents",
-    "body": "Join us to discover how your unique gifts can flourish through faith, mentorship, and community support. Embrace the path to growth and spiritual empowerment today.",
-    "cta": "Unsere Programme entdecken",
-    "ctaHref": "/programs"
+    "body": "Create a free account to grow with our community — the same login will later open CAST. Explore programs, events, and faith-filled opportunities together.",
+    "cta": "Create free account",
+    "ctaHref": "/account/register",
+    "secondaryCta": "Unsere Programme entdecken",
+    "secondaryHref": "/programs"
   },
   "homePage": {
     "hero": "Glauben, Talente und Fähigkeiten vereinen, um die nächste Generation lebendiger katholischer Jugendlicher zu inspirieren.",

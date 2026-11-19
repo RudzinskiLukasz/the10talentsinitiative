@@ -222,9 +222,11 @@
   ],
   "join": {
     "title": "Ignite Your Journey with Ten Talents Now",
-    "body": "Join us to discover how your unique gifts can flourish through faith, mentorship, and community support. Embrace the path to growth and spiritual empowerment today.",
-    "cta": "Discover Our Programs",
-    "ctaHref": "/programs"
+    "body": "Create a free account to grow with our community — the same login will later open CAST. Explore programs, events, and faith-filled opportunities together.",
+    "cta": "Create free account",
+    "ctaHref": "/account/register",
+    "secondaryCta": "Discover Our Programs",
+    "secondaryHref": "/programs"
   },
   "homePage": {
     "hero": "Uniting FAITH, TALENTS and SKILLS to inspire the next generation of Catholic youths who are vibrant and at home.",

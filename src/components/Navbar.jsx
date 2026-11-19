@@ -6,6 +6,7 @@ import SearchBar from "./SearchBar.jsx";
 import ThemeToggle from "./ThemeToggle.jsx";
 import LanguageSelector from "./LanguageSelector.jsx";
 import { useTheme } from "../hooks/useTheme.js";
+import { useAuth } from "../hooks/useAuth.jsx";
 import { useMainNav, useSecondaryNav } from "../i18n/nav.js";
 
 function NavLink({ item, onClick, className = "", activeClassName = "", mobile = false }) {
@@ -41,6 +42,9 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
+  const { user } = useAuth();
+  const accountHref = user ? "/account" : "/account/login";
+  const accountLabel = user ? t("account.navAccount") : t("account.navSignIn");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 16);
@@ -98,6 +102,12 @@ export default function Navbar() {
 
           <div className="ml-auto flex shrink-0 flex-nowrap items-center gap-1.5 sm:gap-2">
             <SearchBar className="lg:hidden" compact />
+            <Link
+              to={accountHref}
+              className="hidden rounded-full border border-border bg-surface px-3 py-1.5 text-xs font-semibold text-fg transition hover:bg-surface-hover sm:inline-flex xl:px-3.5 xl:text-sm"
+            >
+              {accountLabel}
+            </Link>
             <LanguageSelector
               compact
               className="hidden w-36 lg:block xl:w-44"
@@ -187,6 +197,13 @@ export default function Navbar() {
           </div>
 
           <div className="mt-4 flex flex-col gap-3 border-t border-border-subtle pt-4">
+            <Link
+              to={accountHref}
+              onClick={() => setOpen(false)}
+              className="rounded-xl bg-cta px-4 py-3 text-center text-sm font-bold text-on-cta transition hover:bg-cta-hover"
+            >
+              {accountLabel}
+            </Link>
             <div className="flex items-center gap-3 px-1">
               <LanguageSelector compact className="flex-1" />
               <ThemeToggle theme={theme} onToggle={toggleTheme} />

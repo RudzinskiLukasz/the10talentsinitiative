@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
-import { useAuth } from "../../hooks/useAuth.js";
+import { useAuth } from "../../hooks/useAuth.jsx";
 
 export default function AdminLoginPage() {
-  const { user, loading, configured, signIn } = useAuth();
+  const { user, loading, configured, signIn, isAdmin, signOut } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const [email, setEmail] = useState("");
@@ -13,8 +13,12 @@ export default function AdminLoginPage() {
 
   const from = location.state?.from?.pathname || "/admin";
 
-  if (!loading && user) {
-    return <Navigate to={from} replace />;
+  if (!loading && user && isAdmin) {
+    return <Navigate to={from.startsWith("/admin") ? from : "/admin"} replace />;
+  }
+
+  if (!loading && user && !isAdmin) {
+    return <Navigate to="/account" replace />;
   }
 
   async function handleSubmit(event) {
@@ -22,8 +26,13 @@ export default function AdminLoginPage() {
     setError("");
     setSubmitting(true);
     try {
-      await signIn(email.trim(), password);
-      navigate(from, { replace: true });
+      const result = await signIn(email.trim(), password);
+      if (result.profile?.role !== "admin") {
+        await signOut();
+        setError("This account is not an admin. Use Account sign-in instead.");
+        return;
+      }
+      navigate(from.startsWith("/admin") ? from : "/admin", { replace: true });
     } catch (err) {
       setError(err.message || "Sign-in failed.");
     } finally {
@@ -89,7 +98,13 @@ export default function AdminLoginPage() {
           </button>
         </form>
 
-        <Link to="/" className="mt-6 inline-flex text-sm text-primary-soft hover:text-accent">
+        <p className="mt-6 text-sm text-fg-muted">
+          Member account?{" "}
+          <Link to="/account/login" className="text-primary-soft hover:text-accent">
+            Sign in here
+          </Link>
+        </p>
+        <Link to="/" className="mt-3 inline-flex text-sm text-primary-soft hover:text-accent">
           ← Back to site
         </Link>
       </div>

@@ -67,4 +67,12 @@ describe("Navbar", () => {
     expect(screen.getByRole("navigation", { name: "Main" })).toBeInTheDocument();
     expect(screen.getByRole("navigation", { name: "Secondary" })).toBeInTheDocument();
   });
+
+  it("exposes an account sign-in link", () => {
+    renderNavbar();
+    expect(
+      screen.getAllByRole("link", { name: i18n.t("account.navSignIn") }).length
+    ).toBeGreaterThan(0);
+  });
 });
+

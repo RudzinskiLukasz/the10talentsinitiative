@@ -1,8 +1,8 @@
 import { Navigate, Outlet, useLocation } from "react-router-dom";
-import { useAuth } from "../../hooks/useAuth.js";
+import { useAuth } from "../../hooks/useAuth.jsx";
 
 export default function AdminRoute() {
-  const { user, loading, configured } = useAuth();
+  const { user, loading, configured, isAdmin } = useAuth();
   const location = useLocation();
 
   if (!configured) {
@@ -19,6 +19,11 @@ export default function AdminRoute() {
 
   if (!user) {
     return <Navigate to="/admin/login" replace state={{ from: location }} />;
+  }
+
+  // Public member accounts must not reach the CMS.
+  if (!isAdmin) {
+    return <Navigate to="/account" replace />;
   }
 
   return <Outlet />;

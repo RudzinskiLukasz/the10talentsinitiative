@@ -1,13 +1,16 @@
 import { render } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import { I18nextProvider } from "react-i18next";
+import { AuthProvider } from "../hooks/useAuth.jsx";
 import i18n from "../i18n/index.js";
 
 export function renderWithI18n(ui, { route = "/", language = "en" } = {}) {
   i18n.changeLanguage(language);
   return render(
     <I18nextProvider i18n={i18n}>
-      <MemoryRouter initialEntries={[route]}>{ui}</MemoryRouter>
+      <MemoryRouter initialEntries={[route]}>
+        <AuthProvider>{ui}</AuthProvider>
+      </MemoryRouter>
     </I18nextProvider>
   );
 }

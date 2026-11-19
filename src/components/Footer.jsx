@@ -36,6 +36,12 @@ export default function Footer() {
               </Link>
             ))}
             <Link
+              to="/account/register"
+              className="text-sm text-fg-muted transition hover:text-accent"
+            >
+              {t("account.createAccount")}
+            </Link>
+            <Link
               to="/privacy-policy"
               className="text-sm text-fg-muted transition hover:text-accent"
             >
