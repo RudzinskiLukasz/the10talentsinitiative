@@ -51,11 +51,18 @@ export default function HomePage() {
             delay={80}
             className="mx-auto mt-10 max-w-4xl font-display text-4xl font-semibold leading-[1.05] tracking-tight text-balance drop-shadow-sm sm:mt-12 sm:text-6xl lg:text-7xl"
           >
+            {t("site.name")}
+          </Reveal>
+          <Reveal
+            as="p"
+            delay={120}
+            className="mx-auto mt-5 max-w-3xl font-display text-xl font-medium leading-snug text-fg text-balance sm:text-2xl lg:text-[1.65rem]"
+          >
             {t("hero.title")}
           </Reveal>
           <Reveal
             as="p"
-            delay={140}
+            delay={160}
             className="mx-auto mt-6 max-w-3xl text-base leading-relaxed text-fg-muted line-clamp-6 sm:line-clamp-none sm:text-lg"
           >
             {t("hero.description")}
