@@ -10,8 +10,8 @@ describe("Category and admin surfaces", () => {
     i18n.changeLanguage("en");
   });
 
-  it("lists the five post section tabs with Daily Reflections as default", () => {
-    expect(POST_CATEGORIES).toHaveLength(5);
+  it("lists the post section tabs with Daily Reflections as default", () => {
+    expect(POST_CATEGORIES).toHaveLength(8);
     expect(DEFAULT_POST_CATEGORY).toBe("Homilies/Reflections");
     expect(POST_CATEGORIES.filter((c) => c.isDefault)).toHaveLength(1);
     expect(POST_CATEGORIES.map((c) => c.href)).toEqual([
@@ -20,6 +20,9 @@ describe("Category and admin surfaces", () => {
       "/t-talents-studios",
       "/t-talents-series",
       "/t-talents-sports",
+      "/catholic-poets-collective",
+      "/catholic-composers",
+      "/tti-spirituality-unit",
     ]);
   });
 

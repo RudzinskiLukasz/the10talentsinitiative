@@ -31,6 +31,12 @@ describe("searchContent", () => {
     const match = results.find((r) => r.title === i18n.t("secondaryNav.tTalentsRecords"));
     expect(match).toBeDefined();
     expect(match.comingSoon).toBe(false);
+
+    const poets = searchContent("Catholic Poets").find(
+      (r) => r.title === i18n.t("secondaryNav.catholicPoetsCollective")
+    );
+    expect(poets).toBeDefined();
+    expect(poets.comingSoon).toBe(false);
   });
 
   it("returns coming soon for remaining placeholder secondary nav items", () => {

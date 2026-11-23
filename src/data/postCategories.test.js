@@ -22,4 +22,16 @@ describe("postCategories", () => {
       "/t-talents-sports"
     );
   });
+
+  it("maps newly added secondary section tabs", () => {
+    expect(getCategoryByHref("/catholic-poets-collective")?.value).toBe(
+      "Catholic Poets Collective"
+    );
+    expect(getCategoryByValue("Catholic Composers")?.href).toBe(
+      "/catholic-composers"
+    );
+    expect(getCategoryByHref("/tti-spirituality-unit")?.value).toBe(
+      "TTI Spirituality Unit"
+    );
+  });
 });

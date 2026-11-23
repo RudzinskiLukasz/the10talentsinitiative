@@ -85,8 +85,8 @@ export default function Navbar() {
       ref={headerRef}
       className={`fixed inset-x-0 top-0 z-50 overflow-visible transition-all duration-300 ${headerSurface}`}
     >
-      <div className="mx-auto max-w-6xl">
-        <div className="flex min-h-12 flex-nowrap items-center gap-2 px-5 sm:min-h-14 sm:gap-3 sm:px-8">
+      <div className="mx-auto max-w-7xl">
+        <div className="flex min-h-12 flex-nowrap items-center gap-2 px-4 sm:min-h-14 sm:gap-2.5 sm:px-6 lg:px-8">
           <Logo className="shrink-0" size="compact" />
 
           <nav
@@ -101,6 +101,7 @@ export default function Navbar() {
           </nav>
 
           <div className="ml-auto flex shrink-0 flex-nowrap items-center gap-1.5 sm:gap-2">
+            <SearchBar className="hidden lg:block" compact align="end" />
             <SearchBar className="lg:hidden" compact />
             <Link
               to={accountHref}
@@ -110,7 +111,7 @@ export default function Navbar() {
             </Link>
             <LanguageSelector
               compact
-              className="hidden w-36 lg:block xl:w-44"
+              className="hidden w-32 lg:block xl:w-40"
             />
             <ThemeToggle theme={theme} onToggle={toggleTheme} />
 
@@ -146,13 +147,12 @@ export default function Navbar() {
           className={`hidden border-t lg:block ${secondaryBand}`}
           aria-label="Secondary"
         >
-          <div className="flex min-h-8 items-center gap-2 px-5 sm:px-8 xl:min-h-9">
-            <div className="flex min-w-0 flex-1 items-center gap-0.5 overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] xl:gap-1 [&::-webkit-scrollbar]:hidden">
+          <div className="flex min-h-8 items-center px-4 py-1 sm:px-6 xl:min-h-9 lg:px-8">
+            <div className="flex w-full flex-wrap items-center gap-x-0.5 gap-y-1 xl:gap-x-1">
               {secondaryNav.map((item) => (
                 <NavLink key={item.href} item={item} />
               ))}
             </div>
-            <SearchBar className="hidden shrink-0 lg:block" align="end" />
           </div>
         </nav>
       </div>
@@ -164,7 +164,7 @@ export default function Navbar() {
             : "max-h-0 overflow-hidden"
         }`}
       >
-        <div className="mx-auto max-w-6xl px-5 py-4">
+        <div className="mx-auto max-w-7xl px-5 py-4">
           <div className="mb-4 px-1 lg:hidden">
             <SearchBar className="w-full" />
           </div>

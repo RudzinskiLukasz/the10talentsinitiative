@@ -33,6 +33,24 @@ export const POST_CATEGORIES = [
     href: "/t-talents-sports",
     labelKey: "secondaryNav.tTalentsSports",
   },
+  {
+    id: "catholic-poets-collective",
+    value: "Catholic Poets Collective",
+    href: "/catholic-poets-collective",
+    labelKey: "secondaryNav.catholicPoetsCollective",
+  },
+  {
+    id: "catholic-composers",
+    value: "Catholic Composers",
+    href: "/catholic-composers",
+    labelKey: "secondaryNav.catholicComposers",
+  },
+  {
+    id: "tti-spirituality-unit",
+    value: "TTI Spirituality Unit",
+    href: "/tti-spirituality-unit",
+    labelKey: "secondaryNav.ttiSpiritualityUnit",
+  },
 ];
 
 export function getCategoryById(id) {

@@ -29,8 +29,6 @@ import AdminHomepagePage from "./pages/admin/AdminHomepagePage.jsx";
 import AdminTracksPage from "./pages/admin/AdminTracksPage.jsx";
 import AdminTrackEditorPage from "./pages/admin/AdminTrackEditorPage.jsx";
 import TTalentsRecordsPage from "./pages/TTalentsRecordsPage.jsx";
-import PlaceholderPage from "./components/PlaceholderPage.jsx";
-import { usePlaceholderTitle } from "./i18n/nav.js";
 
 const AdminPostEditorPage = lazy(
   () => import("./pages/admin/AdminPostEditorPage.jsx")
@@ -41,11 +39,6 @@ const AdminCodeEditorPage = lazy(
 
 function AdminEditorFallback() {
   return <p className="text-sm text-fg-muted">Loading editor…</p>;
-}
-
-function SecondaryPlaceholder({ href }) {
-  const title = usePlaceholderTitle(href);
-  return <PlaceholderPage title={title} />;
 }
 
 export default function App() {
@@ -109,15 +102,15 @@ export default function App() {
         <Route path="catholic-singles-forum" element={<CatholicSinglesForumPage />} />
         <Route
           path="catholic-poets-collective"
-          element={<SecondaryPlaceholder href="/catholic-poets-collective" />}
+          element={<CategoryPostsPage categoryId="catholic-poets-collective" />}
         />
         <Route
           path="catholic-composers"
-          element={<SecondaryPlaceholder href="/catholic-composers" />}
+          element={<CategoryPostsPage categoryId="catholic-composers" />}
         />
         <Route
           path="tti-spirituality-unit"
-          element={<SecondaryPlaceholder href="/tti-spirituality-unit" />}
+          element={<CategoryPostsPage categoryId="tti-spirituality-unit" />}
         />
         <Route path="donations" element={<DonationsPage />} />
         <Route path="upcoming-programs" element={<UpcomingProgramsPage />} />

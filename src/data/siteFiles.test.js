@@ -34,13 +34,18 @@ describe("site file catalog", () => {
   });
 
   it("keeps the database allowlist aligned with the editor", () => {
-    const sql = readFileSync(
+    const baseSql = readFileSync(
       resolve(root, "supabase/migrations/004_site_files.sql"),
       "utf8"
     );
-    expect(sql).toContain(String(MAX_SITE_FILE_CHARS));
+    const secondarySql = readFileSync(
+      resolve(root, "supabase/migrations/008_secondary_nav_site_files.sql"),
+      "utf8"
+    );
+    const allowlistSql = `${baseSql}\n${secondarySql}`;
+    expect(baseSql).toContain(String(MAX_SITE_FILE_CHARS));
     for (const file of SITE_FILES) {
-      expect(sql).toContain(`'${file.path}'`);
+      expect(allowlistSql).toContain(`'${file.path}'`);
     }
   });
 
