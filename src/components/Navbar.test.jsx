@@ -31,6 +31,9 @@ describe("Navbar", () => {
       "tTalentsSeries",
       "tTalentsSports",
       "catholicSinglesForum",
+      "catholicPoetsCollective",
+      "catholicComposers",
+      "ttiSpiritualityUnit",
       "donations",
     ];
     for (const key of keys) {

@@ -25,6 +25,14 @@ export default function AdminLayout() {
               Posts
             </NavLink>
             <NavLink
+              to="/admin/homepage"
+              className={({ isActive }) =>
+                `text-sm font-medium ${isActive ? "text-accent" : "text-fg-muted hover:text-fg"}`
+              }
+            >
+              Homepage
+            </NavLink>
+            <NavLink
               to="/admin/tracks"
               className={({ isActive }) =>
                 `text-sm font-medium ${isActive ? "text-accent" : "text-fg-muted hover:text-fg"}`

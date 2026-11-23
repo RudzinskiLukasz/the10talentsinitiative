@@ -25,9 +25,12 @@ import CatholicSinglesForumPage from "./pages/CatholicSinglesForumPage.jsx";
 import AdminLoginPage from "./pages/admin/AdminLoginPage.jsx";
 import AdminLayout from "./pages/admin/AdminLayout.jsx";
 import AdminPostsPage from "./pages/admin/AdminPostsPage.jsx";
+import AdminHomepagePage from "./pages/admin/AdminHomepagePage.jsx";
 import AdminTracksPage from "./pages/admin/AdminTracksPage.jsx";
 import AdminTrackEditorPage from "./pages/admin/AdminTrackEditorPage.jsx";
 import TTalentsRecordsPage from "./pages/TTalentsRecordsPage.jsx";
+import PlaceholderPage from "./components/PlaceholderPage.jsx";
+import { usePlaceholderTitle } from "./i18n/nav.js";
 
 const AdminPostEditorPage = lazy(
   () => import("./pages/admin/AdminPostEditorPage.jsx")
@@ -40,6 +43,11 @@ function AdminEditorFallback() {
   return <p className="text-sm text-fg-muted">Loading editor…</p>;
 }
 
+function SecondaryPlaceholder({ href }) {
+  const title = usePlaceholderTitle(href);
+  return <PlaceholderPage title={title} />;
+}
+
 export default function App() {
   return (
     <Routes>
@@ -47,6 +55,7 @@ export default function App() {
       <Route path="/admin" element={<AdminRoute />}>
         <Route element={<AdminLayout />}>
           <Route index element={<AdminPostsPage />} />
+          <Route path="homepage" element={<AdminHomepagePage />} />
           <Route
             path="posts/new"
             element={
@@ -98,6 +107,18 @@ export default function App() {
           element={<CategoryPostsPage categoryId="t-talents-sports" />}
         />
         <Route path="catholic-singles-forum" element={<CatholicSinglesForumPage />} />
+        <Route
+          path="catholic-poets-collective"
+          element={<SecondaryPlaceholder href="/catholic-poets-collective" />}
+        />
+        <Route
+          path="catholic-composers"
+          element={<SecondaryPlaceholder href="/catholic-composers" />}
+        />
+        <Route
+          path="tti-spirituality-unit"
+          element={<SecondaryPlaceholder href="/tti-spirituality-unit" />}
+        />
         <Route path="donations" element={<DonationsPage />} />
         <Route path="upcoming-programs" element={<UpcomingProgramsPage />} />
         <Route path="privacy-policy" element={<PrivacyPolicyPage />} />

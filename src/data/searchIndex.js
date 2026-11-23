@@ -5,6 +5,9 @@ import i18n from "../i18n/index.js";
 
 const PLACEHOLDER_PATHS = new Set([
   "/catholic-singles-forum",
+  "/catholic-poets-collective",
+  "/catholic-composers",
+  "/tti-spirituality-unit",
   "/donations",
 ]);
 

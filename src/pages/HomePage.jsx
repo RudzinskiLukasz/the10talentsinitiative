@@ -3,27 +3,15 @@ import { useTranslation } from "react-i18next";
 import FacebookPageEmbed from "../components/FacebookPageEmbed.jsx";
 import HeroPhotoBackground from "../components/HeroPhotoBackground.jsx";
 import Reveal from "../components/Reveal.jsx";
+import { useHomepageContent } from "../hooks/useHomepageContent.js";
 import { usePublishedPosts } from "../hooks/usePosts.js";
 
 export default function HomePage() {
   const { t } = useTranslation();
+  const { content: homePage } = useHomepageContent();
   const { posts: publishedPosts } = usePublishedPosts({
     category: "Homilies/Reflections",
   });
-  const homePage = {
-    discoverMoreHref: t("homePage.discoverMoreHref"),
-    introTitle: t("homePage.introTitle"),
-    introBody: t("homePage.introBody"),
-    announcementsTitle: t("homePage.announcementsTitle"),
-    announcementsIntro: t("homePage.announcementsIntro"),
-    programsTitle: t("homePage.programsTitle"),
-    programsIntro: t("homePage.programsIntro"),
-    programTeasers: t("homePage.programTeasers", { returnObjects: true }),
-    donateTitle: t("homePage.donateTitle"),
-    donateBody: t("homePage.donateBody"),
-    donateCta: t("homePage.donateCta"),
-    bankDetails: t("homePage.bankDetails"),
-  };
 
   const announcementPosts = publishedPosts.slice(0, 6);
 
@@ -33,16 +21,16 @@ export default function HomePage() {
         id="top"
         className="hero-on-photo relative min-h-[min(88vh,52rem)] overflow-hidden pt-page-top pb-24 sm:pb-32"
       >
-        <HeroPhotoBackground />
+        <HeroPhotoBackground images={homePage.heroImages} />
 
         <div className="relative mx-auto flex max-w-6xl flex-col justify-center px-5 text-center sm:px-8">
           <Reveal className="mx-auto max-w-3xl">
             <blockquote className="relative px-2 sm:px-6">
               <p className="font-display text-xl font-medium leading-snug text-fg text-balance sm:text-2xl lg:text-[1.65rem]">
-                {t("hero.quote")}
+                {homePage.hero.quote}
               </p>
               <footer className="mt-4 text-xs font-medium tracking-wide text-fg-subtle sm:text-sm">
-                {t("hero.quoteAttribution")}
+                {homePage.hero.quoteAttribution}
               </footer>
             </blockquote>
           </Reveal>
@@ -58,14 +46,14 @@ export default function HomePage() {
             delay={120}
             className="mx-auto mt-5 max-w-3xl font-display text-xl font-medium leading-snug text-fg text-balance sm:text-2xl lg:text-[1.65rem]"
           >
-            {t("hero.title")}
+            {homePage.hero.title}
           </Reveal>
           <Reveal
             as="p"
             delay={160}
             className="mx-auto mt-6 max-w-3xl text-base leading-relaxed text-fg-muted line-clamp-6 sm:line-clamp-none sm:text-lg"
           >
-            {t("hero.description")}
+            {homePage.hero.description}
           </Reveal>
           <Reveal delay={200} className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Link
@@ -190,7 +178,7 @@ export default function HomePage() {
           <div className="mt-10 grid gap-5 lg:grid-cols-3">
             {(Array.isArray(homePage.programTeasers) ? homePage.programTeasers : []).map(
               (program, i) => (
-              <Reveal key={program.title} delay={i * 70}>
+              <Reveal key={program.title || `program-${i}`} delay={i * 70}>
                 <div className="h-full rounded-2xl border border-border bg-surface p-6 shadow-sm">
                   <h3 className="font-display text-lg font-semibold text-fg">{program.title}</h3>
                   <p className="mt-3 text-sm leading-relaxed text-fg-muted">{program.description}</p>

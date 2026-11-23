@@ -99,6 +99,7 @@ The public site stays a **Render Static Site**. Content lives in **Supabase** (P
    - [`supabase/migrations/004_site_files.sql`](supabase/migrations/004_site_files.sql) (theme file editor)
    - [`supabase/migrations/005_profiles_and_member_auth.sql`](supabase/migrations/005_profiles_and_member_auth.sql) (**required** before public sign-up — profiles + admin-only CMS writes)
    - [`supabase/migrations/006_cast_app_link.sql`](supabase/migrations/006_cast_app_link.sql) (optional CAST `apps` link RPC)
+   - [`supabase/migrations/007_homepage_content.sql`](supabase/migrations/007_homepage_content.sql) (editable homepage text + hero images)
 3. **Authentication → Users → Add user** — create 1–2 admin emails (password sign-in). After migration `005`, existing users are backfilled as `role = 'admin'`. New public sign-ups become `member`.
 4. Copy **Project URL** and **anon public** key into `.env` (see `.env.example`):
    - `VITE_SUPABASE_URL`
@@ -114,6 +115,7 @@ The public site stays a **Render Static Site**. Content lives in **Supabase** (P
 8. **CAST SSO:** with `VITE_CAST_APP_URL` set, **Continue to CAST** sends the Supabase session to `{CAST}/auth/callback#access_token=…&refresh_token=…`. CAST must use the **same** Supabase project and `detectSessionInUrl: true` (or `setSession`). Return trips land on this app’s `/auth/callback`.
 9. Open `/admin`, sign in with an **admin** profile:
    - **Posts** — create/edit articles with a TipTap visual editor (images, uploaded video, YouTube/Vimeo embeds). Statuses: `draft`, `published`, or `scheduled` (with publish date/time). Scheduled posts appear on the public site once `publish_at` is reached (RLS + client filter; no Edge Function).
+   - **Homepage** (`/admin/homepage`) — edit main-page hero copy, section text, program teasers, and slideshow images (upload or URL). Empty fields keep the translated defaults.
    - **Records** (`/admin/tracks`) — upload songs for T-Talents Records (visitors download on `/t-talents-records`)
    - Promote a member later: `update public.profiles set role = 'admin' where id = '<user-uuid>';`
 

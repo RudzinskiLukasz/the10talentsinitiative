@@ -15,6 +15,9 @@ const SECONDARY_NAV = [
   { key: "tTalentsSeries", href: "/t-talents-series" },
   { key: "tTalentsSports", href: "/t-talents-sports" },
   { key: "catholicSinglesForum", href: "/catholic-singles-forum" },
+  { key: "catholicPoetsCollective", href: "/catholic-poets-collective" },
+  { key: "catholicComposers", href: "/catholic-composers" },
+  { key: "ttiSpiritualityUnit", href: "/tti-spirituality-unit" },
   { key: "donations", href: "/donations" },
 ];
 

@@ -21,6 +21,9 @@ export const secondaryNav = [
   { label: "T-Talents Series", href: "/t-talents-series" },
   { label: "T-Talents Sports", href: "/t-talents-sports" },
   { label: "Catholic Singles Forum", href: "/catholic-singles-forum" },
+  { label: "Catholic Poets Collective", href: "/catholic-poets-collective" },
+  { label: "Catholic Composers", href: "/catholic-composers" },
+  { label: "TTI Spirituality Unit", href: "/tti-spirituality-unit" },
   { label: "Donations", href: "/donations" },
 ];
 
